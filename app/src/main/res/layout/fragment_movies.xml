@@ -6,14 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".ui.movies.MoviesFragment">
 
-    <TextView
+    <fragment
+        android:id="@+id/movies_container"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:gravity="center"
-        android:text="@string/movies"
+        app:defaultNavHost="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/movies_navigation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

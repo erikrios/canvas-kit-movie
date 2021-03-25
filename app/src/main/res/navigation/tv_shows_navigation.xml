@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tv_shows_navigation"
+    app:startDestination="@id/discoverTvShowsFragment">
+
+    <fragment
+        android:id="@+id/discoverTvShowsFragment"
+        android:name="io.erikrios.github.canvaskitmovie.ui.tvshows.DiscoverTvShowsFragment"
+        android:label="fragment_discover_tv_shows"
+        tools:layout="@layout/fragment_discover_tv_shows" />
+</navigation>

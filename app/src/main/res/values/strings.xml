@@ -2,4 +2,6 @@
     <string name="app_name">Canvas Kit Movie</string>
     <string name="movies">Movies</string>
     <string name="tv_shows">TV Shows</string>
+    <string name="tv_vote_average_container">(%f)</string>
+    <string name="tv_vote_count_container">Vote(%d)</string>
 </resources>

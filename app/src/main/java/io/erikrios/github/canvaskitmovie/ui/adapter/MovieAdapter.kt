@@ -30,18 +30,15 @@ class MovieAdapter(
         fun bindItem(movie: Movie, clickListener: ((Movie) -> Unit)) {
             binding.apply {
                 Glide.with(imgPoster.context)
-                    .load("https://image.tmdb.org/t/p/w342${movie.posterPath}")
+                    .load("https://image.tmdb.org/t/p/w500${movie.posterPath}")
                     .into(imgPoster)
 
                 tvTitle.text = movie.title
-                rbVoteAverage.rating = movie.voteAverage.toFloat()
+                rbVoteAverage.rating = (movie.voteAverage / 3.333).toFloat()
                 tvVoteAverage.text = itemView.context.getString(
                     R.string.tv_vote_average_container,
                     movie.voteAverage
                 )
-                tvReleaseDate.text = movie.releaseDate
-                tvVoteCount.text =
-                    itemView.context.getString(R.string.tv_vote_count_container, movie.voteCount)
             }
             itemView.setOnClickListener { clickListener(movie) }
         }

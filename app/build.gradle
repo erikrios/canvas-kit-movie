@@ -85,6 +85,6 @@ dependencies {
     // DataStore Preferences
     implementation 'androidx.datastore:datastore-preferences:1.0.0-alpha08'
 
-    // Arc Layout
-    implementation 'com.github.florent37:arclayout:1.0.3'
+    // Kenburns View
+    implementation 'com.flaviofaria:kenburnsview:1.0.7'
 }

@@ -46,6 +46,9 @@ class DetailsFragment : Fragment() {
             Glide.with(requireContext())
                 .load("https://image.tmdb.org/t/p/original${movie.backdropPath}")
                 .into(imgBackdrop)
+            Glide.with(requireContext())
+                .load("https://image.tmdb.org/t/p/w500${movie.posterPath}")
+                .into(imgPoster)
             toolbar.apply {
                 title = movie.title
                 navigationIcon =
@@ -58,6 +61,13 @@ class DetailsFragment : Fragment() {
                 intent.type = "text/plain"
                 startActivity(intent)
             }
+            tvTitle.text = movie.title
+            tvRatingInfo.text = String.format("%.1f", movie.voteAverage)
+            rbVoteAverage.rating = (movie.voteAverage / 3.333).toFloat()
+            tvVoteInfo.text = movie.voteCount.toString()
+            tvStatusInfo.text = movie.status
+            tvPopularityInfo.text = String.format("%.3f", movie.popularity)
+            tvReleaseDateInfo.text = movie.releaseDate
         }
         handleGenres(movie.genres ?: listOf())
     }

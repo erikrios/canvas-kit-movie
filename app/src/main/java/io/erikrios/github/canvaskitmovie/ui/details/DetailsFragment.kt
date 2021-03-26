@@ -1,5 +1,6 @@
 package io.erikrios.github.canvaskitmovie.ui.details
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -41,13 +42,19 @@ class DetailsFragment : Fragment() {
     private fun handleView(movie: Movie) {
         binding?.apply {
             Glide.with(requireContext())
-                .load("https://image.tmdb.org/t/p/original${args.movie.backdropPath}")
-                .into(imgPoster)
+                .load("https://image.tmdb.org/t/p/original${movie.backdropPath}")
+                .into(imgBackdrop)
             toolbar.apply {
                 title = movie.title
                 navigationIcon =
                     ContextCompat.getDrawable(context, R.drawable.ic_baseline_arrow_back_24)
                 setNavigationOnClickListener { findNavController().popBackStack() }
+            }
+            fabShare.setOnClickListener {
+                val intent = Intent(Intent.ACTION_SEND)
+                intent.putExtra(Intent.EXTRA_TEXT, movie.overview)
+                intent.type = "text/plain"
+                startActivity(intent)
             }
         }
 

@@ -2,6 +2,7 @@ package io.erikrios.github.canvaskitmovie.utils
 
 import io.erikrios.github.canvaskitmovie.data.model.Genre
 import io.erikrios.github.canvaskitmovie.data.model.Movie
+import io.erikrios.github.canvaskitmovie.data.model.TvShow
 
 object DummyData {
 
@@ -447,6 +448,29 @@ object DummyData {
                 1791
             )
         )
+    }
 
+    fun generateTvShows(): List<TvShow> {
+        return listOf(
+            TvShow(
+                88396,
+                "/JB17sIsU53NuWVUecOwrCA0CUp.jpg",
+                listOf(
+                    Genre(10765, "Sci-Fi & Fantasy"),
+                    Genre(10759, "Action & Adventure"),
+                    Genre(18, "Drama")
+                ),
+                "en",
+                "The Falcon and the Winter Soldier",
+                "The Falcon and the Winter Soldier",
+                "Following the events of “Avengers: Endgame”, the Falcon, Sam Wilson and the Winter Soldier, Bucky Barnes team up in a global adventure that tests their abilities, and their patience.",
+                3612.888,
+                "/6kbAMLteGO8yyewYau6bJ683sw7.jpg",
+                "2021-03-19",
+                "Returning Series",
+                7.7,
+                1657
+            )
+        )
     }
 }

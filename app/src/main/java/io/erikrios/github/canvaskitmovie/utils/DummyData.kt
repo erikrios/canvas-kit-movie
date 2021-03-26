@@ -414,7 +414,7 @@ object DummyData {
                 ),
                 "en",
                 "Mortal Kombat Legends: Scorpion's Revenge",
-                "Miraculous World: New York, United HeroeZ",
+                "Mortal Kombat Legends: Scorpion's Revenge",
                 "After the vicious slaughter of his family by stone-cold mercenary Sub-Zero, Hanzo Hasashi is exiled to the torturous Netherrealm. There, in exchange for his servitude to the sinister Quan Chi, he’s given a chance to avenge his family – and is resurrected as Scorpion, a lost soul bent on revenge. Back on Earthrealm, Lord Raiden gathers a team of elite warriors – Shaolin monk Liu Kang, Special Forces officer Sonya Blade and action star Johnny Cage – an unlikely band of heroes with one chance to save humanity. To do this, they must defeat Shang Tsung’s horde of Outworld gladiators and reign over the Mortal Kombat tournament.",
                 798.951,
                 "/4VlXER3FImHeFuUjBShFamhIp9M.jpg",

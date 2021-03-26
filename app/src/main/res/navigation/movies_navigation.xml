@@ -9,5 +9,14 @@
         android:id="@+id/discoverMoviesFragment"
         android:name="io.erikrios.github.canvaskitmovie.ui.movies.DiscoverMoviesFragment"
         android:label="fragment_discover_movies"
-        tools:layout="@layout/fragment_discover_movies" />
+        tools:layout="@layout/fragment_discover_movies">
+        <action
+            android:id="@+id/action_discoverMoviesFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="io.erikrios.github.canvaskitmovie.ui.details.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" />
 </navigation>

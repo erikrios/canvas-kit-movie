@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import io.erikrios.github.canvaskitmovie.data.model.Movie
 import io.erikrios.github.canvaskitmovie.databinding.FragmentDiscoverMoviesBinding
 import io.erikrios.github.canvaskitmovie.ui.adapter.MovieAdapter
@@ -38,7 +38,9 @@ class DiscoverMoviesFragment : Fragment() {
 
     private fun setRecyclerView(movies: List<Movie>) {
         adapter = MovieAdapter(movies) { movie ->
-            Toast.makeText(context, movie.originalTitle, Toast.LENGTH_SHORT).show()
+            val action =
+                DiscoverMoviesFragmentDirections.actionDiscoverMoviesFragmentToDetailsFragment(movie)
+            findNavController().navigate(action)
         }
         binding?.rvMovies?.adapter = adapter
     }

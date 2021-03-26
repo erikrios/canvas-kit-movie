@@ -68,6 +68,7 @@ class DetailsFragment : Fragment() {
             tvStatusInfo.text = movie.status
             tvPopularityInfo.text = String.format("%.3f", movie.popularity)
             tvReleaseDateInfo.text = movie.releaseDate
+            tvOverview.text = movie.overview
         }
         handleGenres(movie.genres ?: listOf())
     }

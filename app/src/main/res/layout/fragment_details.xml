@@ -16,40 +16,27 @@
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="350dp"
             android:fitsSystemWindows="true"
             app:contentScrim="@color/purple_dark_500"
             app:expandedTitleMarginEnd="20dp"
             app:expandedTitleMarginStart="15dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <com.flaviofaria.kenburnsview.KenBurnsView
+                android:id="@+id/img_poster"
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
-                app:layout_collapseMode="parallax">
+                android:layout_height="match_parent"
+                android:contentDescription="@string/app_name"
+                android:fitsSystemWindows="true"
+                android:scaleType="center"
+                tools:src="@tools:sample/backgrounds/scenic" />
 
-                <com.github.florent37.arclayout.ArcLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_weight="2"
-                    android:elevation="5dp"
-                    app:arc_cropDirection="cropOutside"
-                    app:arc_height="40dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <ImageView
-                        android:id="@+id/img_poster"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:contentDescription="@string/app_name"
-                        android:scaleType="centerCrop"
-                        tools:src="@tools:sample/backgrounds/scenic" />
-
-                </com.github.florent37.arclayout.ArcLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/bg_title" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -59,7 +46,6 @@
                 app:contentInsetStartWithNavigation="0dp"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light" />
-
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 

@@ -11,8 +11,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import io.erikrios.github.canvaskitmovie.R
+import io.erikrios.github.canvaskitmovie.data.model.Genre
 import io.erikrios.github.canvaskitmovie.data.model.Movie
 import io.erikrios.github.canvaskitmovie.databinding.FragmentDetailsBinding
+import io.erikrios.github.canvaskitmovie.ui.adapter.GenreAdapter
 
 class DetailsFragment : Fragment() {
 
@@ -57,6 +59,11 @@ class DetailsFragment : Fragment() {
                 startActivity(intent)
             }
         }
+        handleGenres(movie.genres ?: listOf())
+    }
 
+    private fun handleGenres(genres: List<Genre>) {
+        val genreAdapter = GenreAdapter(genres)
+        binding?.rvGenres?.adapter = genreAdapter
     }
 }

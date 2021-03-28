@@ -29,6 +29,7 @@ class CinemaAdapter<T>(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bindItem(cinema: T, clickListener: ((T) -> Unit)) {
+            val posterPathLeadingUrl = "https://image.tmdb.org/t/p/w500"
             val posterPath: String
             val title: String
             val voteAverage: Float
@@ -48,7 +49,7 @@ class CinemaAdapter<T>(
             }
             binding.apply {
                 Glide.with(imgPoster.context)
-                    .load("https://image.tmdb.org/t/p/w500$posterPath")
+                    .load(posterPathLeadingUrl.plus(posterPath))
                     .into(imgPoster)
 
                 tvTitle.text = title

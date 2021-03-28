@@ -31,11 +31,11 @@ object ImageConfigurations {
     }
 
     fun generateFullImageUrl(
+        path: String,
         imageType: ImageType,
         backdropSize: BackdropSize = BackdropSize.ORIGINAL,
         posterSize: PosterSize = PosterSize.ORIGINAL,
-        profileSize: ProfileSize = ProfileSize.ORIGINAL,
-        path: String
+        profileSize: ProfileSize = ProfileSize.ORIGINAL
     ): String {
         val fullImageUrl = SECURE_BASE_URL
 

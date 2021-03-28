@@ -42,12 +42,16 @@ class TvShowDetailsFragment : Fragment() {
 
     private fun handleView(tvShow: TvShow) {
         binding?.apply {
-            Glide.with(requireContext())
-                .load("https://image.tmdb.org/t/p/original${tvShow.backdropPath}")
-                .into(imgBackdrop)
-            Glide.with(requireContext())
-                .load("https://image.tmdb.org/t/p/w500${tvShow.posterPath}")
-                .into(imgPoster)
+            tvShow.backdropPath?.let {
+                Glide.with(requireContext())
+                    .load("https://image.tmdb.org/t/p/original$it")
+                    .into(imgBackdrop)
+            }
+            tvShow.posterPath?.let {
+                Glide.with(requireContext())
+                    .load("https://image.tmdb.org/t/p/w500$it")
+                    .into(imgPoster)
+            }
             toolbar.apply {
                 title = tvShow.name
                 navigationIcon =

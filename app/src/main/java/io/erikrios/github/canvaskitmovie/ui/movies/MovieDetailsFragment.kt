@@ -43,12 +43,16 @@ class MovieDetailsFragment : Fragment() {
 
     private fun handleView(movie: Movie) {
         binding?.apply {
-            Glide.with(requireContext())
-                .load("https://image.tmdb.org/t/p/original${movie.backdropPath}")
-                .into(imgBackdrop)
-            Glide.with(requireContext())
-                .load("https://image.tmdb.org/t/p/w500${movie.posterPath}")
-                .into(imgPoster)
+            movie.backdropPath?.let {
+                Glide.with(requireContext())
+                    .load("https://image.tmdb.org/t/p/original$it")
+                    .into(imgBackdrop)
+            }
+            movie.posterPath?.let {
+                Glide.with(requireContext())
+                    .load("https://image.tmdb.org/t/p/w500$it")
+                    .into(imgPoster)
+            }
             toolbar.apply {
                 title = movie.title
                 navigationIcon =

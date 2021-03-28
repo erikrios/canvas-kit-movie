@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import io.erikrios.github.canvaskitmovie.data.model.Creator
 import io.erikrios.github.canvaskitmovie.databinding.ItemCreatorBinding
+import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations
+import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations.generateFullImageUrl
 
 class CreatorAdapter(private val creators: List<Creator>) :
     RecyclerView.Adapter<CreatorAdapter.ViewHolder>() {
@@ -26,8 +28,13 @@ class CreatorAdapter(private val creators: List<Creator>) :
         fun bind(creator: Creator) {
             binding.apply {
                 creator.profilePath?.let {
+                    val imageUrl = generateFullImageUrl(
+                        it,
+                        ImageConfigurations.ImageType.PROFILE,
+                        profileSize = ImageConfigurations.ProfileSize.WIDTH_185
+                    )
                     Glide.with(civProfile.context)
-                        .load("https://image.tmdb.org/t/p/w185${creator.profilePath}")
+                        .load(imageUrl)
                         .into(civProfile)
                 }
                 tvName.text = creator.name

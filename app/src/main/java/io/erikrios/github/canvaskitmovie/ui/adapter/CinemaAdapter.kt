@@ -8,6 +8,8 @@ import io.erikrios.github.canvaskitmovie.R
 import io.erikrios.github.canvaskitmovie.data.model.Movie
 import io.erikrios.github.canvaskitmovie.data.model.TvShow
 import io.erikrios.github.canvaskitmovie.databinding.ItemCinemaBinding
+import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations
+import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations.generateFullImageUrl
 
 class CinemaAdapter<T>(
     private val cinemas: List<T>,
@@ -29,7 +31,6 @@ class CinemaAdapter<T>(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bindItem(cinema: T, clickListener: ((T) -> Unit)) {
-            val posterPathLeadingUrl = "https://image.tmdb.org/t/p/w500"
             val posterPath: String?
             val title: String
             val voteAverage: Float
@@ -49,8 +50,13 @@ class CinemaAdapter<T>(
             }
             binding.apply {
                 posterPath?.let {
+                    val imageUrl = generateFullImageUrl(
+                        it,
+                        ImageConfigurations.ImageType.POSTER,
+                        posterSize = ImageConfigurations.PosterSize.WIDTH_500
+                    )
                     Glide.with(imgPoster.context)
-                        .load(posterPathLeadingUrl.plus(it))
+                        .load(imageUrl)
                         .into(imgPoster)
                 }
                 tvTitle.text = title

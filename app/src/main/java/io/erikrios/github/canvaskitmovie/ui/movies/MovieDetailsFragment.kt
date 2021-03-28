@@ -15,6 +15,8 @@ import io.erikrios.github.canvaskitmovie.data.model.Genre
 import io.erikrios.github.canvaskitmovie.data.model.Movie
 import io.erikrios.github.canvaskitmovie.databinding.FragmentMovieDetailsBinding
 import io.erikrios.github.canvaskitmovie.ui.adapter.GenreAdapter
+import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations
+import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations.generateFullImageUrl
 
 class MovieDetailsFragment : Fragment() {
 
@@ -44,13 +46,19 @@ class MovieDetailsFragment : Fragment() {
     private fun handleView(movie: Movie) {
         binding?.apply {
             movie.backdropPath?.let {
+                val imageUrl = generateFullImageUrl(it, ImageConfigurations.ImageType.BACKDROP)
                 Glide.with(requireContext())
-                    .load("https://image.tmdb.org/t/p/original$it")
+                    .load(imageUrl)
                     .into(imgBackdrop)
             }
             movie.posterPath?.let {
+                val imageUrl = generateFullImageUrl(
+                    it,
+                    ImageConfigurations.ImageType.POSTER,
+                    posterSize = ImageConfigurations.PosterSize.WIDTH_500
+                )
                 Glide.with(requireContext())
-                    .load("https://image.tmdb.org/t/p/w500$it")
+                    .load(imageUrl)
                     .into(imgPoster)
             }
             toolbar.apply {

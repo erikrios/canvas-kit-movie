@@ -7,5 +7,5 @@ import kotlinx.parcelize.Parcelize
 data class Creator(
     val id: Long,
     val name: String,
-    val profilePath: String
+    val profilePath: String?
 ) : Parcelable

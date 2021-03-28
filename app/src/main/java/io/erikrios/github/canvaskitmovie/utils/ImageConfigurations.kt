@@ -37,9 +37,9 @@ object ImageConfigurations {
         posterSize: PosterSize = PosterSize.ORIGINAL,
         profileSize: ProfileSize = ProfileSize.ORIGINAL
     ): String {
-        val fullImageUrl = SECURE_BASE_URL
+        var fullImageUrl = SECURE_BASE_URL
 
-        when (imageType) {
+        fullImageUrl = when (imageType) {
             ImageType.BACKDROP -> fullImageUrl.plus(backdropSize.size)
             ImageType.POSTER -> fullImageUrl.plus(posterSize.size)
             ImageType.PROFILE -> fullImageUrl.plus(profileSize.size)

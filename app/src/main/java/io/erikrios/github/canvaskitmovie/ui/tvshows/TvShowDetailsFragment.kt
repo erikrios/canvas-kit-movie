@@ -11,9 +11,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import io.erikrios.github.canvaskitmovie.R
+import io.erikrios.github.canvaskitmovie.data.model.Creator
 import io.erikrios.github.canvaskitmovie.data.model.Genre
 import io.erikrios.github.canvaskitmovie.data.model.TvShow
 import io.erikrios.github.canvaskitmovie.databinding.FragmentTvShowDetailsBinding
+import io.erikrios.github.canvaskitmovie.ui.adapter.CreatorAdapter
 import io.erikrios.github.canvaskitmovie.ui.adapter.GenreAdapter
 import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations
 import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations.generateFullImageUrl
@@ -82,10 +84,16 @@ class TvShowDetailsFragment : Fragment() {
             tvOverview.text = tvShow.overview
         }
         handleGenres(tvShow.genres ?: listOf())
+        handleCreators(tvShow.creators)
     }
 
     private fun handleGenres(genres: List<Genre>) {
         val genreAdapter = GenreAdapter(genres)
         binding?.rvGenres?.adapter = genreAdapter
+    }
+
+    private fun handleCreators(creators: List<Creator>) {
+        val creatorAdapter = CreatorAdapter(creators)
+        binding?.rvCreators?.adapter = creatorAdapter
     }
 }

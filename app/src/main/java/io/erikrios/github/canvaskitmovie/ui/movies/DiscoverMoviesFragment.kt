@@ -39,7 +39,9 @@ class DiscoverMoviesFragment : Fragment() {
     private fun setRecyclerView(movies: List<Movie>) {
         adapter = MovieAdapter(movies) { movie ->
             val action =
-                DiscoverMoviesFragmentDirections.actionDiscoverMoviesFragmentToDetailsFragment(movie)
+                DiscoverMoviesFragmentDirections.actionDiscoverMoviesFragmentToMovieDetailsFragment(
+                    movie
+                )
             findNavController().navigate(action)
         }
         binding?.rvMovies?.adapter = adapter

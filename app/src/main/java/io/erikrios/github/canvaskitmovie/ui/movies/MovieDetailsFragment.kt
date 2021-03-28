@@ -1,4 +1,4 @@
-package io.erikrios.github.canvaskitmovie.ui.details
+package io.erikrios.github.canvaskitmovie.ui.movies
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,21 +13,21 @@ import com.bumptech.glide.Glide
 import io.erikrios.github.canvaskitmovie.R
 import io.erikrios.github.canvaskitmovie.data.model.Genre
 import io.erikrios.github.canvaskitmovie.data.model.Movie
-import io.erikrios.github.canvaskitmovie.databinding.FragmentDetailsBinding
+import io.erikrios.github.canvaskitmovie.databinding.FragmentMovieDetailsBinding
 import io.erikrios.github.canvaskitmovie.ui.adapter.GenreAdapter
 
-class DetailsFragment : Fragment() {
+class MovieDetailsFragment : Fragment() {
 
-    private var _binding: FragmentDetailsBinding? = null
+    private var _binding: FragmentMovieDetailsBinding? = null
     private val binding get() = _binding
-    private val args: DetailsFragmentArgs by navArgs()
+    private val args: MovieDetailsFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentDetailsBinding.inflate(inflater, container, false)
+        _binding = FragmentMovieDetailsBinding.inflate(inflater, container, false)
         return binding?.root
     }
 

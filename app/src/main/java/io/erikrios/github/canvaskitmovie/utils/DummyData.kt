@@ -1,5 +1,6 @@
 package io.erikrios.github.canvaskitmovie.utils
 
+import io.erikrios.github.canvaskitmovie.data.model.Creator
 import io.erikrios.github.canvaskitmovie.data.model.Genre
 import io.erikrios.github.canvaskitmovie.data.model.Movie
 import io.erikrios.github.canvaskitmovie.data.model.TvShow
@@ -469,7 +470,10 @@ object DummyData {
                 "2021-03-19",
                 "Returning Series",
                 7.7,
-                1657
+                1657,
+                listOf(
+                    Creator(1868712, "Malcolm Spellman", null)
+                )
             ),
             TvShow(
                 60735,
@@ -487,10 +491,15 @@ object DummyData {
                 "2014-10-07",
                 "Returning Series",
                 7.7,
-                7130
+                7130,
+                listOf(
+                    Creator(88967, "Greg Berlanti", "/1T24SiIIDMa9gAmq7QaYwZywq4y.jpg"),
+                    Creator(211962, "Geoff Johns", "/1hiQjkIkeFoiwvD4yIk2Dq6tnOa.jpg"),
+                    Creator(1216615, "Andrew Kreisberg", null)
+                )
             ),
             TvShow(
-                60735,
+                69050,
                 "/qZtAf4Z1lazGQoYVXiHOrvLr5lI.jpg",
                 listOf(
                     Genre(9648, "Mystery"),
@@ -506,7 +515,10 @@ object DummyData {
                 "2017-01-26",
                 "Returning Series",
                 8.6,
-                10711
+                10711,
+                listOf(
+                    Creator(1098032, "Roberto Aguirre-Sacasa", "/PtJSrAk7LDqaV5jExCYl10lcsN.jpg")
+                )
             ),
             TvShow(
                 95057,
@@ -524,7 +536,11 @@ object DummyData {
                 "2021-02-23",
                 "Returning Series",
                 8.3,
-                591
+                591,
+                listOf(
+                    Creator(88967, "Greg Berlanti", "/1T24SiIIDMa9gAmq7QaYwZywq4y.jpg"),
+                    Creator(209763, "Todd Helbing", "/wNwx7IQs1HHcMuR7gsBcKPEfFYd.jpg")
+                )
             ),
             TvShow(
                 85271,
@@ -543,7 +559,10 @@ object DummyData {
                 "2021-01-15",
                 "Ended",
                 8.5,
-                7723
+                7723,
+                listOf(
+                    Creator(123132, "Jac Schaeffer", null)
+                )
             ),
             TvShow(
                 1416,
@@ -560,7 +579,10 @@ object DummyData {
                 "2005-03-27",
                 "Returning Series",
                 8.2,
-                5637
+                5637,
+                listOf(
+                    Creator(25539, "Shonda Rhimes", "/pIQbVxfjNwZ0DaAjo3q107nng1b.jpg")
+                )
             ),
             TvShow(
                 71712,
@@ -577,7 +599,10 @@ object DummyData {
                 "2017-09-25",
                 "Returning Series",
                 8.6,
-                7222
+                7222,
+                listOf(
+                    Creator(169061, "David Shore", "/yUwAL9wOJoS9caz9GusyHsrad8J.jpg")
+                )
             ),
             TvShow(
                 1402,
@@ -596,7 +621,10 @@ object DummyData {
                 "2010-10-31",
                 "Returning Series",
                 8.0,
-                10286
+                10286,
+                listOf(
+                    Creator(4027, "Frank Darabont", "/wmUGB2vPuYQKPWNrK24SonBtyJY.jpg")
+                )
             ),
             TvShow(
                 63174,
@@ -614,7 +642,10 @@ object DummyData {
                 "2016-01-25",
                 "Returning Series",
                 8.5,
-                8009
+                8009,
+                listOf(
+                    Creator(1222585, "Tom Kapinos", "/ol7GfeO0OIDCWGYzlg1LDLmwluO.jpg")
+                )
             ),
             TvShow(
                 117023,
@@ -633,7 +664,11 @@ object DummyData {
                 "2021-03-19",
                 "Returning Series",
                 8.2,
-                84
+                84,
+                listOf(
+                    Creator(82725, "Álex Pina", "/hMKcFPRKo0I4WLBvkvppyBFDGr8.jpg"),
+                    Creator(1637084, "Esther Martínez Lobato", null)
+                )
             ),
             TvShow(
                 79460,
@@ -651,7 +686,10 @@ object DummyData {
                 "2018-10-25",
                 "Returning Series",
                 8.6,
-                1716
+                1716,
+                listOf(
+                    Creator(1214616, "Julie Plec", null)
+                )
             ),
             TvShow(
                 65334,
@@ -670,7 +708,10 @@ object DummyData {
                 "2015-10-19",
                 "Returning Series",
                 7.8,
-                2181
+                2181,
+                listOf(
+                    Creator(1565301, "Thomas Astruc", null)
+                )
             ),
             TvShow(
                 114695,
@@ -687,7 +728,8 @@ object DummyData {
                 "2021-01-08",
                 "Returning Series",
                 7.7,
-                353
+                353,
+                listOf()
             ),
             TvShow(
                 76231,
@@ -705,7 +747,11 @@ object DummyData {
                 "2018-09-04",
                 "Returning Series",
                 7.8,
-                137
+                137,
+                listOf(
+                    Creator(200043, "Kurt Sutter", "/A4c9xpj2VuZXGvSv6z1S912Xwnd.jpg"),
+                    Creator(1026085, "Elgin James", null)
+                )
             ),
             TvShow(
                 96580,
@@ -722,7 +768,10 @@ object DummyData {
                 "2021-01-27",
                 "Returning Series",
                 8.8,
-                77
+                77,
+                listOf(
+                    Creator(170819, "Chris Sheridan", null)
+                )
             ),
             TvShow(
                 44217,
@@ -740,7 +789,10 @@ object DummyData {
                 "2013-03-03",
                 "Ended",
                 8.0,
-                4249
+                4249,
+                listOf(
+                    Creator(37631, "Michael Hirst", null)
+                )
             ),
             TvShow(
                 77169,
@@ -758,7 +810,12 @@ object DummyData {
                 "2018-05-02",
                 "Returning Series",
                 8.1,
-                2809
+                2809,
+                listOf(
+                    Creator(68844, "Hayden Schlossberg", null),
+                    Creator(347335, "Josh Heald", null),
+                    Creator(1801553, "John Hurwitz", null)
+                )
             ),
             TvShow(
                 67855,
@@ -776,7 +833,8 @@ object DummyData {
                 "2018-10-16",
                 "Returning Series",
                 8.0,
-                416
+                416,
+                listOf()
             ),
             TvShow(
                 1399,
@@ -795,7 +853,11 @@ object DummyData {
                 "2011-04-17",
                 "Ended",
                 8.4,
-                13643
+                13643,
+                listOf(
+                    Creator(9813, "David Benioff", "/xvNN5huL0X8yJ7h3IZfGG4O2zBD.jpg"),
+                    Creator(228068, "D. B. Weiss", "/2RMejaT793U9KRk2IEbFfteQntE.jpg")
+                )
             ),
             TvShow(
                 18165,
@@ -813,7 +875,11 @@ object DummyData {
                 "2009-09-10",
                 "Ended",
                 8.3,
-                5487
+                5487,
+                listOf(
+                    Creator(26458, "Kevin Williamson", "/jWgZZoKBU1WFaCO5C7jpMBZ7xJs.jpg"),
+                    Creator(1214616, "Julie Plec", "/kQeuOgZBKDs80W4Ssm91x6zAdWu.jpg")
+                )
             )
         )
     }

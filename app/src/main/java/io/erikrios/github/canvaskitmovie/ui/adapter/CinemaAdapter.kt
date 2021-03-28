@@ -30,28 +30,29 @@ class CinemaAdapter<T>(
 
         fun bindItem(cinema: T, clickListener: ((T) -> Unit)) {
             val posterPathLeadingUrl = "https://image.tmdb.org/t/p/w500"
-            val posterPath: String
+            val posterPath: String?
             val title: String
             val voteAverage: Float
 
             when (cinema) {
                 is Movie -> {
-                    posterPath = cinema.posterPath.toString()
+                    posterPath = cinema.posterPath
                     title = cinema.title
                     voteAverage = cinema.voteAverage.toFloat()
                 }
                 is TvShow -> {
-                    posterPath = cinema.posterPath.toString()
+                    posterPath = cinema.posterPath
                     title = cinema.name
                     voteAverage = cinema.voteAverage.toFloat()
                 }
                 else -> throw IllegalArgumentException("Only Movie or TvShow instance are accepted.")
             }
             binding.apply {
-                Glide.with(imgPoster.context)
-                    .load(posterPathLeadingUrl.plus(posterPath))
-                    .into(imgPoster)
-
+                posterPath?.let {
+                    Glide.with(imgPoster.context)
+                        .load(posterPathLeadingUrl.plus(posterPath))
+                        .into(imgPoster)
+                }
                 tvTitle.text = title
                 rbVoteAverage.rating = (voteAverage / 3.333).toFloat()
                 tvVoteAverage.text = itemView.context.getString(

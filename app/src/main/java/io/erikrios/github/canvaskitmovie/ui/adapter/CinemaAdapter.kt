@@ -50,7 +50,7 @@ class CinemaAdapter<T>(
             binding.apply {
                 posterPath?.let {
                     Glide.with(imgPoster.context)
-                        .load(posterPathLeadingUrl.plus(posterPath))
+                        .load(posterPathLeadingUrl.plus(it))
                         .into(imgPoster)
                 }
                 tvTitle.text = title

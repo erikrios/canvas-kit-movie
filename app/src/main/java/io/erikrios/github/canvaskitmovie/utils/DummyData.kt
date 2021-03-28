@@ -470,6 +470,350 @@ object DummyData {
                 "Returning Series",
                 7.7,
                 1657
+            ),
+            TvShow(
+                60735,
+                "/JB17sIsU53NuWVUecOwrCA0CUp.jpg",
+                listOf(
+                    Genre(18, "Drama"),
+                    Genre(10765, "Sci-Fi & Fantasy")
+                ),
+                "en",
+                "The Flash",
+                "The Flash",
+                "After a particle accelerator causes a freak storm, CSI Investigator Barry Allen is struck by lightning and falls into a coma. Months later he awakens with the power of super speed, granting him the ability to move through Central City like an unseen guardian angel. Though initially excited by his newfound powers, Barry is shocked to discover he is not the only \\\"meta-human\\\" who was created in the wake of the accelerator explosion -- and not everyone is using their new powers for good. Barry partners with S.T.A.R. Labs and dedicates his life to protect the innocent. For now, only a few close friends and associates know that Barry is literally the fastest man alive, but it won't be long before the world learns what Barry Allen has become...The Flash.",
+                1510.931,
+                "/lJA2RCMfsWoskqlQhXPSLFQGXEJ.jpg",
+                "2014-10-07",
+                "Returning Series",
+                7.7,
+                7130
+            ),
+            TvShow(
+                60735,
+                "/qZtAf4Z1lazGQoYVXiHOrvLr5lI.jpg",
+                listOf(
+                    Genre(9648, "Mystery"),
+                    Genre(18, "Drama"),
+                    Genre(80, "Crime")
+                ),
+                "en",
+                "Riverdale",
+                "Riverdale",
+                "Set in the present, the series offers a bold, subversive take on Archie, Betty, Veronica and their friends, exploring the surreality of small-town life, the darkness and weirdness bubbling beneath Riverdale’s wholesome facade.",
+                1453.784,
+                "/wRbjVBdDo5qHAEOVYoMWpM58FSA.jpg",
+                "2017-01-26",
+                "Returning Series",
+                8.6,
+                10711
+            ),
+            TvShow(
+                95057,
+                "/gmbsR4SvYhhj4SvLAlTKxIkFxp9.jpg",
+                listOf(
+                    Genre(10759, "Action & Adventure"),
+                    Genre(10765, "Sci-Fi & Fantasy")
+                ),
+                "en",
+                "Superman & Lois",
+                "Superman & Lois",
+                "After years of facing megalomaniacal supervillains, monsters wreaking havoc on Metropolis, and alien invaders intent on wiping out the human race, The Man of Steel aka Clark Kent and Lois Lane come face to face with one of their greatest challenges ever: dealing with all the stress, pressures and complexities that come with being working parents in today's society.",
+                942.56,
+                "/6SJppowm7cdQgLkvoTlnTUSbjr9.jpg",
+                "2021-02-23",
+                "Returning Series",
+                8.3,
+                591
+            ),
+            TvShow(
+                85271,
+                "/rFLF2QTZL37Yjdc6kmV0PbrYz3w.jpg",
+                listOf(
+                    Genre(10765, "Sci-Fi & Fantasy"),
+                    Genre(9648, "Mystery"),
+                    Genre(18, "Drama")
+                ),
+                "en",
+                "WandaVision",
+                "WandaVision",
+                "Wanda Maximoff and Vision—two super-powered beings living idealized suburban lives—begin to suspect that everything is not as it seems.",
+                1071.358,
+                "/glKDfE6btIRcVB5zrjspRIs4r52.jpg",
+                "2021-01-15",
+                "Ended",
+                8.5,
+                7723
+            ),
+            TvShow(
+                1416,
+                "/edmk8xjGBsYVIf4QtLY9WMaMcXZ.jpg",
+                listOf(
+                    Genre(18, "Drama")
+                ),
+                "en",
+                "Grey's Anatomy",
+                "Grey's Anatomy",
+                "Follows the personal and professional lives of a group of doctors at Seattle’s Grey Sloan Memorial Hospital.",
+                967.866,
+                "/clnyhPqj1SNgpAdeSS6a6fwE6Bo.jpg",
+                "2005-03-27",
+                "Returning Series",
+                8.2,
+                5637
+            ),
+            TvShow(
+                71712,
+                "/mZjZgY6ObiKtVuKVDrnS9VnuNlE.jpg",
+                listOf(
+                    Genre(18, "Drama")
+                ),
+                "en",
+                "The Good Doctor",
+                "The Good Doctor",
+                "A young surgeon with Savant syndrome is recruited into the surgical unit of a prestigious hospital. The question will arise: can a person who doesn't have the ability to relate to people actually save their lives",
+                1105.6,
+                "/6tfT03sGp9k4c0J3dypjrI8TSAI.jpg",
+                "2017-09-25",
+                "Returning Series",
+                8.6,
+                7222
+            ),
+            TvShow(
+                1402,
+                "/uro2Khv7JxlzXtLb8tCIbRhkb9E.jpg",
+                listOf(
+                    Genre(10759, "Action & Adventure"),
+                    Genre(18, "Drama"),
+                    Genre(10765, "Sci-Fi & Fantasy")
+                ),
+                "en",
+                "The Walking Dead",
+                "The Walking Dead",
+                "Sheriff's deputy Rick Grimes awakens from a coma to find a post-apocalyptic world dominated by flesh-eating zombies. He sets out to find his family and encounters many other survivors along the way.",
+                891.67,
+                "/rqeYMLryjcawh2JeRpCVUDXYM5b.jpg",
+                "2010-10-31",
+                "Returning Series",
+                8.0,
+                10286
+            ),
+            TvShow(
+                63174,
+                "/ta5oblpMlEcIPIS2YGcq9XEkWK2.jpg",
+                listOf(
+                    Genre(80, "Crime"),
+                    Genre(10765, "Sci-Fi & Fantasy")
+                ),
+                "en",
+                "Lucifer",
+                "Lucifer",
+                "Bored and unhappy as the Lord of Hell, Lucifer Morningstar abandoned his throne and retired to Los Angeles, where he has teamed up with LAPD detective Chloe Decker to take down criminals. But the longer he's away from the underworld, the greater the threat that the worst of humanity could escape.",
+                820.827,
+                "/4EYPN5mVIhKLfxGruy7Dy41dTVn.jpg",
+                "2016-01-25",
+                "Returning Series",
+                8.5,
+                8009
+            ),
+            TvShow(
+                117023,
+                "/e8m25rmxcCtoNh3KQHtTFfoFSEF.jpg",
+                listOf(
+                    Genre(10759, "Action & Adventure"),
+                    Genre(80, "Crime"),
+                    Genre(18, "Drama")
+                ),
+                "es",
+                "Sky Rojo",
+                "Sky Rojo",
+                "On the run from their pimp and his henchmen, three women embark on a wild and crazy journey in search of freedom.",
+                708.515,
+                "/uTFX9V2dct1nKjG6zhNiThPm8Tp.jpg",
+                "2021-03-19",
+                "Returning Series",
+                8.2,
+                84
+            ),
+            TvShow(
+                79460,
+                "/fRYwdeNjMqC30EhofPx5PlDpdun.jpg",
+                listOf(
+                    Genre(10765, "Sci-Fi & Fantasy"),
+                    Genre(18, "Drama")
+                ),
+                "en",
+                "Legacies",
+                "Legacies",
+                "In a place where young witches, vampires, and werewolves are nurtured to be their best selves in spite of their worst impulses, Klaus Mikaelson’s daughter, 17-year-old Hope Mikaelson, Alaric Saltzman’s twins, Lizzie and Josie Saltzman, among others, come of age into heroes and villains at The Salvatore School for the Young and Gifted.",
+                581.108,
+                "/qTZIgXrBKURBK1KrsT7fe3qwtl9.jpg",
+                "2018-10-25",
+                "Returning Series",
+                8.6,
+                1716
+            ),
+            TvShow(
+                65334,
+                "/9RqliZcoDEjSEISeA0LY9meAiNv.jpg",
+                listOf(
+                    Genre(10759, "Action & Adventure"),
+                    Genre(16, "Animation"),
+                    Genre(10762, "Kids")
+                ),
+                "fr",
+                "Miraculous, les aventures de Ladybug et Chat Noir",
+                "Miraculous: Tales of Ladybug & Cat Noir",
+                "Normal high school kids by day, protectors of Paris by night! Miraculous follows the heroic adventures of Marinette and Adrien as they transform into Ladybug and Cat Noir and set out to capture akumas, creatures responsible for turning the people of Paris into villains. But neither hero knows the other’s true identity – or that they’re classmates!",
+                421.339,
+                "/qxbW47zmgFyBVmZSIqD9NA1DEjT.jpg",
+                "2015-10-19",
+                "Returning Series",
+                7.8,
+                2181
+            ),
+            TvShow(
+                114695,
+                "/wAEWZm2pSopAbqE5dQWE0ET8aR5.jpg",
+                listOf(
+                    Genre(99, "Documentary")
+                ),
+                "en",
+                "Marvel Studios: Legends",
+                "Marvel Studios: Legends",
+                "Revisit the epic heroes, villains and moments from across the MCU in preparation for the stories still to come. Each dynamic segment feeds directly into the upcoming series — setting the stage for future events. This series weaves together the many threads that constitute the unparalleled Marvel Cinematic Universe.",
+                501.827,
+                "/EpDuYIK81YtCUT3gH2JDpyj8Qk.jpg",
+                "2021-01-08",
+                "Returning Series",
+                7.7,
+                353
+            ),
+            TvShow(
+                76231,
+                "/9XUIsRUB7V3iEoLSKxZCqPvbKKW.jpg",
+                listOf(
+                    Genre(80, "Crime"),
+                    Genre(18, "Drama")
+                ),
+                "en",
+                "Mayans M.C.",
+                "Mayans M.C.",
+                "Set in the aftermath of Jax Teller’s death, Ezekiel \\\"EZ\\\" Reyes is fresh out of prison and a prospect in the Mayans M.C. charter on the Cali/Mexi border. Now, EZ must carve out his new identity in a town where he was once the golden boy with the American Dream in his grasp.",
+                353.704,
+                "/gaKhfksFK24N19bjlFpJxamYZ02.jpg",
+                "2018-09-04",
+                "Returning Series",
+                7.8,
+                137
+            ),
+            TvShow(
+                96580,
+                "/fPF6h8LLtZ40NRqkHfx2DvFbmkW.jpg",
+                listOf(
+                    Genre(10765, "Sci-Fi & Fantasy")
+                ),
+                "en",
+                "Resident Alien",
+                "Resident Alien",
+                "Crash-landed alien Harry takes on the identity of a small-town Colorado doctor. Arriving with a secret mission, he starts off living a simple life…but things get a bit rocky when he’s roped into solving a local murder and realizes he needs to assimilate into his new world. As he does, he begins to wrestle with the moral dilemma of his mission and asking the big life questions like: “Are human beings worth saving?” and “Why do they fold their pizza before eating it?”",
+                464.601,
+                "/bG5aqfT5lTHuSbcQofNHtH0RyyP.jpg",
+                "2021-01-27",
+                "Returning Series",
+                8.8,
+                77
+            ),
+            TvShow(
+                44217,
+                "/aq2yEMgRQBPfRkrO0Repo2qhUAT.jpg",
+                listOf(
+                    Genre(10759, "Action & Adventure"),
+                    Genre(18, "Drama")
+                ),
+                "en",
+                "Vikings",
+                "Vikings",
+                "The adventures of Ragnar Lothbrok, the greatest hero of his age. The series tells the sagas of Ragnar's band of Viking brothers and his family, as he rises to become King of the Viking tribes. As well as being a fearless warrior, Ragnar embodies the Norse traditions of devotion to the gods. Legend has it that he was a direct descendant of Odin, the god of war and warriors.",
+                456.468,
+                "/bQLrHIRNEkE3PdIWQrZHynQZazu.jpg",
+                "2013-03-03",
+                "Ended",
+                8.0,
+                4249
+            ),
+            TvShow(
+                77169,
+                "/gL8myjGc2qrmqVosyGm5CWTir9A.jpg",
+                listOf(
+                    Genre(10759, "Action & Adventure"),
+                    Genre(18, "Drama")
+                ),
+                "en",
+                "Cobra Kai",
+                "Cobra Kai",
+                "This Karate Kid sequel series picks up 30 years after the events of the 1984 All Valley Karate Tournament and finds Johnny Lawrence on the hunt for redemption by reopening the infamous Cobra Kai karate dojo. This reignites his old rivalry with the successful Daniel LaRusso, who has been working to maintain the balance in his life without mentor Mr. Miyagi.",
+                552.684,
+                "/obLBdhLxheKg8Li1qO11r2SwmYO.jpg",
+                "2018-05-02",
+                "Returning Series",
+                8.1,
+                2809
+            ),
+            TvShow(
+                67855,
+                "/Aof7R1if9jKhHCk6M7UGyEQWQSk.jpg",
+                listOf(
+                    Genre(80, "Crime"),
+                    Genre(18, "Drama")
+                ),
+                "en",
+                "The Rookie",
+                "Cobra Kai",
+                "Starting over isn’t easy, especially for small-town guy John Nolan who, after a life-altering incident, is pursuing his dream of being an LAPD officer. As the force’s oldest rookie, he’s met with skepticism from some higher-ups who see him as just a walking midlife crisis.",
+                389.734,
+                "/6hChiX0vIjWY4y2kz1WndHVMsDu.jpg",
+                "2018-10-16",
+                "Returning Series",
+                8.0,
+                416
+            ),
+            TvShow(
+                1399,
+                "/suopoADq0k8YZr4dQXcU6pToj6s.jpg",
+                listOf(
+                    Genre(10765, "Sci-Fi & Fantasy"),
+                    Genre(18, "Drama"),
+                    Genre(10759, "Action & Adventure")
+                ),
+                "en",
+                "Game of Thrones",
+                "Game of Thrones",
+                "Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and icy horrors beyond.",
+                430.883,
+                "/u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg",
+                "2011-04-17",
+                "Ended",
+                8.4,
+                13643
+            ),
+            TvShow(
+                18165,
+                "/k7T9xRyzP41wBVNyNeLmh8Ch7gD.jpg",
+                listOf(
+                    Genre(18, "Drama"),
+                    Genre(10765, "Sci-Fi & Fantasy")
+                ),
+                "en",
+                "The Vampire Diaries",
+                "The Vampire Diaries",
+                "The story of two vampire brothers obsessed with the same girl, who bears a striking resemblance to the beautiful but ruthless vampire they knew and loved in 1864.",
+                369.711,
+                "/aBkVgChtyyJaHyZh1gfd8DbzQon.jpg",
+                "2009-09-10",
+                "Ended",
+                8.3,
+                5487
             )
         )
     }

@@ -8,14 +8,14 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import io.erikrios.github.canvaskitmovie.data.model.Movie
 import io.erikrios.github.canvaskitmovie.databinding.FragmentDiscoverMoviesBinding
-import io.erikrios.github.canvaskitmovie.ui.adapter.MovieAdapter
+import io.erikrios.github.canvaskitmovie.ui.adapter.CinemaAdapter
 import io.erikrios.github.canvaskitmovie.utils.DummyData.generateMovies
 
 class DiscoverMoviesFragment : Fragment() {
 
     private var _binding: FragmentDiscoverMoviesBinding? = null
     private val binding get() = _binding
-    private lateinit var adapter: MovieAdapter
+    private lateinit var adapter: CinemaAdapter<Movie>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +37,7 @@ class DiscoverMoviesFragment : Fragment() {
     }
 
     private fun setRecyclerView(movies: List<Movie>) {
-        adapter = MovieAdapter(movies) { movie ->
+        adapter = CinemaAdapter(movies) { movie ->
             val action =
                 DiscoverMoviesFragmentDirections.actionDiscoverMoviesFragmentToMovieDetailsFragment(
                     movie

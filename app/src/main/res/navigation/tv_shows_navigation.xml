@@ -9,5 +9,18 @@
         android:id="@+id/discoverTvShowsFragment"
         android:name="io.erikrios.github.canvaskitmovie.ui.tvshows.DiscoverTvShowsFragment"
         android:label="fragment_discover_tv_shows"
-        tools:layout="@layout/fragment_discover_tv_shows" />
+        tools:layout="@layout/fragment_discover_tv_shows">
+        <action
+            android:id="@+id/action_discoverTvShowsFragment_to_tvShowDetailsFragment"
+            app:destination="@id/tvShowDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tvShowDetailsFragment"
+        android:name="io.erikrios.github.canvaskitmovie.ui.tvshows.TvShowDetailsFragment"
+        android:label="fragment_tv_show_details"
+        tools:layout="@layout/fragment_tv_show_details">
+        <argument
+            android:name="tvShow"
+            app:argType="io.erikrios.github.canvaskitmovie.data.model.TvShow" />
+    </fragment>
 </navigation>

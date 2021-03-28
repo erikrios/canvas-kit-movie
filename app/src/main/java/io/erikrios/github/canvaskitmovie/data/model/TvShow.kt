@@ -17,5 +17,6 @@ data class TvShow(
     val firstAirDate: String,
     val status: String? = null,
     val voteAverage: Double,
-    val voteCount: Int
+    val voteCount: Int,
+    val creators: List<Creator>
 ) : Parcelable

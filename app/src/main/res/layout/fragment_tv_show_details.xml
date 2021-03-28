@@ -63,7 +63,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_genres"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="34dp"
                 android:orientation="horizontal"
@@ -268,7 +268,32 @@
                 app:layout_constraintEnd_toEndOf="@id/story_line"
                 app:layout_constraintStart_toStartOf="@id/story_line"
                 app:layout_constraintTop_toBottomOf="@id/story_line"
-                tools:text="@tools:sample/lorem/random" />
+                tools:text="@tools:sample/lorem" />
+
+            <TextView
+                android:id="@+id/tv_creators"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/creators"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/tv_overview"
+                app:layout_constraintStart_toStartOf="@id/tv_overview"
+                app:layout_constraintTop_toBottomOf="@id/tv_overview" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_creators"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_creators"
+                tools:itemCount="8"
+                tools:listitem="@layout/item_creator" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

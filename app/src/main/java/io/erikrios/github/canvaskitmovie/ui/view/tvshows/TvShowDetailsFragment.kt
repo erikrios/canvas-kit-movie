@@ -17,7 +17,6 @@ import io.erikrios.github.canvaskitmovie.data.model.TvShow
 import io.erikrios.github.canvaskitmovie.databinding.FragmentTvShowDetailsBinding
 import io.erikrios.github.canvaskitmovie.ui.adapter.CreatorAdapter
 import io.erikrios.github.canvaskitmovie.ui.adapter.GenreAdapter
-import io.erikrios.github.canvaskitmovie.ui.tvshows.TvShowDetailsFragmentArgs
 import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations
 import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations.generateFullImageUrl
 

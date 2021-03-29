@@ -14,7 +14,6 @@ import io.erikrios.github.canvaskitmovie.R
 import io.erikrios.github.canvaskitmovie.data.model.Genre
 import io.erikrios.github.canvaskitmovie.data.model.Movie
 import io.erikrios.github.canvaskitmovie.databinding.FragmentMovieDetailsBinding
-import io.erikrios.github.canvaskitmovie.ui.movies.MovieDetailsFragmentArgs
 import io.erikrios.github.canvaskitmovie.ui.adapter.GenreAdapter
 import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations
 import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations.generateFullImageUrl

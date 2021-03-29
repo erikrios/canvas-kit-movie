@@ -11,7 +11,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.erikrios.github.canvaskitmovie.data.model.Movie
 import io.erikrios.github.canvaskitmovie.databinding.FragmentDiscoverMoviesBinding
 import io.erikrios.github.canvaskitmovie.ui.adapter.CinemaAdapter
-import io.erikrios.github.canvaskitmovie.ui.movies.DiscoverMoviesFragmentDirections
 import io.erikrios.github.canvaskitmovie.ui.viewmodel.MainViewModel
 
 @AndroidEntryPoint

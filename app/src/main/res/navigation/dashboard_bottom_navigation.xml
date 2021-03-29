@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/item_movies"
-        android:name="io.erikrios.github.canvaskitmovie.ui.movies.MoviesFragment"
+        android:name="io.erikrios.github.canvaskitmovie.ui.view.movies.MoviesFragment"
         android:label="@string/movies"
         tools:layout="@layout/fragment_movies" />
     <fragment
         android:id="@+id/item_tv_shows"
-        android:name="io.erikrios.github.canvaskitmovie.ui.tvshows.TvShowsFragment"
+        android:name="io.erikrios.github.canvaskitmovie.ui.view.tvshows.TvShowsFragment"
         android:label="@string/tv_shows"
         tools:layout="@layout/fragment_tv_shows" />
 </navigation>

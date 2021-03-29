@@ -1,4 +1,4 @@
-package io.erikrios.github.canvaskitmovie.ui.dashboard
+package io.erikrios.github.canvaskitmovie.ui.view.dashboard
 
 import android.os.Bundle
 import android.view.LayoutInflater

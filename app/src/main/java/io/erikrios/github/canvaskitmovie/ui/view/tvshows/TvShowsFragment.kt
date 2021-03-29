@@ -1,4 +1,4 @@
-package io.erikrios.github.canvaskitmovie.ui.tvshows
+package io.erikrios.github.canvaskitmovie.ui.view.tvshows
 
 import android.os.Bundle
 import android.view.LayoutInflater

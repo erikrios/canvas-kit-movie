@@ -1,4 +1,4 @@
-package io.erikrios.github.canvaskitmovie.ui.movies
+package io.erikrios.github.canvaskitmovie.ui.view.movies
 
 import android.os.Bundle
 import android.view.LayoutInflater

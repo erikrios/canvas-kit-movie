@@ -16,13 +16,13 @@ class CinemaAdapter<T>(
     private val onClickListener: ((T) -> Unit)
 ) :
     RecyclerView.Adapter<CinemaAdapter<T>.ViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CinemaAdapter<T>.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = ItemCinemaBinding.inflate(layoutInflater)
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: CinemaAdapter<T>.ViewHolder, position: Int) =
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
         holder.bindItem(cinemas[position], onClickListener)
 
     override fun getItemCount(): Int = cinemas.size

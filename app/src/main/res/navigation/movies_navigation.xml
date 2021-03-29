@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/discoverMoviesFragment"
-        android:name="io.erikrios.github.canvaskitmovie.ui.movies.DiscoverMoviesFragment"
+        android:name="io.erikrios.github.canvaskitmovie.ui.view.movies.DiscoverMoviesFragment"
         android:label="fragment_discover_movies"
         tools:layout="@layout/fragment_discover_movies">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/movieDetailsFragment"
-        android:name="io.erikrios.github.canvaskitmovie.ui.movies.MovieDetailsFragment"
+        android:name="io.erikrios.github.canvaskitmovie.ui.view.movies.MovieDetailsFragment"
         android:label="fragment_movie_details"
         tools:layout="@layout/fragment_movie_details">
         <argument

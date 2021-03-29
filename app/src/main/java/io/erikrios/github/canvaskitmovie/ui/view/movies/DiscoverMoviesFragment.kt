@@ -1,4 +1,4 @@
-package io.erikrios.github.canvaskitmovie.ui.movies
+package io.erikrios.github.canvaskitmovie.ui.view.movies
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import io.erikrios.github.canvaskitmovie.data.model.Movie
 import io.erikrios.github.canvaskitmovie.databinding.FragmentDiscoverMoviesBinding
+import io.erikrios.github.canvaskitmovie.ui.movies.DiscoverMoviesFragmentDirections
 import io.erikrios.github.canvaskitmovie.ui.adapter.CinemaAdapter
 import io.erikrios.github.canvaskitmovie.utils.DummyData.generateMovies
 

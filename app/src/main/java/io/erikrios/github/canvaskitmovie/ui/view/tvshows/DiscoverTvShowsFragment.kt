@@ -1,4 +1,4 @@
-package io.erikrios.github.canvaskitmovie.ui.tvshows
+package io.erikrios.github.canvaskitmovie.ui.view.tvshows
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import io.erikrios.github.canvaskitmovie.data.model.TvShow
 import io.erikrios.github.canvaskitmovie.databinding.FragmentDiscoverTvShowsBinding
+import io.erikrios.github.canvaskitmovie.ui.tvshows.DiscoverTvShowsFragmentDirections
 import io.erikrios.github.canvaskitmovie.ui.adapter.CinemaAdapter
 import io.erikrios.github.canvaskitmovie.utils.DummyData.generateTvShows
 

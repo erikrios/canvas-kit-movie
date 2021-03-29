@@ -1,4 +1,4 @@
-package io.erikrios.github.canvaskitmovie.ui
+package io.erikrios.github.canvaskitmovie.ui.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

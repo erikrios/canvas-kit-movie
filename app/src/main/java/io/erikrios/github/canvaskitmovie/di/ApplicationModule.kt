@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import io.erikrios.github.canvaskitmovie.data.repository.CinemaRepository
 import io.erikrios.github.canvaskitmovie.data.repository.CinemaRepositoryImpl
 import javax.inject.Singleton
 
@@ -13,5 +14,5 @@ object ApplicationModule {
 
     @Singleton
     @Provides
-    fun provideCinemaRepositoryImpl() = CinemaRepositoryImpl()
+    fun provideCinemaRepositoryImpl() = CinemaRepositoryImpl() as CinemaRepository
 }

@@ -5,18 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
 import io.erikrios.github.canvaskitmovie.data.model.Movie
 import io.erikrios.github.canvaskitmovie.databinding.FragmentDiscoverMoviesBinding
-import io.erikrios.github.canvaskitmovie.ui.movies.DiscoverMoviesFragmentDirections
 import io.erikrios.github.canvaskitmovie.ui.adapter.CinemaAdapter
-import io.erikrios.github.canvaskitmovie.utils.DummyData.generateMovies
+import io.erikrios.github.canvaskitmovie.ui.movies.DiscoverMoviesFragmentDirections
+import io.erikrios.github.canvaskitmovie.ui.viewmodel.MainViewModel
 
+@AndroidEntryPoint
 class DiscoverMoviesFragment : Fragment() {
 
     private var _binding: FragmentDiscoverMoviesBinding? = null
     private val binding get() = _binding
     private lateinit var adapter: CinemaAdapter<Movie>
+    private val mainViewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,13 +32,19 @@ class DiscoverMoviesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val movies = generateMovies()
-        setRecyclerView(movies)
+        mainViewModel.moviesState.observe(
+            viewLifecycleOwner,
+            this@DiscoverMoviesFragment::handleState
+        )
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun handleState(movies: List<Movie>) {
+        setRecyclerView(movies)
     }
 
     private fun setRecyclerView(movies: List<Movie>) {

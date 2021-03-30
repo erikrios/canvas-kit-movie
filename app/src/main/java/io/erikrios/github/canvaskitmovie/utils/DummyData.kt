@@ -883,4 +883,8 @@ object DummyData {
             )
         )
     }
+
+    fun getMovieById(id: Int): Movie? {
+        return generateMovies().find { it.id == id }
+    }
 }

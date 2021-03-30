@@ -884,7 +884,7 @@ object DummyData {
         )
     }
 
-    fun getMovieById(id: Int): Movie? {
-        return generateMovies().find { it.id == id }
-    }
+    fun getMovieById(id: Int): Movie? = generateMovies().find { it.id == id }
+
+    fun getTvShowById(id: Int): TvShow? = generateTvShows().find { it.id == id }
 }

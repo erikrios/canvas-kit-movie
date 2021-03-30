@@ -3,6 +3,7 @@ package io.erikrios.github.canvaskitmovie.ui.view
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.swipeUp
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
@@ -80,6 +81,7 @@ class MainActivityTest {
         onView(withId(R.id.toolbar)).check(matches(isDisplayed()))
         onView(withId(R.id.fab_share)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_title)).check(matches(isDisplayed()))
+        onView(withId(R.id.img_backdrop)).perform(swipeUp())
         onView(withId(R.id.tv_rating_info)).check(matches(isDisplayed()))
         onView(withId(R.id.rb_vote_average)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_vote_info)).check(matches(isDisplayed()))
@@ -134,15 +136,18 @@ class MainActivityTest {
         onView(withId(R.id.img_poster)).check(matches(isDisplayed()))
         onView(withId(R.id.toolbar)).check(matches(isDisplayed()))
         onView(withId(R.id.fab_share)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_genres)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_name)).check(matches(isDisplayed()))
+        onView(withId(R.id.img_backdrop)).perform(swipeUp())
         onView(withId(R.id.tv_rating_info)).check(matches(isDisplayed()))
         onView(withId(R.id.rb_vote_average)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_vote_info)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_status_info)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_popularity_info)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_first_air_date_info)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_overview)).perform(swipeUp())
         onView(withId(R.id.tv_overview)).check(matches(isDisplayed()))
-        onView(withId(R.id.rv_genres)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_creators)).check(matches(isDisplayed()))
 
         onView(withId(R.id.tv_name)).check(matches(withText(dummyTvShow.name)))
         onView(withId(R.id.tv_rating_info)).check(

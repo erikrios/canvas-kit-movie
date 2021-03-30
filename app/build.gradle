@@ -70,7 +70,10 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.3.0'
     androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
     androidTestImplementation 'com.google.truth:truth:1.1.2'
-    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.1"
+    androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.1") {
+        // conflicts with mockito due to direct inclusion of byte buddy
+        exclude group: "org.jetbrains.kotlinx", module: "kotlinx-coroutines-debug"
+    }
 
     // Recycler View
     implementation 'androidx.recyclerview:recyclerview:1.2.0-rc01'

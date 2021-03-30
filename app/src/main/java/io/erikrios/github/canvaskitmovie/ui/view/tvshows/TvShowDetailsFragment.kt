@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import dagger.hilt.android.AndroidEntryPoint
 import io.erikrios.github.canvaskitmovie.R
 import io.erikrios.github.canvaskitmovie.data.model.Creator
 import io.erikrios.github.canvaskitmovie.data.model.Genre
@@ -17,14 +19,17 @@ import io.erikrios.github.canvaskitmovie.data.model.TvShow
 import io.erikrios.github.canvaskitmovie.databinding.FragmentTvShowDetailsBinding
 import io.erikrios.github.canvaskitmovie.ui.adapter.CreatorAdapter
 import io.erikrios.github.canvaskitmovie.ui.adapter.GenreAdapter
+import io.erikrios.github.canvaskitmovie.ui.viewmodel.MainViewModel
 import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations
 import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations.generateFullImageUrl
 
+@AndroidEntryPoint
 class TvShowDetailsFragment : Fragment() {
 
     private var _binding: FragmentTvShowDetailsBinding? = null
     private val binding get() = _binding
     private val args: TvShowDetailsFragmentArgs by navArgs()
+    private val mainViewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,12 +41,19 @@ class TvShowDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        handleView(args.tvShow)
+        mainViewModel.apply {
+            getTvShowById(args.tvShow.id)
+            tvShowState.observe(viewLifecycleOwner, this@TvShowDetailsFragment::handleState)
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun handleState(tvShow: TvShow?) {
+        tvShow?.let { handleView(it) }
     }
 
     private fun handleView(tvShow: TvShow) {

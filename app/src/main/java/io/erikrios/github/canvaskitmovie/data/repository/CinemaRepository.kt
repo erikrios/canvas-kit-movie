@@ -6,6 +6,6 @@ import io.erikrios.github.canvaskitmovie.data.model.TvShow
 interface CinemaRepository {
     fun getMovies(): List<Movie>
     fun getTvShows(): List<TvShow>
-    fun getMovieById(): Movie?
-    fun getTvShowById(): TvShow?
+    fun getMovieById(id: Int): Movie?
+    fun getTvShowById(id: Int): TvShow?
 }

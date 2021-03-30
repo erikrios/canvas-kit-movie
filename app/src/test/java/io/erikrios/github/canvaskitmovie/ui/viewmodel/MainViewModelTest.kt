@@ -9,6 +9,8 @@ import io.erikrios.github.canvaskitmovie.data.repository.CinemaRepositoryImpl
 import io.erikrios.github.canvaskitmovie.getOrAwaitValueTest
 import io.erikrios.github.canvaskitmovie.utils.DummyData.generateMovies
 import io.erikrios.github.canvaskitmovie.utils.DummyData.generateTvShows
+import io.erikrios.github.canvaskitmovie.utils.DummyData.getMovieById
+import io.erikrios.github.canvaskitmovie.utils.DummyData.getTvShowById
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Before
 import org.junit.Rule
@@ -31,10 +33,12 @@ class MainViewModelTest {
     private lateinit var actualTvShows: List<TvShow>
     private var actualMoviesSize: Int = 0
     private var actualTvShowsSize: Int = 0
-    private var randomMovieIndex = 0
-    private var randomTvShowIndex = 0
-    private lateinit var actualDummyMovie: Movie
-    private lateinit var actualDummyTvShow: TvShow
+    private var randomMovieId = 0
+    private var randomTvShowId = 0
+    private var notExistMovieId = -1
+    private var notExistTvShowId = -1
+    private var actualDummyMovie: Movie? = null
+    private var actualDummyTvShow: TvShow? = null
 
     @Before
     fun setUp() {
@@ -43,12 +47,15 @@ class MainViewModelTest {
         actualTvShows = generateTvShows()
         actualMoviesSize = actualMovies.size
         actualTvShowsSize = actualTvShows.size
-        randomMovieIndex = (0 until actualMoviesSize).random()
-        randomTvShowIndex = (0 until actualTvShowsSize).random()
-        actualDummyMovie = actualMovies[randomMovieIndex]
-        actualDummyTvShow = actualTvShows[randomTvShowIndex]
+        randomMovieId = actualMovies.random().id
+        randomTvShowId = actualTvShows.random().id
+        actualDummyMovie = getMovieById(randomMovieId)
+        actualDummyTvShow = getTvShowById(randomTvShowId)
     }
 
+    /**
+     * -------------------- Get movies test ------------------------------
+     */
     @Test
     fun `get movies, returns not null`() {
         mainViewModel.getMovies()
@@ -77,6 +84,13 @@ class MainViewModelTest {
         assertThat(movies).isEqualTo(actualMovies)
     }
 
+    /**
+     * -------------------- End of get movies test ------------------------------
+     */
+
+    /**
+     * -------------------- Get tv shows test ------------------------------
+     */
     @Test
     fun `get tv shows, returns not null`() {
         mainViewModel.getTvShows()
@@ -104,4 +118,50 @@ class MainViewModelTest {
         val tvShows = mainViewModel.tvShowsState.getOrAwaitValueTest()
         assertThat(tvShows).isEqualTo(actualTvShows)
     }
+
+    /**
+     * -------------------- End of get tv shows test ------------------------------
+     */
+
+    /**
+     * -------------------- Get movie by id test ------------------------------
+     */
+    @Test
+    fun `get movie with not exist id, returns null`() {
+        mainViewModel.getMovieById(notExistMovieId)
+        val movie = mainViewModel.movieState.getOrAwaitValueTest()
+        assertThat(movie).isNull()
+    }
+
+    @Test
+    fun `get movie with valid id, returns a valid movie`() {
+        mainViewModel.getMovieById(randomMovieId)
+        val movie = mainViewModel.movieState.getOrAwaitValueTest()
+        assertThat(movie).isEqualTo(actualDummyMovie)
+    }
+
+    /**
+     * -------------------- End of get movie by id test ------------------------------
+     */
+
+    /**
+     * -------------------- Get tv show by id test ------------------------------
+     */
+    @Test
+    fun `get tv show with not exist id, returns null`() {
+        mainViewModel.getTvShowById(notExistTvShowId)
+        val tvShow = mainViewModel.tvShowState.getOrAwaitValueTest()
+        assertThat(tvShow).isNull()
+    }
+
+    @Test
+    fun `get tv show with valid id, returns a valid tv show`() {
+        mainViewModel.getTvShowById(randomTvShowId)
+        val tvShow = mainViewModel.tvShowState.getOrAwaitValueTest()
+        assertThat(tvShow).isEqualTo(actualDummyTvShow)
+    }
+
+    /**
+     * -------------------- End of get tv show by id test ------------------------------
+     */
 }

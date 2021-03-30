@@ -37,7 +37,7 @@ class CreatorAdapter(private val creators: List<Creator>) :
                         .load(imageUrl)
                         .into(civProfile)
                 }
-                tvName.text = creator.name
+                tvCreatorName.text = creator.name
             }
         }
     }

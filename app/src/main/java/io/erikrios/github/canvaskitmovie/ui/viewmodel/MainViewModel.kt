@@ -22,18 +22,6 @@ class MainViewModel @Inject constructor(private val repository: CinemaRepository
     }
     val tvShowsState: LiveData<List<TvShow>> get() = _tvShowsState
 
-    private val _movieState = MutableLiveData<Movie?>().apply {
-        value = null
-    }
-
-    val movieState: LiveData<Movie?> get() = _movieState
-
-    private val _tvShowState = MutableLiveData<TvShow?>().apply {
-        value = null
-    }
-
-    val tvShowState: LiveData<TvShow?> get() = _tvShowState
-
 
     fun getMovies() {
         _moviesState.value = repository.getMovies()
@@ -41,13 +29,5 @@ class MainViewModel @Inject constructor(private val repository: CinemaRepository
 
     fun getTvShows() {
         _tvShowsState.value = repository.getTvShows()
-    }
-
-    fun getMovieById(id: Int) {
-        _movieState.value = repository.getMovieById(id)
-    }
-
-    fun getTvShowById(id: Int) {
-        _tvShowState.value = repository.getTvShowById(id)
     }
 }

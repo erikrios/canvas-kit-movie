@@ -22,6 +22,7 @@ import io.erikrios.github.canvaskitmovie.ui.adapter.GenreAdapter
 import io.erikrios.github.canvaskitmovie.ui.viewmodel.DetailsViewModel
 import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations
 import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations.generateFullImageUrl
+import io.erikrios.github.canvaskitmovie.utils.Resource
 
 @AndroidEntryPoint
 class TvShowDetailsFragment : Fragment() {
@@ -52,7 +53,8 @@ class TvShowDetailsFragment : Fragment() {
         _binding = null
     }
 
-    private fun handleState(tvShow: TvShow?) {
+    private fun handleState(tvShowResource: Resource<TvShow>) {
+        val tvShow = tvShowResource.data
         tvShow?.let { handleView(it) }
     }
 
@@ -96,7 +98,7 @@ class TvShowDetailsFragment : Fragment() {
             tvOverview.text = tvShow.overview
         }
         handleGenres(tvShow.genres ?: listOf())
-        handleCreators(tvShow.creators)
+        handleCreators(tvShow.creators ?: listOf())
     }
 
     private fun handleGenres(genres: List<Genre>) {

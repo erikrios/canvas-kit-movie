@@ -12,6 +12,7 @@ import io.erikrios.github.canvaskitmovie.data.model.TvShow
 import io.erikrios.github.canvaskitmovie.databinding.FragmentDiscoverTvShowsBinding
 import io.erikrios.github.canvaskitmovie.ui.adapter.CinemaAdapter
 import io.erikrios.github.canvaskitmovie.ui.viewmodel.MainViewModel
+import io.erikrios.github.canvaskitmovie.utils.Resource
 
 @AndroidEntryPoint
 class DiscoverTvShowsFragment : Fragment() {
@@ -42,8 +43,8 @@ class DiscoverTvShowsFragment : Fragment() {
         _binding = null
     }
 
-    private fun handleState(tvShows: List<TvShow>) {
-        setRecyclerView(tvShows)
+    private fun handleState(tvShowsResource: Resource<List<TvShow>>) {
+        tvShowsResource.data?.let { setRecyclerView(it) }
     }
 
     private fun setRecyclerView(tvShows: List<TvShow>) {

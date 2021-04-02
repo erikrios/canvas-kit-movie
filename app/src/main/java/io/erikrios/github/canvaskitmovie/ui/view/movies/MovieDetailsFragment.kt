@@ -20,6 +20,7 @@ import io.erikrios.github.canvaskitmovie.ui.adapter.GenreAdapter
 import io.erikrios.github.canvaskitmovie.ui.viewmodel.DetailsViewModel
 import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations
 import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations.generateFullImageUrl
+import io.erikrios.github.canvaskitmovie.utils.Resource
 
 @AndroidEntryPoint
 class MovieDetailsFragment : Fragment() {
@@ -51,7 +52,8 @@ class MovieDetailsFragment : Fragment() {
         _binding = null
     }
 
-    private fun handleState(movie: Movie?) {
+    private fun handleState(movieResource: Resource<Movie>) {
+        val movie = movieResource.data
         movie?.let { handleView(it) }
     }
 

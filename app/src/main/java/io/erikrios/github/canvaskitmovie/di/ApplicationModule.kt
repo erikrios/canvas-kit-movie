@@ -10,6 +10,7 @@ import io.erikrios.github.canvaskitmovie.BuildConfig
 import io.erikrios.github.canvaskitmovie.data.repository.CinemaRepository
 import io.erikrios.github.canvaskitmovie.data.repository.CinemaRepositoryImpl
 import io.erikrios.github.canvaskitmovie.data.source.DataSource
+import io.erikrios.github.canvaskitmovie.data.source.locale.LocaleDataSource
 import io.erikrios.github.canvaskitmovie.data.source.remote.RemoteDataSource
 import io.erikrios.github.canvaskitmovie.network.TheMovieDatabaseApiHelper
 import io.erikrios.github.canvaskitmovie.network.TheMovieDatabaseApiHelperImpl
@@ -106,6 +107,11 @@ object ApplicationModule {
     @Singleton
     @Named("remoteDataSource")
     fun provideRemoteDataSource(remoteDataSource: RemoteDataSource): DataSource = remoteDataSource
+
+    @Provides
+    @Singleton
+    @Named("localeDataSource")
+    fun provideLocaleDataSource(localeDataSource: LocaleDataSource): DataSource = localeDataSource
 
     @Singleton
     @Provides

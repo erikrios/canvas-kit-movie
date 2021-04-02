@@ -35,8 +35,6 @@ class MainViewModelTest {
     private var actualTvShowsSize: Int = 0
     private var randomMovieId = 0
     private var randomTvShowId = 0
-    private var notExistMovieId = -1
-    private var notExistTvShowId = -1
     private var actualDummyMovie: Movie? = null
     private var actualDummyTvShow: TvShow? = null
 
@@ -121,47 +119,5 @@ class MainViewModelTest {
 
     /**
      * -------------------- End of get tv shows test ------------------------------
-     */
-
-    /**
-     * -------------------- Get movie by id test ------------------------------
-     */
-    @Test
-    fun `get movie with not exist id, returns null`() {
-        mainViewModel.getMovieById(notExistMovieId)
-        val movie = mainViewModel.movieState.getOrAwaitValueTest()
-        assertThat(movie).isNull()
-    }
-
-    @Test
-    fun `get movie with valid id, returns a valid movie`() {
-        mainViewModel.getMovieById(randomMovieId)
-        val movie = mainViewModel.movieState.getOrAwaitValueTest()
-        assertThat(movie).isEqualTo(actualDummyMovie)
-    }
-
-    /**
-     * -------------------- End of get movie by id test ------------------------------
-     */
-
-    /**
-     * -------------------- Get tv show by id test ------------------------------
-     */
-    @Test
-    fun `get tv show with not exist id, returns null`() {
-        mainViewModel.getTvShowById(notExistTvShowId)
-        val tvShow = mainViewModel.tvShowState.getOrAwaitValueTest()
-        assertThat(tvShow).isNull()
-    }
-
-    @Test
-    fun `get tv show with valid id, returns a valid tv show`() {
-        mainViewModel.getTvShowById(randomTvShowId)
-        val tvShow = mainViewModel.tvShowState.getOrAwaitValueTest()
-        assertThat(tvShow).isEqualTo(actualDummyTvShow)
-    }
-
-    /**
-     * -------------------- End of get tv show by id test ------------------------------
      */
 }

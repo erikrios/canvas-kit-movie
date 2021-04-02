@@ -28,7 +28,9 @@ class LocaleDataSource : DataSource {
         return Resource.success(tvShow)
     }
 
-    fun addMovieCaches(movies: List<Movie>) = movieCaches.addAll(movies)
+    @JvmName("addMovieCaches")
+    fun addCaches(movies: List<Movie>) = movieCaches.addAll(movies)
 
-    fun addTvShowCaches(tvShows: List<TvShow>) = tvShowCaches.addAll(tvShows)
+    @JvmName("addTvShowCaches")
+    fun addCaches(tvShows: List<TvShow>) = tvShowCaches.addAll(tvShows)
 }

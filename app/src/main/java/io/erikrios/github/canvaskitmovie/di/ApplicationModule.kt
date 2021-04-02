@@ -15,6 +15,7 @@ import io.erikrios.github.canvaskitmovie.data.source.remote.RemoteDataSource
 import io.erikrios.github.canvaskitmovie.network.TheMovieDatabaseApiHelper
 import io.erikrios.github.canvaskitmovie.network.TheMovieDatabaseApiHelperImpl
 import io.erikrios.github.canvaskitmovie.network.TheMovieDatabaseApiService
+import io.erikrios.github.canvaskitmovie.utils.NetworkHelper
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -115,5 +116,6 @@ object ApplicationModule {
 
     @Singleton
     @Provides
-    fun provideCinemaRepositoryImpl() = CinemaRepositoryImpl() as CinemaRepository
+    fun provideCinemaRepositoryImpl(networkHelper: NetworkHelper) =
+        CinemaRepositoryImpl(networkHelper) as CinemaRepository
 }

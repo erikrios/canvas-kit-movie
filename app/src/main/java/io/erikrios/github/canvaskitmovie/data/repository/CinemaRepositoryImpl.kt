@@ -2,13 +2,17 @@ package io.erikrios.github.canvaskitmovie.data.repository
 
 import io.erikrios.github.canvaskitmovie.data.model.Movie
 import io.erikrios.github.canvaskitmovie.data.model.TvShow
+import io.erikrios.github.canvaskitmovie.data.source.DataSource
 import io.erikrios.github.canvaskitmovie.data.source.locale.LocaleDataSource
 import io.erikrios.github.canvaskitmovie.utils.NetworkHelper
 import io.erikrios.github.canvaskitmovie.utils.Resource
 import javax.inject.Inject
 
-class CinemaRepositoryImpl @Inject constructor(private val networkHelper: NetworkHelper) :
-    CinemaRepository() {
+class CinemaRepositoryImpl @Inject constructor(
+    private val networkHelper: NetworkHelper,
+    private val localeDataSource: DataSource,
+    private val remoteDataSource: DataSource
+) : CinemaRepository {
 
     override suspend fun getMovies(): Resource<List<Movie>> {
         if (!networkHelper.isNetworkConnected()) {

@@ -33,5 +33,5 @@ data class TvShow(
     @SerializedName("vote_count")
     val voteCount: Int,
     @SerializedName("created_by")
-    val creators: List<Creator>?
+    val creators: List<Creator>? = null
 ) : Parcelable

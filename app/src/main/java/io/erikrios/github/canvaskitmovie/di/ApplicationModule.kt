@@ -9,6 +9,8 @@ import dagger.hilt.components.SingletonComponent
 import io.erikrios.github.canvaskitmovie.BuildConfig
 import io.erikrios.github.canvaskitmovie.data.repository.CinemaRepository
 import io.erikrios.github.canvaskitmovie.data.repository.CinemaRepositoryImpl
+import io.erikrios.github.canvaskitmovie.network.TheMovieDatabaseApiHelper
+import io.erikrios.github.canvaskitmovie.network.TheMovieDatabaseApiHelperImpl
 import io.erikrios.github.canvaskitmovie.network.TheMovieDatabaseApiService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -82,6 +84,11 @@ object ApplicationModule {
     @Singleton
     fun provideTheMovieDatabaseApiService(retrofit: Retrofit): TheMovieDatabaseApiService =
         retrofit.create(TheMovieDatabaseApiService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideTheMovieDatabaseApiHelper(apiHelper: TheMovieDatabaseApiHelperImpl): TheMovieDatabaseApiHelper =
+        apiHelper
 
     @Singleton
     @Provides

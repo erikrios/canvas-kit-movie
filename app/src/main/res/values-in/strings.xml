@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Canvas Kit Movie</string>
+    <string name="movies">Film</string>
+    <string name="tv_shows">Pertunjukan TV</string>
+    <string name="tv_vote_average_container">(%.1f)</string>
+    <string name="tv_vote_count_container">Voting(%d)</string>
+    <string name="popularity">Popularitas:</string>
+    <string name="release_date">Tanggal Rilis:</string>
+    <string name="vote">Voting:</string>
+    <string name="status">Status:</string>
+    <string name="ratings">Peringkat</string>
+    <string name="grade_now">Nilai Sekarang</string>
+    <string name="story_line">Alur cerita</string>
+    <string name="first_air_date">Tanggal Mengudara Pertama</string>
+    <string name="creators">Pencipta</string>
+</resources>

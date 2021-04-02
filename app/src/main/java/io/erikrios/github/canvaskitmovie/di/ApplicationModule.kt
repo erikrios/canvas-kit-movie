@@ -9,6 +9,8 @@ import dagger.hilt.components.SingletonComponent
 import io.erikrios.github.canvaskitmovie.BuildConfig
 import io.erikrios.github.canvaskitmovie.data.repository.CinemaRepository
 import io.erikrios.github.canvaskitmovie.data.repository.CinemaRepositoryImpl
+import io.erikrios.github.canvaskitmovie.data.source.DataSource
+import io.erikrios.github.canvaskitmovie.data.source.remote.RemoteDataSource
 import io.erikrios.github.canvaskitmovie.network.TheMovieDatabaseApiHelper
 import io.erikrios.github.canvaskitmovie.network.TheMovieDatabaseApiHelperImpl
 import io.erikrios.github.canvaskitmovie.network.TheMovieDatabaseApiService
@@ -99,6 +101,11 @@ object ApplicationModule {
     @Singleton
     fun provideTheMovieDatabaseApiHelper(apiHelper: TheMovieDatabaseApiHelperImpl): TheMovieDatabaseApiHelper =
         apiHelper
+
+    @Provides
+    @Singleton
+    @Named("remoteDataSource")
+    fun provideRemoteDataSource(remoteDataSource: RemoteDataSource): DataSource = remoteDataSource
 
     @Singleton
     @Provides

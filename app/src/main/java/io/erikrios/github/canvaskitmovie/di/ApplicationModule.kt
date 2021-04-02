@@ -18,6 +18,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -25,7 +26,12 @@ import javax.inject.Singleton
 object ApplicationModule {
 
     @Provides
+    @Named("baseUrl")
     fun provideBaseUrl() = BuildConfig.BASE_URL
+
+    @Provides
+    @Named("apiKey")
+    fun provideApiKey() = BuildConfig.API_KEY
 
     @Provides
     @Singleton
@@ -33,12 +39,12 @@ object ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideQueryInterceptor() = Interceptor { chain ->
+    fun provideQueryInterceptor(@Named("apiKey") apiKey: String) = Interceptor { chain ->
         var request = chain.request()
         var originalHttpUrl = request.url
 
         originalHttpUrl = originalHttpUrl.newBuilder()
-            .addQueryParameter("api_key", BuildConfig.API_KEY)
+            .addQueryParameter("api_key", apiKey)
             .build()
         request = request.newBuilder()
             .url(originalHttpUrl)
@@ -73,7 +79,11 @@ object ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(baseUrl: String, gson: Gson, okHttpClient: OkHttpClient): Retrofit =
+    fun provideRetrofit(
+        @Named("baseUrl") baseUrl: String,
+        gson: Gson,
+        okHttpClient: OkHttpClient
+    ): Retrofit =
         Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create(gson))

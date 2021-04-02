@@ -30,6 +30,5 @@ class LocaleDataSource : DataSource {
 
     fun addMovieCaches(movies: List<Movie>) = movieCaches.addAll(movies)
 
-
     fun addTvShowCaches(tvShows: List<TvShow>) = tvShowCaches.addAll(tvShows)
 }

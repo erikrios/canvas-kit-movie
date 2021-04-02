@@ -116,6 +116,12 @@ object ApplicationModule {
 
     @Singleton
     @Provides
-    fun provideCinemaRepositoryImpl(networkHelper: NetworkHelper) =
-        CinemaRepositoryImpl(networkHelper) as CinemaRepository
+    fun provideCinemaRepositoryImpl(
+        networkHelper: NetworkHelper,
+        @Named("localeDataSource")
+        localeDataSource: DataSource,
+        @Named("remoteDataSource")
+        remoteDataSource: DataSource
+    ) =
+        CinemaRepositoryImpl(networkHelper, localeDataSource, remoteDataSource) as CinemaRepository
 }

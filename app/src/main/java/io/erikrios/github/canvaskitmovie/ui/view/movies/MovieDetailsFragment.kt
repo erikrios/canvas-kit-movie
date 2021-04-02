@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -17,7 +17,7 @@ import io.erikrios.github.canvaskitmovie.data.model.Genre
 import io.erikrios.github.canvaskitmovie.data.model.Movie
 import io.erikrios.github.canvaskitmovie.databinding.FragmentMovieDetailsBinding
 import io.erikrios.github.canvaskitmovie.ui.adapter.GenreAdapter
-import io.erikrios.github.canvaskitmovie.ui.viewmodel.MainViewModel
+import io.erikrios.github.canvaskitmovie.ui.viewmodel.DetailsViewModel
 import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations
 import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations.generateFullImageUrl
 
@@ -27,7 +27,7 @@ class MovieDetailsFragment : Fragment() {
     private var _binding: FragmentMovieDetailsBinding? = null
     private val binding get() = _binding
     private val args: MovieDetailsFragmentArgs by navArgs()
-    private val mainViewModel: MainViewModel by activityViewModels()
+    private val detailsViewModel: DetailsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,7 +40,7 @@ class MovieDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mainViewModel.apply {
+        detailsViewModel.apply {
             getMovieById(args.movie.id)
             movieState.observe(viewLifecycleOwner, this@MovieDetailsFragment::handleState)
         }

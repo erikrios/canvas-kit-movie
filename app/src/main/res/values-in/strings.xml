@@ -14,4 +14,6 @@
     <string name="story_line">Alur cerita</string>
     <string name="first_air_date">Tanggal Mengudara Pertama</string>
     <string name="creators">Pencipta</string>
+    <string name="loading">Memuat…</string>
+    <string name="no_data">Tidak Ada Data</string>
 </resources>

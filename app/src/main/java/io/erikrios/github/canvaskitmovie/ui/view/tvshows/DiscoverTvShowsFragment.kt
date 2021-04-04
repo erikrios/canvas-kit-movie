@@ -7,12 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import io.erikrios.github.canvaskitmovie.data.model.TvShow
 import io.erikrios.github.canvaskitmovie.databinding.FragmentDiscoverTvShowsBinding
 import io.erikrios.github.canvaskitmovie.ui.adapter.CinemaAdapter
 import io.erikrios.github.canvaskitmovie.ui.viewmodel.MainViewModel
 import io.erikrios.github.canvaskitmovie.utils.Resource
+import io.erikrios.github.canvaskitmovie.utils.Status
 
 @AndroidEntryPoint
 class DiscoverTvShowsFragment : Fragment() {
@@ -44,7 +46,43 @@ class DiscoverTvShowsFragment : Fragment() {
     }
 
     private fun handleState(tvShowsResource: Resource<List<TvShow>>) {
-        tvShowsResource.data?.let { setRecyclerView(it) }
+        when (tvShowsResource.status) {
+            Status.LOADING -> handleLoadingState(true)
+            Status.ERROR -> {
+                handleLoadingState(false)
+                tvShowsResource.message?.let { handleErrorState(it) }
+            }
+            Status.SUCCESS -> {
+                handleLoadingState(false)
+                tvShowsResource.data?.let { handleSuccessState(it) }
+            }
+        }
+    }
+
+    private fun handleLoadingState(isLoading: Boolean) {
+        if (isLoading) {
+            binding?.apply {
+                lavLoading.visibility = View.VISIBLE
+                progressBar.visibility = View.VISIBLE
+            }
+        } else {
+            binding?.apply {
+                lavLoading.visibility = View.GONE
+                progressBar.visibility = View.GONE
+            }
+        }
+    }
+
+    private fun handleErrorState(message: String) {
+        Snackbar.make(
+            requireActivity().findViewById(android.R.id.content),
+            message,
+            Snackbar.LENGTH_LONG
+        ).show()
+    }
+
+    private fun handleSuccessState(tvShows: List<TvShow>) {
+        setRecyclerView(tvShows)
     }
 
     private fun setRecyclerView(tvShows: List<TvShow>) {

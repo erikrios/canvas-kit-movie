@@ -1,4 +1,4 @@
-package io.erikrios.github.canvaskitmovie.data.source.locale
+package io.erikrios.github.canvaskitmovie.data.source.local
 
 import io.erikrios.github.canvaskitmovie.data.model.Movie
 import io.erikrios.github.canvaskitmovie.data.model.TvShow
@@ -6,7 +6,7 @@ import io.erikrios.github.canvaskitmovie.data.source.DataSource
 import io.erikrios.github.canvaskitmovie.utils.Resource
 import javax.inject.Inject
 
-class LocaleDataSource @Inject constructor() : DataSource {
+class LocalDataSource @Inject constructor() : DataSource {
 
     private val movieCaches = mutableSetOf<Movie>()
     private val tvShowCaches = mutableSetOf<TvShow>()

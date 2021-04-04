@@ -3,7 +3,7 @@ package io.erikrios.github.canvaskitmovie.data.repository
 import io.erikrios.github.canvaskitmovie.data.model.Movie
 import io.erikrios.github.canvaskitmovie.data.model.TvShow
 import io.erikrios.github.canvaskitmovie.data.source.DataSource
-import io.erikrios.github.canvaskitmovie.data.source.locale.LocaleDataSource
+import io.erikrios.github.canvaskitmovie.data.source.local.LocalDataSource
 import io.erikrios.github.canvaskitmovie.utils.NetworkHelper
 import io.erikrios.github.canvaskitmovie.utils.Resource
 import javax.inject.Inject
@@ -31,7 +31,7 @@ class CinemaRepositoryImpl @Inject constructor(
             )
         } else {
             val moviesResources = remoteDataSource.getMovies()
-            moviesResources.data?.let { (localeDataSource as LocaleDataSource).addCaches(it) }
+            moviesResources.data?.let { (localeDataSource as LocalDataSource).addCaches(it) }
             return moviesResources
         }
     }
@@ -53,7 +53,7 @@ class CinemaRepositoryImpl @Inject constructor(
             )
         } else {
             val tvShowsResources = remoteDataSource.getTvShows()
-            tvShowsResources.data?.let { (localeDataSource as LocaleDataSource).addCaches(it) }
+            tvShowsResources.data?.let { (localeDataSource as LocalDataSource).addCaches(it) }
             return tvShowsResources
         }
     }

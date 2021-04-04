@@ -41,6 +41,7 @@ class MovieDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        handleToolbar(args.movie.title)
         detailsViewModel.apply {
             getMovieById(args.movie.id)
             movieState.observe(viewLifecycleOwner, this@MovieDetailsFragment::handleState)
@@ -75,12 +76,6 @@ class MovieDetailsFragment : Fragment() {
                     .load(imageUrl)
                     .into(imgPoster)
             }
-            toolbar.apply {
-                title = movie.title
-                navigationIcon =
-                    ContextCompat.getDrawable(context, R.drawable.ic_baseline_arrow_back_24)
-                setNavigationOnClickListener { findNavController().popBackStack() }
-            }
             fabShare.setOnClickListener {
                 val intent = Intent(Intent.ACTION_SEND)
                 intent.putExtra(Intent.EXTRA_TEXT, movie.overview)
@@ -97,6 +92,15 @@ class MovieDetailsFragment : Fragment() {
             tvOverview.text = movie.overview
         }
         handleGenres(movie.genres ?: listOf())
+    }
+
+    private fun handleToolbar(title: String) {
+        binding?.toolbar?.apply {
+            this.title = title
+            navigationIcon =
+                ContextCompat.getDrawable(context, R.drawable.ic_baseline_arrow_back_24)
+            setNavigationOnClickListener { findNavController().popBackStack() }
+        }
     }
 
     private fun handleGenres(genres: List<Genre>) {

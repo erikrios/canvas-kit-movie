@@ -67,11 +67,11 @@ class MovieDetailsFragment : Fragment() {
         val loadingMessage = getString(R.string.loading)
         binding?.apply {
             tvTitle.text = loadingMessage
-            tvRatingInfo.text = String.format("%.1f", 0)
+            tvRatingInfo.text = String.format("%.1f", 0f)
             rbVoteAverage.rating = 0f
             tvVoteInfo.text = 0.toString()
             tvStatusInfo.text = loadingMessage
-            tvPopularityInfo.text = String.format("%.3f", 0)
+            tvPopularityInfo.text = String.format("%.3f", 0f)
             tvReleaseDateInfo.text = loadingMessage
             tvOverview.text = loadingMessage
         }
@@ -81,11 +81,11 @@ class MovieDetailsFragment : Fragment() {
         val noDataMessage = getString(R.string.no_data)
         binding?.apply {
             tvTitle.text = noDataMessage
-            tvRatingInfo.text = String.format("%.1f", 0)
+            tvRatingInfo.text = String.format("%.1f", 0f)
             rbVoteAverage.rating = 0f
             tvVoteInfo.text = 0.toString()
             tvStatusInfo.text = noDataMessage
-            tvPopularityInfo.text = String.format("%.3f", 0)
+            tvPopularityInfo.text = String.format("%.3f", 0f)
             tvReleaseDateInfo.text = noDataMessage
             tvOverview.text = noDataMessage
         }

@@ -28,12 +28,14 @@ class MainViewModel @Inject constructor(private val repository: CinemaRepository
 
     fun getMovies(): Job {
         return viewModelScope.launch {
+            _moviesState.value = Resource.loading(null)
             _moviesState.value = repository.getMovies()
         }
     }
 
     fun getTvShows(): Job {
         return viewModelScope.launch {
+            _tvShowsState.value = Resource.loading(null)
             _tvShowsState.value = repository.getTvShows()
         }
     }

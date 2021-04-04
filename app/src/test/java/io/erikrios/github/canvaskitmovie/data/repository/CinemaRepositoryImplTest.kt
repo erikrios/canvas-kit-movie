@@ -92,6 +92,16 @@ class CinemaRepositoryImplTest {
                     actualDummyTvShow
                 )
             )
+            `when`(remoteDataSource.getMovieDetails(notExistMovieId)).thenReturn(
+                Resource.error(
+                    "Internal server error.", null
+                )
+            )
+            `when`(remoteDataSource.getTvShowDetails(notExistTvShowId)).thenReturn(
+                Resource.error(
+                    "Internal server error.", null
+                )
+            )
         }
 
         repository = FakeCinemaRepositoryImpl(networkHelper, localDataSource, remoteDataSource)
@@ -175,5 +185,169 @@ class CinemaRepositoryImplTest {
         }
     /**
      * -------------------- End of get movies test ------------------------------
+     */
+
+
+    /**
+     * -------------------- Get tv shows test ------------------------------
+     */
+    @Test
+    fun `get tv shows, returns not null`() = runBlockingTest {
+        val tvShowsResource = repository.getTvShows()
+        // Verity that remoteDataSource.getTvShows() is called
+        verify(remoteDataSource).getTvShows()
+        // Verify that the return value is not null
+        assertThat(tvShowsResource).isNotNull()
+    }
+
+    @Test
+    fun `tv shows, return the list of tv shows`() = runBlockingTest {
+        val tvShowsResource = repository.getTvShows()
+        // Verity that remoteDataSource.getTvShows() is called
+        verify(remoteDataSource).getTvShows()
+        // Verify that the return value are the list of movies
+        assertThat(tvShowsResource.data).isNotEmpty()
+    }
+
+    @Test
+    fun `get tv shows, return the same size with the actual dummy data`() = runBlockingTest {
+        val tvShowsResource = repository.getTvShows()
+        // Verify that remoteDataSource.getTvShows() is called
+        verify(remoteDataSource).getTvShows()
+        // Verify that the return value have the same size with the actual dummy data
+        assertThat(tvShowsResource.data?.size).isEqualTo(actualMoviesSize)
+    }
+
+    @Test
+    fun `get tv shows, returns the same elements with the actual dummy data`() = runBlockingTest {
+        val tvShowsResource = repository.getTvShows()
+        // Verify that remoteDataSource.getTvShows() is called
+        verify(remoteDataSource).getTvShows()
+        // Verify that the return value have the same element with the actual dummy data
+        assertThat(tvShowsResource.data).isEqualTo(actualTvShows)
+    }
+
+    @Test
+    fun `get tv shows when network connected, return resource instance with success status`() =
+        runBlockingTest {
+            val tvShowsResource = repository.getTvShows()
+            // Verify that remoteDataSource.getTvShows() is called
+            verify(remoteDataSource).getTvShows()
+            // Verify that the resource instance have success status
+            assertThat(tvShowsResource.status).isEqualTo(Status.SUCCESS)
+        }
+
+    @Test
+    fun `get tv shows when network disconnected, return the tv shows data from local data source`() =
+        runBlockingTest {
+            // Disable the network connection
+            `when`(networkHelper.isNetworkConnected()).thenReturn(false)
+            val tvShowsResource = repository.getTvShows()
+            // Verify that localDataSource.getTvShows() is called
+            verify(localDataSource).getTvShows()
+            // Verity that the return value from local data source is not empty
+            assertThat(tvShowsResource.data).isNotEmpty()
+            // Verity that the status is success
+            assertThat(tvShowsResource.status).isEqualTo(Status.SUCCESS)
+        }
+
+    @Test
+    fun `get tv shows when network disconnected and the local data source is empty, return error status`() =
+        runBlockingTest {
+            // Disable the network connection
+            `when`(networkHelper.isNetworkConnected()).thenReturn(false)
+            // Suppose that local data store is empty
+            `when`(localDataSource.getTvShows()).thenReturn(Resource.success(listOf()))
+            val tvShowsResource = repository.getTvShows()
+            // Verify that localDataSource.getTvShows() is called
+            verify(localDataSource).getTvShows()
+            // Verity that the status is error
+            assertThat(tvShowsResource.status).isEqualTo(Status.ERROR)
+        }
+    /**
+     * -------------------- End of get tv shows test ------------------------------
+     */
+
+    /**
+     * -------------------- Get movie by id test ------------------------------
+     */
+    @Test
+    fun `get movie with not exist id, returns error status`() = runBlockingTest {
+        val movieResource = repository.getMovieById(notExistMovieId)
+        // Verify that remoteDataSource.getMovieDetails() is called
+        verify(remoteDataSource).getMovieDetails(notExistMovieId)
+        // Verity that the status is error
+        assertThat(movieResource.status).isEqualTo(Status.ERROR)
+    }
+
+    @Test
+    fun `get movie with valid id, returns a valid movie with success status`() = runBlockingTest {
+        val movieResource = repository.getMovieById(randomMovieId)
+        // Verify that remoteDataSource.getMovieDetails() is called
+        verify(remoteDataSource).getMovieDetails(randomMovieId)
+        // Verity that the movie is valid
+        assertThat(movieResource.data).isEqualTo(actualDummyMovie)
+        // Verity that the status is success
+        assertThat(movieResource.status).isEqualTo(Status.SUCCESS)
+    }
+
+    @Test
+    fun `get movie when network disconnected, return the data from local data source with success status`() =
+        runBlockingTest {
+            // Disable the network connection
+            `when`(networkHelper.isNetworkConnected()).thenReturn(false)
+            val movieResource = repository.getMovieById(randomMovieId)
+            // Verify that localDataSource.getMovieDetails() is called
+            verify(localDataSource).getMovieDetails(randomMovieId)
+            // Verify that the movie is valid
+            assertThat(movieResource.data).isEqualTo(actualDummyMovie)
+            // Verity that the status is success
+            assertThat(movieResource.status).isEqualTo(Status.SUCCESS)
+        }
+
+    /**
+     * -------------------- End of get movie by id test ------------------------------
+     */
+
+    /**
+     * -------------------- Get tv show by id test ------------------------------
+     */
+    @Test
+    fun `get tv show with not exist id, returns error status`() = runBlockingTest {
+        val tvShowResource = repository.getTvShowById(notExistTvShowId)
+        // Verify that remoteDataSource.getTvShowById() is called
+        verify(remoteDataSource).getTvShowDetails(notExistTvShowId)
+        // Verity that the status is error
+        assertThat(tvShowResource.status).isEqualTo(Status.ERROR)
+    }
+
+    @Test
+    fun `get tv show with valid id, returns a tv show movie with success status`() =
+        runBlockingTest {
+            val tvShowResource = repository.getTvShowById(randomTvShowId)
+            // Verify that remoteDataSource.getTvShowDetails() is called
+            verify(remoteDataSource).getTvShowDetails(randomTvShowId)
+            // Verity that the tv show is valid
+            assertThat(tvShowResource.data).isEqualTo(actualDummyTvShow)
+            // Verity that the status is success
+            assertThat(tvShowResource.status).isEqualTo(Status.SUCCESS)
+        }
+
+    @Test
+    fun `get tv show when network disconnected, return the data from local data source with success status`() =
+        runBlockingTest {
+            // Disable the network connection
+            `when`(networkHelper.isNetworkConnected()).thenReturn(false)
+            val tvShowResource = repository.getTvShowById(randomTvShowId)
+            // Verify that localDataSource.getTvShowDetails() is called
+            verify(localDataSource).getTvShowDetails(randomTvShowId)
+            // Verify that the tv show is valid
+            assertThat(tvShowResource.data).isEqualTo(actualDummyTvShow)
+            // Verity that the status is success
+            assertThat(tvShowResource.status).isEqualTo(Status.SUCCESS)
+        }
+
+    /**
+     * -------------------- End of get tv show by id test ------------------------------
      */
 }

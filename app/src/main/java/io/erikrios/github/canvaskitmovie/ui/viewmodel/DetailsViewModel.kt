@@ -30,12 +30,14 @@ class DetailsViewModel @Inject constructor(private val repository: CinemaReposit
 
     fun getMovieById(id: Int): Job {
         return viewModelScope.launch {
+            _movieState.value = Resource.loading(null)
             _movieState.value = repository.getMovieById(id)
         }
     }
 
     fun getTvShowById(id: Int): Job {
         return viewModelScope.launch {
+            _movieState.value = Resource.loading(null)
             _tvShowState.value = repository.getTvShowById(id)
         }
     }

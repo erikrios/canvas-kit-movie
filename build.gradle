@@ -70,5 +70,4 @@ ext {
     hiltAndroidCompilerVersion = '2.33-beta'
     hiltLifecycleViewmodelVersion = '1.0.0-alpha03'
     hiltAndroidTestingVersion = '2.33-beta'
-    hiltAndroidTestingVersion = '2.33-beta'
 }

@@ -2,6 +2,7 @@ package io.erikrios.github.canvaskitmovie.ui.view
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.swipeUp
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -14,6 +15,8 @@ import io.erikrios.github.canvaskitmovie.data.model.Movie
 import io.erikrios.github.canvaskitmovie.data.model.TvShow
 import io.erikrios.github.canvaskitmovie.utils.DummyData.generateMovies
 import io.erikrios.github.canvaskitmovie.utils.DummyData.generateTvShows
+import io.erikrios.github.canvaskitmovie.utils.EspressoIdlingResource
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -40,6 +43,12 @@ class MainActivityTest {
         dummyTvShowIndex = (dummyTvShows.indices).random()
         dummyMovie = dummyMovies[dummyMovieIndex]
         dummyTvShow = dummyTvShows[dummyTvShowIndex]
+        IdlingRegistry.getInstance().register(EspressoIdlingResource.idlingResource)
+    }
+
+    @After
+    fun tearDown() {
+        IdlingRegistry.getInstance().unregister(EspressoIdlingResource.idlingResource)
     }
 
     @Test

@@ -33,6 +33,7 @@ ext {
     coreKtxVersion = '1.3.2'
     appCompatVersion = '1.2.0'
     materialVersion = '1.3.0'
+    cnstraintLayoutVersion = '2.0.4'
     fragmentKtxVersion = '1.3.2'
     testCoreVersion = '1.3.0'
     jUnitVersion = '4.13.2'

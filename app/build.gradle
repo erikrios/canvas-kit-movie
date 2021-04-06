@@ -68,90 +68,91 @@ dependencies {
 
     //noinspection DifferentStdlibGradleVersion
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.3.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'androidx.fragment:fragment-ktx:1.3.2'
+    implementation "androidx.core:core-ktx:$coreKtxVersion"
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "com.google.android.material:material:$materialVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$cnstraintLayoutVersion"
+    implementation "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
 
     // Local Unit Tests
-    implementation "androidx.test:core:1.3.0"
-    testImplementation 'junit:junit:4.13.2'
+    implementation "androidx.test:core:$testCoreVersion"
+    testImplementation "junit:junit:$jUnitVersion"
     testImplementation 'org.mockito:mockito-core:3.8.0'
     testImplementation 'org.mockito:mockito-inline:3.8.0'
     testImplementation "org.mockito.kotlin:mockito-kotlin:3.1.0"
-    testImplementation "androidx.arch.core:core-testing:2.1.0"
-    testImplementation 'com.google.truth:truth:1.1.2'
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.1"
+    testImplementation "androidx.arch.core:core-testing:$coreTestingVersion"
+    testImplementation "com.google.truth:truth:$truthVersion"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTestVersion"
 
     // Instrumented Unit Tests
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation "androidx.test:rules:1.3.0"
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.3.0'
-    androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
-    androidTestImplementation 'com.google.truth:truth:1.1.2'
-    androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.1") {
+    androidTestImplementation "androidx.test.ext:junit:$jUnitExtVersion"
+    androidTestImplementation "androidx.test:rules:$testRulesVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCoreVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoContribVersion"
+    androidTestImplementation "androidx.arch.core:core-testing:$coreTestingVersion"
+    androidTestImplementation "com.google.truth:truth:$truthVersion"
+    androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinxCoroutinesTestVersion") {
         // conflicts with mockito due to direct inclusion of byte buddy
         exclude group: "org.jetbrains.kotlinx", module: "kotlinx-coroutines-debug"
     }
 
     // Recycler View
-    implementation 'androidx.recyclerview:recyclerview:1.2.0-rc01'
+    implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
 
     // Navigation Components
-    implementation 'android.arch.navigation:navigation-fragment-ktx:2.3.0'
-    implementation 'android.arch.navigation:navigation-ui-ktx:2.3.0'
+    implementation "android.arch.navigation:navigation-fragment-ktx:$navigationFragmentKtxVersion"
+    implementation "android.arch.navigation:navigation-ui-ktx:$navigationUiKtxVersion"
 
     // Architectural Components
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleViewmodelKtxVersion"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleRuntimeKtxVersion"
+    implementation "androidx.legacy:legacy-support-v4:$legacySupportV4Version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleLivedataKtxVersion"
 
     // Espresso Idling Resource
-    implementation "androidx.test.espresso:espresso-idling-resource:3.3.0"
+    implementation "androidx.test.espresso:espresso-idling-resource:$espressoIdlingResourceVersion"
 
     // Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$converterGsonVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$loggingInterceptorVersion"
+
 
     // Coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinxCoroutinesCoreVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinxCoroutinesAndroidVersion"
 
     // Glide
-    implementation 'com.github.bumptech.glide:glide:4.12.0'
-    kapt 'com.github.bumptech.glide:compiler:4.12.0'
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    kapt "com.github.bumptech.glide:compiler:$glideCompilerVersion"
 
     // Room Database
-    implementation 'androidx.room:room-ktx:2.2.6'
-    kapt 'androidx.room:room-compiler:2.2.6'
+    implementation "androidx.room:room-ktx:$roomKtxVersion"
+    kapt "androidx.room:room-compiler:$roomCompilerVersion"
 
     // DataStore Preferences
-    implementation 'androidx.datastore:datastore-preferences:1.0.0-alpha08'
+    implementation "androidx.datastore:datastore-preferences:$datastorePreferencesVersion"
 
     // Kenburns View
-    implementation 'com.flaviofaria:kenburnsview:1.0.7'
+    implementation "com.flaviofaria:kenburnsview:$kenburnsViewVersion"
 
     // Circle Image View
-    implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation "de.hdodenhof:circleimageview:$circleImageViewVersion"
 
     // Dagger Hilt
-    implementation 'com.google.dagger:hilt-android:2.33-beta'
-    kapt 'com.google.dagger:hilt-compiler:2.33-beta'
-    kapt "com.google.dagger:hilt-android-compiler:2.33-beta"
-    implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03'
+    implementation "com.google.dagger:hilt-android:$hiltAndroidVersion"
+    kapt "com.google.dagger:hilt-compiler:$hiltCompilerVersion"
+    kapt "com.google.dagger:hilt-android-compiler:$hiltAndroidCompilerVersion"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hiltLifecycleViewmodelVersion"
 
     // For instrumentation tests (Dagger Hilt)
-    androidTestImplementation 'com.google.dagger:hilt-android-testing:2.33-beta'
-    kaptAndroidTest 'com.google.dagger:hilt-compiler:2.33-beta'
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$hiltAndroidTestingVersion"
+    kaptAndroidTest "com.google.dagger:hilt-compiler:$hiltCompilerVersion"
 
     // For local unit tests (Dagger Hilt)
-    testImplementation 'com.google.dagger:hilt-android-testing:2.33-beta'
-    kaptTest 'com.google.dagger:hilt-compiler:2.33-beta'
+    testImplementation "com.google.dagger:hilt-android-testing:$hiltAndroidTestingVersion"
+    kaptTest "com.google.dagger:hilt-compiler:$hiltCompilerVersion"
 
     // Lottie
-    implementation 'com.airbnb.android:lottie:3.4.0'
+    implementation "com.airbnb.android:lottie:$lottieVersion"
 }

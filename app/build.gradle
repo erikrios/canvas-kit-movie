@@ -7,6 +7,18 @@ plugins {
     id 'dagger.hilt.android.plugin'
 }
 
+static def getBaseUrl() {
+    Properties props = new Properties()
+    props.load(new FileInputStream(new File('secrets.properties')))
+    return props['BASE_URL']
+}
+
+static def getApiKey() {
+    Properties props = new Properties()
+    props.load(new FileInputStream(new File('secrets.properties')))
+    return props['API_KEY']
+}
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -19,12 +31,18 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        manifestPlaceholders = [BASE_URL: getBaseUrl(), API_KEY: getApiKey()]
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        applicationVariants.all { variant ->
+            variant.buildConfigField "String", "BASE_URL", "\"" + getBaseUrl() + "\""
+            variant.buildConfigField "String", "API_KEY", "\"" + getApiKey() + "\""
         }
     }
     compileOptions {
@@ -59,6 +77,9 @@ dependencies {
     // Local Unit Tests
     implementation "androidx.test:core:$testCoreVersion"
     testImplementation "junit:junit:$jUnitVersion"
+    testImplementation 'org.mockito:mockito-core:3.8.0'
+    testImplementation 'org.mockito:mockito-inline:3.8.0'
+    testImplementation "org.mockito.kotlin:mockito-kotlin:3.1.0"
     testImplementation "androidx.arch.core:core-testing:$coreTestingVersion"
     testImplementation "com.google.truth:truth:$truthVersion"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTestVersion"
@@ -87,6 +108,9 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleRuntimeKtxVersion"
     implementation "androidx.legacy:legacy-support-v4:$legacySupportV4Version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleLivedataKtxVersion"
+
+    // Espresso Idling Resource
+    implementation "androidx.test.espresso:espresso-idling-resource:$espressoIdlingResourceVersion"
 
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
@@ -127,4 +151,7 @@ dependencies {
     // For local unit tests (Dagger Hilt)
     testImplementation "com.google.dagger:hilt-android-testing:$hiltAndroidTestingVersion"
     kaptTest "com.google.dagger:hilt-compiler:$hiltCompilerVersion"
+
+    // Lottie
+    implementation "com.airbnb.android:lottie:$lottieVersion"
 }

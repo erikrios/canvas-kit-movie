@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import io.erikrios.github.canvaskitmovie.R
 import io.erikrios.github.canvaskitmovie.data.model.Genre
@@ -20,6 +21,8 @@ import io.erikrios.github.canvaskitmovie.ui.adapter.GenreAdapter
 import io.erikrios.github.canvaskitmovie.ui.viewmodel.DetailsViewModel
 import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations
 import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations.generateFullImageUrl
+import io.erikrios.github.canvaskitmovie.utils.Resource
+import io.erikrios.github.canvaskitmovie.utils.Status
 
 @AndroidEntryPoint
 class MovieDetailsFragment : Fragment() {
@@ -40,6 +43,7 @@ class MovieDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        handleToolbar(args.movie.title)
         detailsViewModel.apply {
             getMovieById(args.movie.id)
             movieState.observe(viewLifecycleOwner, this@MovieDetailsFragment::handleState)
@@ -51,8 +55,49 @@ class MovieDetailsFragment : Fragment() {
         _binding = null
     }
 
-    private fun handleState(movie: Movie?) {
-        movie?.let { handleView(it) }
+    private fun handleState(movieResource: Resource<Movie>) {
+        when (movieResource.status) {
+            Status.LOADING -> handleLoadingState()
+            Status.ERROR -> movieResource.message?.let { handleErrorState(it) }
+            Status.SUCCESS -> movieResource.data?.let { handleSuccessState(it) }
+        }
+    }
+
+    private fun handleLoadingState() {
+        val loadingMessage = getString(R.string.loading)
+        binding?.apply {
+            tvTitle.text = loadingMessage
+            tvRatingInfo.text = String.format("%.1f", 0f)
+            rbVoteAverage.rating = 0f
+            tvVoteInfo.text = 0.toString()
+            tvStatusInfo.text = loadingMessage
+            tvPopularityInfo.text = String.format("%.3f", 0f)
+            tvReleaseDateInfo.text = loadingMessage
+            tvOverview.text = loadingMessage
+        }
+    }
+
+    private fun handleErrorState(message: String) {
+        val noDataMessage = getString(R.string.no_data)
+        binding?.apply {
+            tvTitle.text = noDataMessage
+            tvRatingInfo.text = String.format("%.1f", 0f)
+            rbVoteAverage.rating = 0f
+            tvVoteInfo.text = 0.toString()
+            tvStatusInfo.text = noDataMessage
+            tvPopularityInfo.text = String.format("%.3f", 0f)
+            tvReleaseDateInfo.text = noDataMessage
+            tvOverview.text = noDataMessage
+        }
+        Snackbar.make(
+            requireActivity().findViewById(android.R.id.content),
+            message,
+            Snackbar.LENGTH_LONG
+        ).show()
+    }
+
+    private fun handleSuccessState(movie: Movie) {
+        handleView(movie)
     }
 
     private fun handleView(movie: Movie) {
@@ -73,12 +118,6 @@ class MovieDetailsFragment : Fragment() {
                     .load(imageUrl)
                     .into(imgPoster)
             }
-            toolbar.apply {
-                title = movie.title
-                navigationIcon =
-                    ContextCompat.getDrawable(context, R.drawable.ic_baseline_arrow_back_24)
-                setNavigationOnClickListener { findNavController().popBackStack() }
-            }
             fabShare.setOnClickListener {
                 val intent = Intent(Intent.ACTION_SEND)
                 intent.putExtra(Intent.EXTRA_TEXT, movie.overview)
@@ -95,6 +134,15 @@ class MovieDetailsFragment : Fragment() {
             tvOverview.text = movie.overview
         }
         handleGenres(movie.genres ?: listOf())
+    }
+
+    private fun handleToolbar(title: String) {
+        binding?.toolbar?.apply {
+            this.title = title
+            navigationIcon =
+                ContextCompat.getDrawable(context, R.drawable.ic_baseline_arrow_back_24)
+            setNavigationOnClickListener { findNavController().popBackStack() }
+        }
     }
 
     private fun handleGenres(genres: List<Genre>) {

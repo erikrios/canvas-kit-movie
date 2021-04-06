@@ -3,11 +3,13 @@ package io.erikrios.github.canvaskitmovie.ui.view
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.swipeUp
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
-import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import io.erikrios.github.canvaskitmovie.R
@@ -15,6 +17,8 @@ import io.erikrios.github.canvaskitmovie.data.model.Movie
 import io.erikrios.github.canvaskitmovie.data.model.TvShow
 import io.erikrios.github.canvaskitmovie.utils.DummyData.generateMovies
 import io.erikrios.github.canvaskitmovie.utils.DummyData.generateTvShows
+import io.erikrios.github.canvaskitmovie.utils.EspressoIdlingResource
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -42,6 +46,12 @@ class MainActivityTest {
         dummyTvShowIndex = (dummyTvShows.indices).random()
         dummyMovie = dummyMovies[dummyMovieIndex]
         dummyTvShow = dummyTvShows[dummyTvShowIndex]
+        IdlingRegistry.getInstance().register(EspressoIdlingResource.idlingResource)
+    }
+
+    @After
+    fun tearDown() {
+        IdlingRegistry.getInstance().unregister(EspressoIdlingResource.idlingResource)
     }
 
     @Test
@@ -93,31 +103,32 @@ class MainActivityTest {
         onView(withId(R.id.tv_overview)).check(matches(isDisplayed()))
         onView(withId(R.id.rv_genres)).check(matches(isDisplayed()))
 
-        onView(withId(R.id.tv_title)).check(matches(withText(dummyMovie.title)))
-        onView(withId(R.id.tv_rating_info)).check(
-            matches(
-                withText(
-                    String.format(
-                        "%.1f",
-                        dummyMovie.voteAverage
-                    )
-                )
-            )
-        )
-        onView(withId(R.id.tv_vote_info)).check(matches(withText(dummyMovie.voteCount.toString())))
-        onView(withId(R.id.tv_status_info)).check(matches(withText(dummyMovie.status)))
-        onView(withId(R.id.tv_popularity_info)).check(
-            matches(
-                withText(
-                    String.format(
-                        "%.3f",
-                        dummyMovie.popularity
-                    )
-                )
-            )
-        )
-        onView(withId(R.id.tv_release_date_info)).check(matches(withText(dummyMovie.releaseDate)))
-        onView(withId(R.id.tv_overview)).check(matches(withText(dummyMovie.overview)))
+        // We remove this code because the data come from RESTful API (dynamic data), so we can't predict it
+//        onView(withId(R.id.tv_title)).check(matches(withText(dummyMovie.title)))
+//        onView(withId(R.id.tv_rating_info)).check(
+//            matches(
+//                withText(
+//                    String.format(
+//                        "%.1f",
+//                        dummyMovie.voteAverage
+//                    )
+//                )
+//            )
+//        )
+//        onView(withId(R.id.tv_vote_info)).check(matches(withText(dummyMovie.voteCount.toString())))
+//        onView(withId(R.id.tv_status_info)).check(matches(withText(dummyMovie.status)))
+//        onView(withId(R.id.tv_popularity_info)).check(
+//            matches(
+//                withText(
+//                    String.format(
+//                        "%.3f",
+//                        dummyMovie.popularity
+//                    )
+//                )
+//            )
+//        )
+//        onView(withId(R.id.tv_release_date_info)).check(matches(withText(dummyMovie.releaseDate)))
+//        onView(withId(R.id.tv_overview)).check(matches(withText(dummyMovie.overview)))
     }
 
     @Test
@@ -149,33 +160,35 @@ class MainActivityTest {
         onView(withId(R.id.tv_first_air_date_info)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_overview)).perform(swipeUp())
         onView(withId(R.id.tv_overview)).check(matches(isDisplayed()))
-        if (dummyTvShow.creators.isNotEmpty()) {
+        if (!dummyTvShow.creators.isNullOrEmpty()) {
             onView(withId(R.id.rv_creators)).check(matches(isDisplayed()))
         }
-        onView(withId(R.id.tv_name)).check(matches(withText(dummyTvShow.name)))
-        onView(withId(R.id.tv_rating_info)).check(
-            matches(
-                withText(
-                    String.format(
-                        "%.1f",
-                        dummyTvShow.voteAverage
-                    )
-                )
-            )
-        )
-        onView(withId(R.id.tv_vote_info)).check(matches(withText(dummyTvShow.voteCount.toString())))
-        onView(withId(R.id.tv_status_info)).check(matches(withText(dummyTvShow.status)))
-        onView(withId(R.id.tv_popularity_info)).check(
-            matches(
-                withText(
-                    String.format(
-                        "%.3f",
-                        dummyTvShow.popularity
-                    )
-                )
-            )
-        )
-        onView(withId(R.id.tv_first_air_date_info)).check(matches(withText(dummyTvShow.firstAirDate)))
-        onView(withId(R.id.tv_overview)).check(matches(withText(dummyTvShow.overview)))
+
+        // We remove this code because the data come from RESTful API (dynamic data), so we can't predict it
+//        onView(withId(R.id.tv_name)).check(matches(withText(dummyTvShow.name)))
+//        onView(withId(R.id.tv_rating_info)).check(
+//            matches(
+//                withText(
+//                    String.format(
+//                        "%.1f",
+//                        dummyTvShow.voteAverage
+//                    )
+//                )
+//            )
+//        )
+//        onView(withId(R.id.tv_vote_info)).check(matches(withText(dummyTvShow.voteCount.toString())))
+//        onView(withId(R.id.tv_status_info)).check(matches(withText(dummyTvShow.status)))
+//        onView(withId(R.id.tv_popularity_info)).check(
+//            matches(
+//                withText(
+//                    String.format(
+//                        "%.3f",
+//                        dummyTvShow.popularity
+//                    )
+//                )
+//            )
+//        )
+//        onView(withId(R.id.tv_first_air_date_info)).check(matches(withText(dummyTvShow.firstAirDate)))
+//        onView(withId(R.id.tv_overview)).check(matches(withText(dummyTvShow.overview)))
     }
 }

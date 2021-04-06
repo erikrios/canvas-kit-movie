@@ -1,6 +1,7 @@
 package io.erikrios.github.canvaskitmovie.ui.view
 
 import androidx.recyclerview.widget.RecyclerView
+import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.swipeUp
@@ -34,6 +35,7 @@ class MainActivityTest {
 
     @Before
     fun setUp() {
+        ActivityScenario.launch(MainActivity::class.java)
         dummyMovies = generateMovies()
         dummyTvShows = generateTvShows()
         dummyMovieIndex = (dummyMovies.indices).random()

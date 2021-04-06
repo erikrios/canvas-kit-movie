@@ -149,8 +149,9 @@ class MainActivityTest {
         onView(withId(R.id.tv_first_air_date_info)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_overview)).perform(swipeUp())
         onView(withId(R.id.tv_overview)).check(matches(isDisplayed()))
-        onView(withId(R.id.rv_creators)).check(matches(isDisplayed()))
-
+        if (dummyTvShow.creators.isNotEmpty()) {
+            onView(withId(R.id.rv_creators)).check(matches(isDisplayed()))
+        }
         onView(withId(R.id.tv_name)).check(matches(withText(dummyTvShow.name)))
         onView(withId(R.id.tv_rating_info)).check(
             matches(

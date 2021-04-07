@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_discoverTvShowsFragment_to_tvShowDetailsFragment"
             app:destination="@id/tvShowDetailsFragment" />
+        <action
+            android:id="@+id/action_discoverTvShowsFragment_to_favoritesTvShowDashboardFragment"
+            app:destination="@id/favoritesTvShowDashboardFragment" />
     </fragment>
     <fragment
         android:id="@+id/tvShowDetailsFragment"
@@ -23,4 +26,9 @@
             android:name="tvShow"
             app:argType="io.erikrios.github.canvaskitmovie.data.model.TvShow" />
     </fragment>
+    <fragment
+        android:id="@+id/favoritesTvShowDashboardFragment"
+        android:name="io.erikrios.github.canvaskitmovie.ui.view.favorites.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" />
 </navigation>

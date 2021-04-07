@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import io.erikrios.github.canvaskitmovie.R
 import io.erikrios.github.canvaskitmovie.data.model.Movie
 import io.erikrios.github.canvaskitmovie.databinding.FragmentDiscoverMoviesBinding
 import io.erikrios.github.canvaskitmovie.ui.adapter.CinemaAdapter
@@ -34,6 +35,7 @@ class DiscoverMoviesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        handleToolbar()
         mainViewModel.moviesState.observe(
             viewLifecycleOwner,
             this@DiscoverMoviesFragment::handleState
@@ -94,5 +96,14 @@ class DiscoverMoviesFragment : Fragment() {
             findNavController().navigate(action)
         }
         binding?.rvMovies?.adapter = adapter
+    }
+
+    private fun handleToolbar() {
+        val action =
+            DiscoverMoviesFragmentDirections.actionDiscoverMoviesFragmentToFavoritesFragment()
+        binding?.toolbar?.menu?.findItem(R.id.item_favorites)?.setOnMenuItemClickListener {
+            findNavController().navigate(action)
+            return@setOnMenuItemClickListener true
+        }
     }
 }

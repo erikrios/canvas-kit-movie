@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import io.erikrios.github.canvaskitmovie.R
 import io.erikrios.github.canvaskitmovie.data.model.TvShow
 import io.erikrios.github.canvaskitmovie.databinding.FragmentDiscoverTvShowsBinding
 import io.erikrios.github.canvaskitmovie.ui.adapter.CinemaAdapter
@@ -34,6 +35,7 @@ class DiscoverTvShowsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        handleToolbar()
         mainViewModel.tvShowsState.observe(
             viewLifecycleOwner,
             this@DiscoverTvShowsFragment::handleState
@@ -94,5 +96,14 @@ class DiscoverTvShowsFragment : Fragment() {
             findNavController().navigate(action)
         }
         binding?.rvTvShows?.adapter = adapter
+    }
+
+    private fun handleToolbar() {
+        val action =
+            DiscoverTvShowsFragmentDirections.actionDiscoverTvShowsFragmentToFavoritesTvShowDashboardFragment()
+        binding?.toolbar?.menu?.findItem(R.id.item_favorites)?.setOnMenuItemClickListener {
+            findNavController().navigate(action)
+            return@setOnMenuItemClickListener true
+        }
     }
 }

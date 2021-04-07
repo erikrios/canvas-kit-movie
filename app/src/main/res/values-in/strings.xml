@@ -16,4 +16,5 @@
     <string name="creators">Pencipta</string>
     <string name="loading">Memuat…</string>
     <string name="no_data">Tidak Ada Data</string>
+    <string name="favorites">Favorit</string>
 </resources>

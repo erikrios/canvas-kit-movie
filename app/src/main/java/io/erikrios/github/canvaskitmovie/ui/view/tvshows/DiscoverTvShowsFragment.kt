@@ -100,7 +100,7 @@ class DiscoverTvShowsFragment : Fragment() {
 
     private fun handleToolbar() {
         val action =
-            DiscoverTvShowsFragmentDirections.actionDiscoverTvShowsFragmentToFavoritesTvShowDashboardFragment()
+            DiscoverTvShowsFragmentDirections.actionDiscoverTvShowsFragmentToFavoriteTvShowsFragment()
         binding?.toolbar?.menu?.findItem(R.id.item_favorites)?.setOnMenuItemClickListener {
             findNavController().navigate(action)
             return@setOnMenuItemClickListener true

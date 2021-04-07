@@ -100,7 +100,7 @@ class DiscoverMoviesFragment : Fragment() {
 
     private fun handleToolbar() {
         val action =
-            DiscoverMoviesFragmentDirections.actionDiscoverMoviesFragmentToFavoritesFragment()
+            DiscoverMoviesFragmentDirections.actionDiscoverMoviesFragmentToFavoriteMoviesFragment()
         binding?.toolbar?.menu?.findItem(R.id.item_favorites)?.setOnMenuItemClickListener {
             findNavController().navigate(action)
             return@setOnMenuItemClickListener true

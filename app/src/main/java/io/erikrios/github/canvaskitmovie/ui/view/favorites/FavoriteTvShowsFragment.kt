@@ -5,18 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import io.erikrios.github.canvaskitmovie.databinding.FragmentFavoritesMovieBinding
+import io.erikrios.github.canvaskitmovie.databinding.FragmentFavoriteMoviesBinding
 
-class FavoritesMovieFragment : Fragment() {
+class FavoriteTvShowsFragment : Fragment() {
 
-    private var _binding: FragmentFavoritesMovieBinding? = null
+    private var _binding: FragmentFavoriteMoviesBinding? = null
     private val binding get() = _binding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentFavoritesMovieBinding.inflate(inflater, container, false)
+        _binding = FragmentFavoriteMoviesBinding.inflate(inflater, container, false)
         return binding?.root
     }
 

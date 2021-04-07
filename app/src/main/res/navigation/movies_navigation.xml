@@ -14,8 +14,8 @@
             android:id="@+id/action_discoverMoviesFragment_to_movieDetailsFragment"
             app:destination="@id/movieDetailsFragment" />
         <action
-            android:id="@+id/action_discoverMoviesFragment_to_favoritesFragment"
-            app:destination="@id/favoritesMovieDashboardFragment" />
+            android:id="@+id/action_discoverMoviesFragment_to_favoriteMoviesFragment"
+            app:destination="@id/favoriteMoviesFragment" />
     </fragment>
     <fragment
         android:id="@+id/movieDetailsFragment"
@@ -27,8 +27,8 @@
             app:argType="io.erikrios.github.canvaskitmovie.data.model.Movie" />
     </fragment>
     <fragment
-        android:id="@+id/favoritesMovieDashboardFragment"
-        android:name="io.erikrios.github.canvaskitmovie.ui.view.favorites.FavoritesFragment"
-        android:label="fragment_favorites"
-        tools:layout="@layout/fragment_favorites" />
+        android:id="@+id/favoriteMoviesFragment"
+        android:name="io.erikrios.github.canvaskitmovie.ui.view.favorites.FavoriteMoviesFragment"
+        android:label="fragment_favorite_movies"
+        tools:layout="@layout/fragment_favorite_movies" />
 </navigation>

@@ -14,8 +14,8 @@
             android:id="@+id/action_discoverTvShowsFragment_to_tvShowDetailsFragment"
             app:destination="@id/tvShowDetailsFragment" />
         <action
-            android:id="@+id/action_discoverTvShowsFragment_to_favoritesTvShowDashboardFragment"
-            app:destination="@id/favoritesTvShowDashboardFragment" />
+            android:id="@+id/action_discoverTvShowsFragment_to_favoriteTvShowsFragment"
+            app:destination="@id/favoriteTvShowsFragment" />
     </fragment>
     <fragment
         android:id="@+id/tvShowDetailsFragment"
@@ -27,8 +27,8 @@
             app:argType="io.erikrios.github.canvaskitmovie.data.model.TvShow" />
     </fragment>
     <fragment
-        android:id="@+id/favoritesTvShowDashboardFragment"
-        android:name="io.erikrios.github.canvaskitmovie.ui.view.favorites.FavoritesMovieFragment"
-        android:label="fragment_favorites"
-        tools:layout="@layout/fragment_favorites_movie" />
+        android:id="@+id/favoriteTvShowsFragment"
+        android:name="io.erikrios.github.canvaskitmovie.ui.view.favorites.FavoriteTvShowsFragment"
+        android:label="fragment_favorite_tv_shows"
+        tools:layout="@layout/fragment_favorite_tv_shows" />
 </navigation>

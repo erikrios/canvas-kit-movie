@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import io.erikrios.github.canvaskitmovie.databinding.FragmentFavoritesMovieBinding
 
-
 class FavoritesMovieFragment : Fragment() {
 
     private var _binding: FragmentFavoritesMovieBinding? = null

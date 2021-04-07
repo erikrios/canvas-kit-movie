@@ -17,4 +17,6 @@
     <string name="loading">Memuat…</string>
     <string name="no_data">Tidak Ada Data</string>
     <string name="favorites">Favorit</string>
+    <string name="favorite_movies">Film Favorit</string>
+    <string name="favorite_tv_show">Pertunjukan TV Favorit</string>
 </resources>

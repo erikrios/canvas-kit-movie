@@ -4,16 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import io.erikrios.github.canvaskitmovie.R
+import io.erikrios.github.canvaskitmovie.data.model.Movie
 import io.erikrios.github.canvaskitmovie.databinding.FragmentFavoriteMoviesBinding
+import io.erikrios.github.canvaskitmovie.ui.adapter.FavoriteCinemaAdapter
 
 class FavoriteMoviesFragment : Fragment() {
 
     private var _binding: FragmentFavoriteMoviesBinding? = null
     private val binding get() = _binding
+    private lateinit var adapter: FavoriteCinemaAdapter<Movie>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,6 +30,7 @@ class FavoriteMoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         handleToolbar()
+        handleAdapter()
     }
 
     override fun onDestroyView() {
@@ -39,6 +44,11 @@ class FavoriteMoviesFragment : Fragment() {
                 ContextCompat.getDrawable(context, R.drawable.ic_baseline_arrow_back_24)
             setNavigationOnClickListener { findNavController().popBackStack() }
         }
+    }
 
+    private fun handleAdapter() {
+        adapter = FavoriteCinemaAdapter {
+            Toast.makeText(context, it.title, Toast.LENGTH_SHORT).show()
+        }
     }
 }

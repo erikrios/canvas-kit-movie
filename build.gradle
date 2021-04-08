@@ -72,4 +72,5 @@ ext {
     hiltAndroidTestingVersion = '2.33-beta'
     espressoIdlingResourceVersion = '3.3.0'
     lottieVersion = '3.4.0'
+    glideTransformationsVersions = '4.3.0'
 }

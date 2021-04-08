@@ -83,12 +83,12 @@ class FavoriteCinemaAdapter<T>(private val onClickListener: ((T) -> Unit)) :
                     )
                     Glide.with(imgPoster.context)
                         .load(imageUrl)
-                        .into(imgBackdrop)
+                        .into(imgPoster)
                 }
                 tvTitle.text = title
                 tvRatingInfo.text = itemView.context.getString(R.string.rating, ratingInfo)
             }
-            itemView.setOnClickListener { onClickListener(cinema) }
+            itemView.setOnClickListener { clickListener(cinema) }
         }
     }
 }

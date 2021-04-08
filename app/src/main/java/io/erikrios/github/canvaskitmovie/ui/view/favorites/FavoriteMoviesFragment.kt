@@ -12,6 +12,7 @@ import io.erikrios.github.canvaskitmovie.R
 import io.erikrios.github.canvaskitmovie.data.model.Movie
 import io.erikrios.github.canvaskitmovie.databinding.FragmentFavoriteMoviesBinding
 import io.erikrios.github.canvaskitmovie.ui.adapter.FavoriteCinemaAdapter
+import io.erikrios.github.canvaskitmovie.utils.DummyData.generateMovies
 
 class FavoriteMoviesFragment : Fragment() {
 
@@ -30,7 +31,8 @@ class FavoriteMoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         handleToolbar()
-        handleAdapter()
+        handleAdapter(generateMovies())
+        handleRecyclerView()
     }
 
     override fun onDestroyView() {
@@ -46,9 +48,14 @@ class FavoriteMoviesFragment : Fragment() {
         }
     }
 
-    private fun handleAdapter() {
+    private fun handleAdapter(movies: List<Movie>) {
         adapter = FavoriteCinemaAdapter {
             Toast.makeText(context, it.title, Toast.LENGTH_SHORT).show()
         }
+        adapter.setCinemas(movies)
+    }
+
+    private fun handleRecyclerView() {
+        binding?.rvFavoriteMovies?.adapter = adapter
     }
 }

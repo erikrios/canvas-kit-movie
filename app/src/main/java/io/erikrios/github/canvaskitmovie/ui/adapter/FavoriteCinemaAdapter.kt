@@ -72,7 +72,7 @@ class FavoriteCinemaAdapter<T>(private val onClickListener: ((T) -> Unit)) :
                     )
                     Glide.with(imgBackdrop.context)
                         .load(imageUrl)
-                        .apply(RequestOptions.bitmapTransform(BlurTransformation(25, 3)))
+                        .apply(RequestOptions.bitmapTransform(BlurTransformation(10, 3)))
                         .into(imgBackdrop)
                 }
                 posterPath?.let {

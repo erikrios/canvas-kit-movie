@@ -47,7 +47,10 @@ class MovieDetailsFragment : Fragment() {
         detailsViewModel.apply {
             getMovieById(args.movie.id)
             movieState.observe(viewLifecycleOwner, this@MovieDetailsFragment::handleState)
-
+            isFavoriteMovieExistsState.observe(
+                viewLifecycleOwner,
+                this@MovieDetailsFragment::handleIsFavoriteMovieExistsState
+            )
         }
     }
 
@@ -61,6 +64,14 @@ class MovieDetailsFragment : Fragment() {
             Status.LOADING -> handleLoadingState()
             Status.ERROR -> movieResource.message?.let { handleErrorState(it) }
             Status.SUCCESS -> movieResource.data?.let { handleSuccessState(it) }
+        }
+    }
+
+    private fun handleIsFavoriteMovieExistsState(isExists: Boolean) {
+        if (isExists) {
+            binding?.fabFavorite?.setImageResource(R.drawable.ic_baseline_favorite_24)
+        } else {
+            binding?.fabFavorite?.setImageResource(R.drawable.ic_baseline_favorite_border_24)
         }
     }
 

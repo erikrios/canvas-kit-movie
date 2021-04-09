@@ -54,4 +54,12 @@ class DetailsViewModel @Inject constructor(private val repository: CinemaReposit
             if (affectedRows > 0) _isFavoriteMovieExistsState.value = true
         }
     }
+
+    fun isFavoriteMovieExists(id: Int): Job {
+        return viewModelScope.launch {
+            val movie = repository.getFavoriteMovie(id)
+            movie?.let { _isFavoriteMovieExistsState.value = true }
+                ?: run { _isFavoriteMovieExistsState.value = false }
+        }
+    }
 }

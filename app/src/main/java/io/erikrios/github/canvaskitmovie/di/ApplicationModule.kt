@@ -134,4 +134,8 @@ object ApplicationModule {
     @Provides
     fun provideFavoriteCinemaDatabase(@ApplicationContext context: Context) =
         Room.databaseBuilder(context, FavoriteCinemaDatabase::class.java, DATABASE_NAME).build()
+
+    @Singleton
+    @Provides
+    fun provideFavoriteMovieDat(database: FavoriteCinemaDatabase) = database.favoriteMovieDao()
 }

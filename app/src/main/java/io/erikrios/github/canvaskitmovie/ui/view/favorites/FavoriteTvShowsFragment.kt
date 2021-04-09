@@ -71,7 +71,12 @@ class FavoriteTvShowsFragment : Fragment() {
 
     private fun handleSuccessState(tvShows: List<TvShow>) {
         binding?.progressBar?.visibility = View.GONE
-        adapter.setCinemas(tvShows)
+        if (tvShows.isEmpty()) {
+            binding?.lavEmpty?.visibility = View.VISIBLE
+        } else {
+            binding?.lavEmpty?.visibility = View.GONE
+            adapter.setCinemas(tvShows)
+        }
     }
 
     private fun handleToolbar() {

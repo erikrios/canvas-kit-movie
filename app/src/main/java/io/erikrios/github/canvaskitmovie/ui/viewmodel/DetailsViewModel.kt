@@ -62,4 +62,11 @@ class DetailsViewModel @Inject constructor(private val repository: CinemaReposit
                 ?: run { _isFavoriteMovieExistsState.value = false }
         }
     }
+
+    fun deleteFavoriteMovie(movie: Movie): Job {
+        return viewModelScope.launch {
+            val affectedRows = repository.deleteFavoriteMovie(movie)
+            if (affectedRows > 0) _isFavoriteMovieExistsState.value = false
+        }
+    }
 }

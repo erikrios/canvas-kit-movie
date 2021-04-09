@@ -47,6 +47,7 @@ class MovieDetailsFragment : Fragment() {
         detailsViewModel.apply {
             getMovieById(args.movie.id)
             movieState.observe(viewLifecycleOwner, this@MovieDetailsFragment::handleState)
+
         }
     }
 

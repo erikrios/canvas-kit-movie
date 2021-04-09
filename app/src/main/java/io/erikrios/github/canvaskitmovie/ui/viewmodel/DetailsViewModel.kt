@@ -32,6 +32,8 @@ class DetailsViewModel @Inject constructor(private val repository: CinemaReposit
         value = false
     }
 
+    val isFavoriteMovieExists: LiveData<Boolean> get() = _isFavoriteMovieExists
+
     fun getMovieById(id: Int): Job {
         return viewModelScope.launch {
             _movieState.value = Resource.loading(null)

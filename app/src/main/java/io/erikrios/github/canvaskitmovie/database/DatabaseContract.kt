@@ -4,6 +4,8 @@ import android.provider.BaseColumns
 
 object DatabaseContract {
 
+    const val DATABASE_NAME = "favorite_cinema_db.db"
+
     class MovieColumns : BaseColumns {
         companion object {
             const val TABLE_NAME = "movies"

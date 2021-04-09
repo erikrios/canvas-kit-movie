@@ -42,9 +42,11 @@ class MovieDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        handleToolbar(args.movie.title)
+        val movie = args.movie
+        handleToolbar(movie.title)
         detailsViewModel.apply {
-            getMovieById(args.movie.id)
+            getMovieById(movie.id)
+            isFavoriteMovieExists(movie.id)
             movieState.observe(viewLifecycleOwner, this@MovieDetailsFragment::handleState)
             isFavoriteMovieExistsState.observe(
                 viewLifecycleOwner,

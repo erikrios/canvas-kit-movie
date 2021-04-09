@@ -45,8 +45,8 @@ class TvShowDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        handleToolbar(args.tvShow.name)
         val tvShow = args.tvShow
+        handleToolbar(tvShow.name)
         detailsViewModel.apply {
             getTvShowById(tvShow.id)
             isFavoriteTvShowExists(tvShow.id)

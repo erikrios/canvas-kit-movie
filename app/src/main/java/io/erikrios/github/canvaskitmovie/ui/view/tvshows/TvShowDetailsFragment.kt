@@ -46,9 +46,15 @@ class TvShowDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         handleToolbar(args.tvShow.name)
+        val tvShow = args.tvShow
         detailsViewModel.apply {
-            getTvShowById(args.tvShow.id)
+            getTvShowById(tvShow.id)
+            isFavoriteTvShowExists(tvShow.id)
             tvShowState.observe(viewLifecycleOwner, this@TvShowDetailsFragment::handleState)
+            isFavoriteTvShowExistsState.observe(
+                viewLifecycleOwner,
+                this@TvShowDetailsFragment::handleIsFavoriteTvShowExistsState
+            )
         }
     }
 
@@ -62,6 +68,20 @@ class TvShowDetailsFragment : Fragment() {
             Status.LOADING -> handleLoadingState()
             Status.ERROR -> tvShowResource.message?.let { handleErrorState(it) }
             Status.SUCCESS -> tvShowResource.data?.let { handleSuccessState(it) }
+        }
+    }
+
+    private fun handleIsFavoriteTvShowExistsState(isExists: Boolean) {
+        if (isExists) {
+            binding?.fabFavorite?.apply {
+                setImageResource(R.drawable.ic_baseline_favorite_24)
+                setOnClickListener { detailsViewModel.deleteFavoriteTvShow(tvShow ?: args.tvShow) }
+            }
+        } else {
+            binding?.fabFavorite?.apply {
+                setImageResource(R.drawable.ic_baseline_favorite_border_24)
+                setOnClickListener { detailsViewModel.insertFavoriteTvShow(tvShow ?: args.tvShow) }
+            }
         }
     }
 

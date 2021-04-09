@@ -1,6 +1,5 @@
 package io.erikrios.github.canvaskitmovie.ui.view.tvshows
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -118,12 +117,6 @@ class TvShowDetailsFragment : Fragment() {
                 Glide.with(requireContext())
                     .load(imageUrl)
                     .into(imgPoster)
-            }
-            fabFavorite.setOnClickListener {
-                val intent = Intent(Intent.ACTION_SEND)
-                intent.putExtra(Intent.EXTRA_TEXT, tvShow.overview)
-                intent.type = "text/plain"
-                startActivity(intent)
             }
             tvName.text = tvShow.name
             tvRatingInfo.text = String.format("%.1f", tvShow.voteAverage)

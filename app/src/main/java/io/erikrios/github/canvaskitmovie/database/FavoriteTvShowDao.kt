@@ -15,7 +15,7 @@ interface FavoriteTvShowDao {
     suspend fun getTvShows(): List<TvShow>
 
     @Query("SELECT * FROM $TABLE_NAME WHERE $COLUMN_ID = :id")
-    suspend fun getTvShow(id: Int): TvShow
+    suspend fun getTvShow(id: Int): TvShow?
 
     @Delete
     suspend fun deleteTvShow(tvShow: TvShow): Int

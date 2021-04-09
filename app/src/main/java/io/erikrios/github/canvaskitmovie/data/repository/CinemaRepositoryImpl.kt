@@ -88,7 +88,7 @@ class CinemaRepositoryImpl @Inject constructor(
     override suspend fun getFavoriteMovies(): List<Movie> =
         (localeDataSource as LocalDataSource).getFavoriteMovies()
 
-    override suspend fun getFavoriteMovie(id: Int): Movie =
+    override suspend fun getFavoriteMovie(id: Int): Movie? =
         (localeDataSource as LocalDataSource).getFavoriteMovie(id)
 
     override suspend fun deleteFavoriteMovie(movie: Movie): Int =
@@ -100,7 +100,7 @@ class CinemaRepositoryImpl @Inject constructor(
     override suspend fun getFavoriteTvShows(): List<TvShow> =
         (localeDataSource as LocalDataSource).getFavoriteTvShows()
 
-    override suspend fun getFavoriteTvShow(id: Int): TvShow =
+    override suspend fun getFavoriteTvShow(id: Int): TvShow? =
         (localeDataSource as LocalDataSource).getFavoriteTvShow(id)
 
     override suspend fun deleteFavoriteTvShow(tvShow: TvShow): Int =

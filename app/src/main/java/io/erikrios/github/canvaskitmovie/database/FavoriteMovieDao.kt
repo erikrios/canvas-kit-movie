@@ -19,7 +19,7 @@ interface FavoriteMovieDao {
     suspend fun getMovies(): List<Movie>
 
     @Query("SELECT * FROM $TABLE_NAME WHERE $COLUMN_ID = :id")
-    suspend fun getMovie(id: Int): Movie
+    suspend fun getMovie(id: Int): Movie?
 
     @Delete
     suspend fun deleteMovie(movie: Movie): Int

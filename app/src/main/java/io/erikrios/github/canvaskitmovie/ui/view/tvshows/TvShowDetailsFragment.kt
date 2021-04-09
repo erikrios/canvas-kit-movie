@@ -119,6 +119,7 @@ class TvShowDetailsFragment : Fragment() {
     }
 
     private fun handleSuccessState(tvShow: TvShow) {
+        this.tvShow = tvShow
         handleView(tvShow)
     }
 

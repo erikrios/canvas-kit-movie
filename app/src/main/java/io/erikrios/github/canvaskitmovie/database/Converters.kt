@@ -9,27 +9,27 @@ import io.erikrios.github.canvaskitmovie.data.model.Genre
 class Converters {
 
     @TypeConverter
-    fun fromGenres(genres: List<Genre>): String {
+    fun fromGenres(genres: List<Genre>?): String {
         val gson = Gson()
         return gson.toJson(genres)
     }
 
     @TypeConverter
-    fun toGenres(json: String): List<Genre> {
-        val listType = object : TypeToken<List<Genre>>() {}.type
+    fun toGenres(json: String): List<Genre>? {
+        val listType = object : TypeToken<List<Genre>?>() {}.type
         val gson = Gson()
         return gson.fromJson(json, listType)
     }
 
     @TypeConverter
-    fun fromCreators(creators: List<Creator>): String {
+    fun fromCreators(creators: List<Creator>?): String {
         val gson = Gson()
         return gson.toJson(creators)
     }
 
     @TypeConverter
-    fun toCreators(json: String): List<Creator> {
-        val listType = object : TypeToken<List<Creator>>() {}.type
+    fun toCreators(json: String): List<Creator>? {
+        val listType = object : TypeToken<List<Creator>?>() {}.type
         val gson = Gson()
         return gson.fromJson(json, listType)
     }

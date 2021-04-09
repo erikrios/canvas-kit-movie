@@ -1,10 +1,13 @@
 package io.erikrios.github.canvaskitmovie.di
 
+import android.content.Context
+import androidx.room.Room
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import io.erikrios.github.canvaskitmovie.BuildConfig
 import io.erikrios.github.canvaskitmovie.data.repository.CinemaRepository
@@ -12,6 +15,8 @@ import io.erikrios.github.canvaskitmovie.data.repository.CinemaRepositoryImpl
 import io.erikrios.github.canvaskitmovie.data.source.DataSource
 import io.erikrios.github.canvaskitmovie.data.source.local.LocalDataSource
 import io.erikrios.github.canvaskitmovie.data.source.remote.RemoteDataSource
+import io.erikrios.github.canvaskitmovie.database.DatabaseContract.DATABASE_NAME
+import io.erikrios.github.canvaskitmovie.database.FavoriteCinemaDatabase
 import io.erikrios.github.canvaskitmovie.network.TheMovieDatabaseApiHelper
 import io.erikrios.github.canvaskitmovie.network.TheMovieDatabaseApiHelperImpl
 import io.erikrios.github.canvaskitmovie.network.TheMovieDatabaseApiService
@@ -124,4 +129,9 @@ object ApplicationModule {
         remoteDataSource: DataSource
     ) =
         CinemaRepositoryImpl(networkHelper, localeDataSource, remoteDataSource) as CinemaRepository
+
+    @Singleton
+    @Provides
+    fun provideFavoriteCinemaDatabase(@ApplicationContext context: Context) =
+        Room.databaseBuilder(context, FavoriteCinemaDatabase::class.java, DATABASE_NAME).build()
 }

@@ -1,6 +1,5 @@
 package io.erikrios.github.canvaskitmovie.ui.view.movies
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -131,10 +130,7 @@ class MovieDetailsFragment : Fragment() {
                     .into(imgPoster)
             }
             fabFavorite.setOnClickListener {
-                val intent = Intent(Intent.ACTION_SEND)
-                intent.putExtra(Intent.EXTRA_TEXT, movie.overview)
-                intent.type = "text/plain"
-                startActivity(intent)
+                detailsViewModel.insertFavoriteMovie(movie)
             }
             tvTitle.text = movie.title
             tvRatingInfo.text = String.format("%.1f", movie.voteAverage)

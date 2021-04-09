@@ -137,5 +137,9 @@ object ApplicationModule {
 
     @Singleton
     @Provides
-    fun provideFavoriteMovieDat(database: FavoriteCinemaDatabase) = database.favoriteMovieDao()
+    fun provideFavoriteMovieDao(database: FavoriteCinemaDatabase) = database.favoriteMovieDao()
+
+    @Singleton
+    @Provides
+    fun provideFavoriteTvShowDao(database: FavoriteCinemaDatabase) = database.favoriteTvShowDao()
 }

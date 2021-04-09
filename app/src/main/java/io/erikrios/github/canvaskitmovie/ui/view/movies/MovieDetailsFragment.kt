@@ -30,6 +30,7 @@ class MovieDetailsFragment : Fragment() {
     private val binding get() = _binding
     private val args: MovieDetailsFragmentArgs by navArgs()
     private val detailsViewModel: DetailsViewModel by viewModels()
+    private var movie: Movie? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -70,9 +71,15 @@ class MovieDetailsFragment : Fragment() {
 
     private fun handleIsFavoriteMovieExistsState(isExists: Boolean) {
         if (isExists) {
-            binding?.fabFavorite?.setImageResource(R.drawable.ic_baseline_favorite_24)
+            binding?.fabFavorite?.apply {
+                setImageResource(R.drawable.ic_baseline_favorite_24)
+                setOnClickListener { detailsViewModel.deleteFavoriteMovie(movie ?: args.movie) }
+            }
         } else {
-            binding?.fabFavorite?.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+            binding?.fabFavorite?.apply {
+                setImageResource(R.drawable.ic_baseline_favorite_border_24)
+                setOnClickListener { detailsViewModel.insertFavoriteMovie(movie ?: args.movie) }
+            }
         }
     }
 
@@ -110,6 +117,7 @@ class MovieDetailsFragment : Fragment() {
     }
 
     private fun handleSuccessState(movie: Movie) {
+        this.movie = movie
         handleView(movie)
     }
 
@@ -130,9 +138,6 @@ class MovieDetailsFragment : Fragment() {
                 Glide.with(requireContext())
                     .load(imageUrl)
                     .into(imgPoster)
-            }
-            fabFavorite.setOnClickListener {
-                detailsViewModel.insertFavoriteMovie(movie)
             }
             tvTitle.text = movie.title
             tvRatingInfo.text = String.format("%.1f", movie.voteAverage)

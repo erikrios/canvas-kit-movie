@@ -6,19 +6,25 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
 import io.erikrios.github.canvaskitmovie.R
 import io.erikrios.github.canvaskitmovie.data.model.TvShow
 import io.erikrios.github.canvaskitmovie.databinding.FragmentFavoriteTvShowsBinding
 import io.erikrios.github.canvaskitmovie.ui.adapter.FavoriteCinemaAdapter
-import io.erikrios.github.canvaskitmovie.utils.DummyData
+import io.erikrios.github.canvaskitmovie.ui.viewmodel.FavoritesViewModel
+import io.erikrios.github.canvaskitmovie.utils.Resource
+import io.erikrios.github.canvaskitmovie.utils.Status
 
+@AndroidEntryPoint
 class FavoriteTvShowsFragment : Fragment() {
 
     private var _binding: FragmentFavoriteTvShowsBinding? = null
     private val binding get() = _binding
     private lateinit var adapter: FavoriteCinemaAdapter<TvShow>
+    private val favoritesViewModel: FavoritesViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,13 +37,41 @@ class FavoriteTvShowsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         handleToolbar()
-        handleAdapter(DummyData.generateTvShows())
-        handleRecyclerView()
+        favoritesViewModel.apply {
+            getFavoriteTvShows()
+            handleAdapter()
+            handleRecyclerView()
+            favoriteTvShowsState.observe(
+                viewLifecycleOwner,
+                this@FavoriteTvShowsFragment::handleState
+            )
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        favoritesViewModel.getFavoriteTvShows()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun handleState(tvShowState: Resource<List<TvShow>>) {
+        when (tvShowState.status) {
+            Status.SUCCESS -> tvShowState.data?.let { handleSuccessState(it) }
+            else -> handleLoadingState()
+        }
+    }
+
+    private fun handleLoadingState() {
+        binding?.progressBar?.visibility = View.VISIBLE
+    }
+
+    private fun handleSuccessState(tvShows: List<TvShow>) {
+        binding?.progressBar?.visibility = View.GONE
+        adapter.setCinemas(tvShows)
     }
 
     private fun handleToolbar() {
@@ -48,7 +82,7 @@ class FavoriteTvShowsFragment : Fragment() {
         }
     }
 
-    private fun handleAdapter(tvShows: List<TvShow>) {
+    private fun handleAdapter() {
         adapter = FavoriteCinemaAdapter {
             val action =
                 FavoriteTvShowsFragmentDirections.actionFavoriteTvShowsFragmentToTvShowDetailsFragment(
@@ -56,7 +90,6 @@ class FavoriteTvShowsFragment : Fragment() {
                 )
             findNavController().navigate(action)
         }
-        adapter.setCinemas(tvShows)
     }
 
     private fun handleRecyclerView() {

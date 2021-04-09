@@ -119,7 +119,7 @@ class TvShowDetailsFragment : Fragment() {
                     .load(imageUrl)
                     .into(imgPoster)
             }
-            fabShare.setOnClickListener {
+            fabFavorite.setOnClickListener {
                 val intent = Intent(Intent.ACTION_SEND)
                 intent.putExtra(Intent.EXTRA_TEXT, tvShow.overview)
                 intent.type = "text/plain"

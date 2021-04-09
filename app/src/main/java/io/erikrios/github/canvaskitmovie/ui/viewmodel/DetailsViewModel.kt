@@ -28,6 +28,10 @@ class DetailsViewModel @Inject constructor(private val repository: CinemaReposit
 
     val tvShowState: LiveData<Resource<TvShow>> get() = _tvShowState
 
+    private val _isFavoriteMovieExists = MutableLiveData<Boolean>().apply {
+        value = false
+    }
+
     fun getMovieById(id: Int): Job {
         return viewModelScope.launch {
             _movieState.value = Resource.loading(null)
@@ -39,6 +43,13 @@ class DetailsViewModel @Inject constructor(private val repository: CinemaReposit
         return viewModelScope.launch {
             _movieState.value = Resource.loading(null)
             _tvShowState.value = repository.getTvShowById(id)
+        }
+    }
+
+    fun insertFavoriteMovie(movie: Movie): Job {
+        return viewModelScope.launch {
+            val affectedRows = repository.insertFavoriteMovie(movie)
+            if (affectedRows > 0) _isFavoriteMovieExists.value = true
         }
     }
 }

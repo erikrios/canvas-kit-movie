@@ -48,6 +48,11 @@ class FavoriteMoviesFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        favoritesViewModel.getFavoriteMovies()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

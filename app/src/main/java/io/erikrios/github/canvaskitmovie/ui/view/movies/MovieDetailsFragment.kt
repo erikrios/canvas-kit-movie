@@ -1,5 +1,6 @@
 package io.erikrios.github.canvaskitmovie.ui.view.movies
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -157,6 +158,13 @@ class MovieDetailsFragment : Fragment() {
             navigationIcon =
                 ContextCompat.getDrawable(context, R.drawable.ic_baseline_arrow_back_24)
             setNavigationOnClickListener { findNavController().popBackStack() }
+            menu.findItem(R.id.item_share).setOnMenuItemClickListener {
+                val intent = Intent(Intent.ACTION_SEND)
+                intent.putExtra(Intent.EXTRA_TEXT, movie?.overview ?: args.movie.overview)
+                intent.type = "text/plain"
+                startActivity(intent)
+                return@setOnMenuItemClickListener true
+            }
         }
     }
 

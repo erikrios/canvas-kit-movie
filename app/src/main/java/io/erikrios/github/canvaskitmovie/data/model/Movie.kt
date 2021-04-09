@@ -1,12 +1,20 @@
 package io.erikrios.github.canvaskitmovie.data.model
 
 import android.os.Parcelable
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import io.erikrios.github.canvaskitmovie.database.DatabaseContract.MovieColumns.Companion.COLUMN_ID
+import io.erikrios.github.canvaskitmovie.database.DatabaseContract.MovieColumns.Companion.TABLE_NAME
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
+@Entity(tableName = TABLE_NAME)
 data class Movie(
     @SerializedName("id")
+    @PrimaryKey(autoGenerate = false)
+    @ColumnInfo(name = COLUMN_ID)
     val id: Int,
     @SerializedName("adult")
     val adult: Boolean,

@@ -1,12 +1,20 @@
 package io.erikrios.github.canvaskitmovie.data.model
 
 import android.os.Parcelable
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import io.erikrios.github.canvaskitmovie.database.DatabaseContract.TvShowColumns.Companion.COLUMN_ID
+import io.erikrios.github.canvaskitmovie.database.DatabaseContract.TvShowColumns.Companion.TABLE_NAME
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
+@Entity(tableName = TABLE_NAME)
 data class TvShow(
     @SerializedName("id")
+    @PrimaryKey(autoGenerate = false)
+    @ColumnInfo(name = COLUMN_ID)
     val id: Int,
     @SerializedName("backdrop_path")
     val backdropPath: String? = null,

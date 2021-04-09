@@ -34,6 +34,12 @@ class DetailsViewModel @Inject constructor(private val repository: CinemaReposit
 
     val isFavoriteMovieExistsState: LiveData<Boolean> get() = _isFavoriteMovieExistsState
 
+    private val _isFavoriteTvShowExistsState = MutableLiveData<Boolean>().apply {
+        value = false
+    }
+
+    val isFavoriteTvShowExistsState: LiveData<Boolean> get() = _isFavoriteTvShowExistsState
+
     fun getMovieById(id: Int): Job {
         return viewModelScope.launch {
             _movieState.value = Resource.loading(null)
@@ -67,6 +73,28 @@ class DetailsViewModel @Inject constructor(private val repository: CinemaReposit
         return viewModelScope.launch {
             val affectedRows = repository.deleteFavoriteMovie(movie)
             if (affectedRows > 0) _isFavoriteMovieExistsState.value = false
+        }
+    }
+
+    fun insertFavoriteTvShow(tvShow: TvShow): Job {
+        return viewModelScope.launch {
+            val affectedRows = repository.insertFavoriteTvShow(tvShow)
+            if (affectedRows > 0) _isFavoriteTvShowExistsState.value = true
+        }
+    }
+
+    fun isFavoriteTvShowExists(id: Int): Job {
+        return viewModelScope.launch {
+            val tvShow = repository.getFavoriteTvShow(id)
+            tvShow?.let { _isFavoriteTvShowExistsState.value = true }
+                ?: run { _isFavoriteTvShowExistsState.value = false }
+        }
+    }
+
+    fun deleteFavoriteTvShow(tvShow: TvShow): Job {
+        return viewModelScope.launch {
+            val affectedRows = repository.deleteFavoriteTvShow(tvShow)
+            if (affectedRows > 0) _isFavoriteTvShowExistsState.value = false
         }
     }
 }

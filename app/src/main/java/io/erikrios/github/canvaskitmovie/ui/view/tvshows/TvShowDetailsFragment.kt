@@ -1,5 +1,6 @@
 package io.erikrios.github.canvaskitmovie.ui.view.tvshows
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -32,6 +33,7 @@ class TvShowDetailsFragment : Fragment() {
     private val binding get() = _binding
     private val args: TvShowDetailsFragmentArgs by navArgs()
     private val detailsViewModel: DetailsViewModel by viewModels()
+    private var tvShow: TvShow? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -137,6 +139,13 @@ class TvShowDetailsFragment : Fragment() {
             navigationIcon =
                 ContextCompat.getDrawable(context, R.drawable.ic_baseline_arrow_back_24)
             setNavigationOnClickListener { findNavController().popBackStack() }
+            menu.findItem(R.id.item_share).setOnMenuItemClickListener {
+                val intent = Intent(Intent.ACTION_SEND)
+                intent.putExtra(Intent.EXTRA_TEXT, tvShow?.overview ?: args.tvShow.overview)
+                intent.type = "text/plain"
+                startActivity(intent)
+                return@setOnMenuItemClickListener true
+            }
         }
     }
 

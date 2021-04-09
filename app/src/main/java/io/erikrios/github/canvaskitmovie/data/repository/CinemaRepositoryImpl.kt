@@ -81,4 +81,28 @@ class CinemaRepositoryImpl @Inject constructor(
             return remoteDataSource.getTvShowDetails(id)
         }
     }
+
+    override suspend fun insertFavoriteMovie(movie: Movie): Long =
+        (localeDataSource as LocalDataSource).insertFavoriteMovie(movie)
+
+    override suspend fun getFavoriteMovies(): List<Movie> =
+        (localeDataSource as LocalDataSource).getFavoriteMovies()
+
+    override suspend fun getFavoriteMovie(id: Int): Movie =
+        (localeDataSource as LocalDataSource).getFavoriteMovie(id)
+
+    override suspend fun deleteFavoriteMovie(movie: Movie): Int =
+        (localeDataSource as LocalDataSource).deleteFavoriteMovie(movie)
+
+    override suspend fun insertFavoriteTvShow(tvShow: TvShow): Long =
+        (localeDataSource as LocalDataSource).insertFavoriteTvShow(tvShow)
+
+    override suspend fun getFavoriteTvShows(): List<TvShow> =
+        (localeDataSource as LocalDataSource).getFavoriteTvShows()
+
+    override suspend fun getFavoriteTvShow(id: Int): TvShow =
+        (localeDataSource as LocalDataSource).getFavoriteTvShow(id)
+
+    override suspend fun deleteFavoriteTvShow(tvShow: TvShow): Int =
+        (localeDataSource as LocalDataSource).deleteFavoriteTvShow(tvShow)
 }

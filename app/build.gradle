@@ -127,10 +127,8 @@ dependencies {
 
     // Room Database
     implementation "androidx.room:room-ktx:$roomKtxVersion"
+    implementation "androidx.room:room-runtime:$roomRuntimeVersion"
     kapt "androidx.room:room-compiler:$roomCompilerVersion"
-
-    // DataStore Preferences
-    implementation "androidx.datastore:datastore-preferences:$datastorePreferencesVersion"
 
     // Kenburns View
     implementation "com.flaviofaria:kenburnsview:$kenburnsViewVersion"
@@ -157,4 +155,7 @@ dependencies {
 
     // Glide Transformations
     implementation "jp.wasabeef:glide-transformations:$glideTransformationsVersions"
+
+    // Paging
+    implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
 }

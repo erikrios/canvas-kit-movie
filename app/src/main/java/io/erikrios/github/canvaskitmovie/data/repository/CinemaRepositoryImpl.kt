@@ -81,4 +81,20 @@ class CinemaRepositoryImpl @Inject constructor(
             return remoteDataSource.getTvShowDetails(id)
         }
     }
+
+    override suspend fun getTrending(): Resource<List<Movie>> {
+        if (!networkHelper.isNetworkConnected()) {
+            val cachedTrending = localeDataSource.getTrending()
+            cachedTrending.data?.let { return cachedTrending } ?: return Resource.error(
+                "Couldn't reach the server. Check your internet connection",
+                null
+            )
+        } else {
+            val trendingResource = remoteDataSource.getTrending()
+            trendingResource.data?.let {
+                (localeDataSource as LocalDataSource).addTrendingCaches(it)
+            }
+            return trendingResource
+        }
+    }
 }

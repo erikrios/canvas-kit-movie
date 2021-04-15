@@ -85,7 +85,15 @@ class CinemaRepositoryImpl @Inject constructor(
     override suspend fun getTrending(): Resource<List<Movie>> {
         if (!networkHelper.isNetworkConnected()) {
             val cachedTrending = localeDataSource.getTrending()
-            cachedTrending.data?.let { return cachedTrending } ?: return Resource.error(
+            cachedTrending.data?.let {
+                return if (it.isEmpty()) {
+                    Resource.error(
+                        "Couldn't reach the server. Check your internet connection",
+                        null
+                    )
+                } else
+                    cachedTrending
+            } ?: return Resource.error(
                 "Couldn't reach the server. Check your internet connection",
                 null
             )

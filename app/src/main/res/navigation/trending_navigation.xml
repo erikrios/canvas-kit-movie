@@ -2,4 +2,24 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/trending_navigation" />
+    android:id="@+id/trending_navigation"
+    app:startDestination="@id/discoverTrendingFragment">
+    <fragment
+        android:id="@+id/discoverTrendingFragment"
+        android:name="io.erikrios.github.canvaskitmovie.ui.view.trending.DiscoverTrendingFragment"
+        android:label="fragment_discover_trending"
+        tools:layout="@layout/fragment_discover_trending">
+        <action
+            android:id="@+id/action_discoverTrendingFragment_to_movieDetailsFragment2"
+            app:destination="@id/movieDetailsFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieDetailsFragment2"
+        android:name="io.erikrios.github.canvaskitmovie.ui.view.movies.MovieDetailsFragment"
+        android:label="fragment_movie_details"
+        tools:layout="@layout/fragment_movie_details">
+        <argument
+            android:name="movie"
+            app:argType="io.erikrios.github.canvaskitmovie.data.model.Movie" />
+    </fragment>
+</navigation>

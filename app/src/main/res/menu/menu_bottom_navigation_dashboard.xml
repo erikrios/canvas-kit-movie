@@ -8,4 +8,8 @@
         android:id="@+id/item_tv_shows"
         android:icon="@drawable/ic_baseline_live_tv_24"
         android:title="@string/tv_shows" />
+    <item
+        android:id="@+id/item_trending"
+        android:icon="@drawable/ic_baseline_trending_up_24"
+        android:title="@string/trending" />
 </menu>

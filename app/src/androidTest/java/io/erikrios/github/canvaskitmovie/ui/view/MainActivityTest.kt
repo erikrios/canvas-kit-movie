@@ -152,10 +152,10 @@ class MainActivityTest {
     @Test
     fun loadTrendingDetails() {
         onView(withId(R.id.item_trending)).perform(click())
-        onView(withId(R.id.rv_movies)).check(matches(isDisplayed()))
-        onView(withId(R.id.rv_movies))
+        onView(withId(R.id.rv_trending)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_trending))
             .perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyMovieIndex))
-        onView(withId(R.id.rv_movies))
+        onView(withId(R.id.rv_trending))
             .perform(
                 RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
                     dummyMovieIndex,

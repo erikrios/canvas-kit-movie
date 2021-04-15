@@ -126,7 +126,7 @@ class MovieDetailsFragment : Fragment() {
                 ShareCompat.IntentBuilder
                     .from(requireActivity())
                     .setType(mimeType)
-                    .setChooserTitle(movie.title)
+                    .setChooserTitle(getString(R.string.share_using))
                     .setText(movie.overview)
                     .startChooser()
             }

@@ -127,7 +127,7 @@ class TvShowDetailsFragment : Fragment() {
                 ShareCompat.IntentBuilder
                     .from(requireActivity())
                     .setType(mimeType)
-                    .setChooserTitle(tvShow.name)
+                    .setChooserTitle(getString(R.string.share_using))
                     .setText(tvShow.overview)
                     .startChooser()
             }

@@ -1,10 +1,10 @@
 package io.erikrios.github.canvaskitmovie.ui.view.movies
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ShareCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -119,10 +119,13 @@ class MovieDetailsFragment : Fragment() {
                     .into(imgPoster)
             }
             fabShare.setOnClickListener {
-                val intent = Intent(Intent.ACTION_SEND)
-                intent.putExtra(Intent.EXTRA_TEXT, movie.overview)
-                intent.type = "text/plain"
-                startActivity(intent)
+                val mimeType = "text/plain"
+                ShareCompat.IntentBuilder
+                    .from(requireActivity())
+                    .setType(mimeType)
+                    .setChooserTitle(movie.title)
+                    .setText(movie.overview)
+                    .startChooser()
             }
             tvTitle.text = movie.title
             tvRatingInfo.text = String.format("%.1f", movie.voteAverage)

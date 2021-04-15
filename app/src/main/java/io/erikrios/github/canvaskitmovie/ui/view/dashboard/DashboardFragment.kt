@@ -33,4 +33,12 @@ class DashboardFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+    fun hideBottomNavigation() {
+        binding?.bottomNavigation?.visibility = View.GONE
+    }
+
+    fun showBottomNavigation() {
+        binding?.bottomNavigation?.visibility = View.VISIBLE
+    }
 }

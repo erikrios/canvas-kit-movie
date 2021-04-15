@@ -84,6 +84,7 @@ class MainViewModelTest {
                     "Internal server error.", null
                 )
             )
+            `when`(repository.getTrending()).thenReturn(Resource.success(actualMovies))
         }
 
         mainViewModel = MainViewModel(repository)
@@ -227,5 +228,75 @@ class MainViewModelTest {
     }
     /**
      * -------------------- End of get tv shows test ------------------------------
+     */
+
+    /**
+     * -------------------- Get trending test ------------------------------
+     */
+    @Test
+    fun `get trending, returns not null`() = runBlockingTest {
+        var moviesResource =
+            mainViewModel.trendingState.getOrAwaitValueTest(100, TimeUnit.MILLISECONDS)
+        // Verify that the initial status is loading
+        assertThat(moviesResource.status).isEqualTo(Status.LOADING)
+        mainViewModel.getTrending()
+        // Verify that repository.getTrending() is called
+        verify(repository).getTrending()
+        // Verify that the status is success
+        moviesResource = mainViewModel.trendingState.getOrAwaitValueTest()
+        assertThat(moviesResource.status).isEqualTo(Status.SUCCESS)
+        // Verify that the movies data is not null
+        assertThat(moviesResource.data).isNotNull()
+    }
+
+    @Test
+    fun `get trending, return the list of movies`() = runBlockingTest {
+        var moviesResource =
+            mainViewModel.trendingState.getOrAwaitValueTest(100, TimeUnit.MILLISECONDS)
+        // Verify that the initial status is loading
+        assertThat(moviesResource.status).isEqualTo(Status.LOADING)
+        mainViewModel.getTrending()
+        // Verify that repository.getTrending() is called
+        verify(repository).getTrending()
+        // Verify that the status is success
+        moviesResource = mainViewModel.trendingState.getOrAwaitValueTest()
+        assertThat(moviesResource.status).isEqualTo(Status.SUCCESS)
+        // Verify that the data is the instance of the list of movie / not empty
+        assertThat(moviesResource.data).isNotEmpty()
+    }
+
+    @Test
+    fun `get trending, return the same size with the actual dummy data`() = runBlockingTest {
+        var moviesResource =
+            mainViewModel.trendingState.getOrAwaitValueTest(100, TimeUnit.MILLISECONDS)
+        // Verify that the initial status is loading
+        assertThat(moviesResource.status).isEqualTo(Status.LOADING)
+        mainViewModel.getTrending()
+        // Verify that repository.getTrending() is called
+        verify(repository).getTrending()
+        // Verify that the status is success
+        moviesResource = mainViewModel.trendingState.getOrAwaitValueTest()
+        assertThat(moviesResource.status).isEqualTo(Status.SUCCESS)
+        // Verify that the movies have same size with the actual dummy data
+        assertThat(moviesResource.data?.size).isEqualTo(actualMoviesSize)
+    }
+
+    @Test
+    fun `get trending, returns the same elements with the actual dummy data`() = runBlockingTest {
+        var moviesResource =
+            mainViewModel.trendingState.getOrAwaitValueTest(100, TimeUnit.MILLISECONDS)
+        // Verify that the initial status is loading
+        assertThat(moviesResource.status).isEqualTo(Status.LOADING)
+        mainViewModel.getTrending()
+        // Verify that repository.getTrending() is called
+        verify(repository).getTrending()
+        // Verify that the status is success
+        moviesResource = mainViewModel.trendingState.getOrAwaitValueTest()
+        assertThat(moviesResource.status).isEqualTo(Status.SUCCESS)
+        // Verify that the movies have same elements with the actual dummy data
+        assertThat(moviesResource.data).isEqualTo(actualMovies)
+    }
+    /**
+     * -------------------- End of get trending test ------------------------------
      */
 }

@@ -26,6 +26,11 @@ class MainViewModel @Inject constructor(private val repository: CinemaRepository
     }
     val tvShowsState: LiveData<Resource<List<TvShow>>> get() = _tvShowsState
 
+    private val _trendingState = MutableLiveData<Resource<List<Movie>>>().apply {
+        value = Resource.loading(null)
+    }
+    val trendingState: LiveData<Resource<List<Movie>>> get() = _trendingState
+
     fun getMovies(): Job {
         return viewModelScope.launch {
             _moviesState.value = Resource.loading(null)
@@ -37,6 +42,13 @@ class MainViewModel @Inject constructor(private val repository: CinemaRepository
         return viewModelScope.launch {
             _tvShowsState.value = Resource.loading(null)
             _tvShowsState.value = repository.getTvShows()
+        }
+    }
+
+    fun getTrending(): Job {
+        return viewModelScope.launch {
+            _trendingState.value = Resource.loading(null)
+            _trendingState.value = repository.getTrending()
         }
     }
 }

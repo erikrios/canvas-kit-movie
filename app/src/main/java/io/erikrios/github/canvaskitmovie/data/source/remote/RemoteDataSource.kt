@@ -78,4 +78,21 @@ class RemoteDataSource @Inject constructor(private val apiHelper: TheMovieDataba
             Resource.error("Couldn't reach the server. Check your internet connection", null)
         }
     }
+
+    override suspend fun getTrending(): Resource<List<Movie>> {
+        return try {
+            increment()
+            val response = apiHelper.getTrending()
+            if (response.isSuccessful) {
+                decrement()
+                Resource.success(response.body()?.results)
+            } else {
+                decrement()
+                Resource.error("Internal server error.", null)
+            }
+        } catch (e: Exception) {
+            decrement()
+            Resource.error("Couldn't reach the server. Check your internet connection", null)
+        }
+    }
 }

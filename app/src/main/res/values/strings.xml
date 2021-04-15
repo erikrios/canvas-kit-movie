@@ -15,4 +15,6 @@
     <string name="creators">Creators</string>
     <string name="loading">Loading…</string>
     <string name="no_data">No Data</string>
+    <string name="trending">Trending</string>
+    <string name="share_using">Share Using</string>
 </resources>

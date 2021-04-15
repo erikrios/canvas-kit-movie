@@ -9,4 +9,5 @@ interface DataSource {
     suspend fun getTvShows(): Resource<List<TvShow>>
     suspend fun getMovieDetails(id: Int): Resource<Movie>
     suspend fun getTvShowDetails(id: Int): Resource<TvShow>
+    suspend fun getTrending(): Resource<List<Movie>>
 }

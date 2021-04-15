@@ -17,4 +17,6 @@ class TheMovieDatabaseApiHelperImpl @Inject constructor(private val apiService: 
 
     override suspend fun getTvShowDetails(id: Int): Response<TvShow> =
         apiService.getTvShowDetails(id)
+
+    override suspend fun getTrending(): Response<DiscoverResponse<Movie>> = apiService.getTrending()
 }

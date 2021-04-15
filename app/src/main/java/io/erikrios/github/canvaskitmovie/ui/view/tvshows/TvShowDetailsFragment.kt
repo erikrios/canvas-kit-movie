@@ -1,10 +1,10 @@
 package io.erikrios.github.canvaskitmovie.ui.view.tvshows
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ShareCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -20,6 +20,7 @@ import io.erikrios.github.canvaskitmovie.data.model.TvShow
 import io.erikrios.github.canvaskitmovie.databinding.FragmentTvShowDetailsBinding
 import io.erikrios.github.canvaskitmovie.ui.adapter.CreatorAdapter
 import io.erikrios.github.canvaskitmovie.ui.adapter.GenreAdapter
+import io.erikrios.github.canvaskitmovie.ui.view.dashboard.DashboardFragment
 import io.erikrios.github.canvaskitmovie.ui.viewmodel.DetailsViewModel
 import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations
 import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations.generateFullImageUrl
@@ -44,6 +45,7 @@ class TvShowDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        hideBottomNavigation()
         handleToolbar(args.tvShow.name)
         detailsViewModel.apply {
             getTvShowById(args.tvShow.id)
@@ -54,6 +56,7 @@ class TvShowDetailsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        showBottomNavigation()
     }
 
     private fun handleState(tvShowResource: Resource<TvShow>) {
@@ -120,10 +123,13 @@ class TvShowDetailsFragment : Fragment() {
                     .into(imgPoster)
             }
             fabShare.setOnClickListener {
-                val intent = Intent(Intent.ACTION_SEND)
-                intent.putExtra(Intent.EXTRA_TEXT, tvShow.overview)
-                intent.type = "text/plain"
-                startActivity(intent)
+                val mimeType = "text/plain"
+                ShareCompat.IntentBuilder
+                    .from(requireActivity())
+                    .setType(mimeType)
+                    .setChooserTitle(getString(R.string.share_using))
+                    .setText(tvShow.overview)
+                    .startChooser()
             }
             tvName.text = tvShow.name
             tvRatingInfo.text = String.format("%.1f", tvShow.voteAverage)
@@ -155,5 +161,13 @@ class TvShowDetailsFragment : Fragment() {
     private fun handleCreators(creators: List<Creator>) {
         val creatorAdapter = CreatorAdapter(creators)
         binding?.rvCreators?.adapter = creatorAdapter
+    }
+
+    private fun hideBottomNavigation() {
+        (parentFragment?.parentFragment?.parentFragment?.parentFragment as DashboardFragment).hideBottomNavigation()
+    }
+
+    private fun showBottomNavigation() {
+        (parentFragment?.parentFragment?.parentFragment?.parentFragment as DashboardFragment).showBottomNavigation()
     }
 }

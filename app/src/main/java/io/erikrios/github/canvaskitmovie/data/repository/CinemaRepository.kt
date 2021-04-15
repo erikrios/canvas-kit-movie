@@ -9,4 +9,5 @@ interface CinemaRepository {
     suspend fun getTvShows(): Resource<List<TvShow>>
     suspend fun getMovieById(id: Int): Resource<Movie>
     suspend fun getTvShowById(id: Int): Resource<TvShow>
+    suspend fun getTrending(): Resource<List<Movie>>
 }

@@ -1,10 +1,10 @@
 package io.erikrios.github.canvaskitmovie.ui.view.movies
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ShareCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -18,6 +18,7 @@ import io.erikrios.github.canvaskitmovie.data.model.Genre
 import io.erikrios.github.canvaskitmovie.data.model.Movie
 import io.erikrios.github.canvaskitmovie.databinding.FragmentMovieDetailsBinding
 import io.erikrios.github.canvaskitmovie.ui.adapter.GenreAdapter
+import io.erikrios.github.canvaskitmovie.ui.view.dashboard.DashboardFragment
 import io.erikrios.github.canvaskitmovie.ui.viewmodel.DetailsViewModel
 import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations
 import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations.generateFullImageUrl
@@ -43,6 +44,7 @@ class MovieDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        hideBottomNavigation()
         handleToolbar(args.movie.title)
         detailsViewModel.apply {
             getMovieById(args.movie.id)
@@ -53,6 +55,7 @@ class MovieDetailsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        showBottomNavigation()
     }
 
     private fun handleState(movieResource: Resource<Movie>) {
@@ -119,10 +122,13 @@ class MovieDetailsFragment : Fragment() {
                     .into(imgPoster)
             }
             fabShare.setOnClickListener {
-                val intent = Intent(Intent.ACTION_SEND)
-                intent.putExtra(Intent.EXTRA_TEXT, movie.overview)
-                intent.type = "text/plain"
-                startActivity(intent)
+                val mimeType = "text/plain"
+                ShareCompat.IntentBuilder
+                    .from(requireActivity())
+                    .setType(mimeType)
+                    .setChooserTitle(getString(R.string.share_using))
+                    .setText(movie.overview)
+                    .startChooser()
             }
             tvTitle.text = movie.title
             tvRatingInfo.text = String.format("%.1f", movie.voteAverage)
@@ -148,5 +154,13 @@ class MovieDetailsFragment : Fragment() {
     private fun handleGenres(genres: List<Genre>) {
         val genreAdapter = GenreAdapter(genres)
         binding?.rvGenres?.adapter = genreAdapter
+    }
+
+    private fun hideBottomNavigation() {
+        (parentFragment?.parentFragment?.parentFragment?.parentFragment as DashboardFragment).hideBottomNavigation()
+    }
+
+    private fun showBottomNavigation() {
+        (parentFragment?.parentFragment?.parentFragment?.parentFragment as DashboardFragment).showBottomNavigation()
     }
 }

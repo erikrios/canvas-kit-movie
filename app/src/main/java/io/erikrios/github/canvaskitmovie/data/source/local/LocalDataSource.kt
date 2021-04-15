@@ -10,6 +10,7 @@ class LocalDataSource @Inject constructor() : DataSource {
 
     private val movieCaches = mutableSetOf<Movie>()
     private val tvShowCaches = mutableSetOf<TvShow>()
+    private val trendingCaches = mutableSetOf<Movie>()
 
     override suspend fun getMovies(): Resource<List<Movie>> {
         return Resource.success(movieCaches.toList())
@@ -29,9 +30,15 @@ class LocalDataSource @Inject constructor() : DataSource {
         return Resource.success(tvShow)
     }
 
+    override suspend fun getTrending(): Resource<List<Movie>> {
+        return Resource.success(trendingCaches.toList())
+    }
+
     @JvmName("addMovieCaches")
     fun addCaches(movies: List<Movie>) = movieCaches.addAll(movies)
 
     @JvmName("addTvShowCaches")
     fun addCaches(tvShows: List<TvShow>) = tvShowCaches.addAll(tvShows)
+
+    fun addTrendingCaches(movies: List<Movie>) = trendingCaches.addAll(movies)
 }

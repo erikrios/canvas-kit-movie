@@ -76,6 +76,17 @@ class MainActivityTest {
     }
 
     @Test
+    fun loadTrending() {
+        onView(withId(R.id.item_trending)).perform(click())
+        onView(withId(R.id.rv_trending)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_trending)).perform(
+            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(
+                dummyTvShows.size
+            )
+        )
+    }
+
+    @Test
     fun loadMovieDetails() {
         onView(withId(R.id.rv_movies)).check(matches(isDisplayed()))
         onView(withId(R.id.rv_movies))
@@ -102,33 +113,6 @@ class MainActivityTest {
         onView(withId(R.id.tv_release_date_info)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_overview)).check(matches(isDisplayed()))
         onView(withId(R.id.rv_genres)).check(matches(isDisplayed()))
-
-        // We remove this code because the data come from RESTful API (dynamic data), so we can't predict it
-//        onView(withId(R.id.tv_title)).check(matches(withText(dummyMovie.title)))
-//        onView(withId(R.id.tv_rating_info)).check(
-//            matches(
-//                withText(
-//                    String.format(
-//                        "%.1f",
-//                        dummyMovie.voteAverage
-//                    )
-//                )
-//            )
-//        )
-//        onView(withId(R.id.tv_vote_info)).check(matches(withText(dummyMovie.voteCount.toString())))
-//        onView(withId(R.id.tv_status_info)).check(matches(withText(dummyMovie.status)))
-//        onView(withId(R.id.tv_popularity_info)).check(
-//            matches(
-//                withText(
-//                    String.format(
-//                        "%.3f",
-//                        dummyMovie.popularity
-//                    )
-//                )
-//            )
-//        )
-//        onView(withId(R.id.tv_release_date_info)).check(matches(withText(dummyMovie.releaseDate)))
-//        onView(withId(R.id.tv_overview)).check(matches(withText(dummyMovie.overview)))
     }
 
     @Test
@@ -163,32 +147,35 @@ class MainActivityTest {
         if (!dummyTvShow.creators.isNullOrEmpty()) {
             onView(withId(R.id.rv_creators)).check(matches(isDisplayed()))
         }
+    }
 
-        // We remove this code because the data come from RESTful API (dynamic data), so we can't predict it
-//        onView(withId(R.id.tv_name)).check(matches(withText(dummyTvShow.name)))
-//        onView(withId(R.id.tv_rating_info)).check(
-//            matches(
-//                withText(
-//                    String.format(
-//                        "%.1f",
-//                        dummyTvShow.voteAverage
-//                    )
-//                )
-//            )
-//        )
-//        onView(withId(R.id.tv_vote_info)).check(matches(withText(dummyTvShow.voteCount.toString())))
-//        onView(withId(R.id.tv_status_info)).check(matches(withText(dummyTvShow.status)))
-//        onView(withId(R.id.tv_popularity_info)).check(
-//            matches(
-//                withText(
-//                    String.format(
-//                        "%.3f",
-//                        dummyTvShow.popularity
-//                    )
-//                )
-//            )
-//        )
-//        onView(withId(R.id.tv_first_air_date_info)).check(matches(withText(dummyTvShow.firstAirDate)))
-//        onView(withId(R.id.tv_overview)).check(matches(withText(dummyTvShow.overview)))
+    @Test
+    fun loadTrendingDetails() {
+        onView(withId(R.id.item_trending)).perform(click())
+        onView(withId(R.id.rv_movies)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_movies))
+            .perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyMovieIndex))
+        onView(withId(R.id.rv_movies))
+            .perform(
+                RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
+                    dummyMovieIndex,
+                    click()
+                )
+            )
+
+        onView(withId(R.id.img_backdrop)).check(matches(isDisplayed()))
+        onView(withId(R.id.img_poster)).check(matches(isDisplayed()))
+        onView(withId(R.id.toolbar)).check(matches(isDisplayed()))
+        onView(withId(R.id.fab_share)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_title)).check(matches(isDisplayed()))
+        onView(withId(R.id.img_backdrop)).perform(swipeUp())
+        onView(withId(R.id.tv_rating_info)).check(matches(isDisplayed()))
+        onView(withId(R.id.rb_vote_average)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_vote_info)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_status_info)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_popularity_info)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_release_date_info)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_overview)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_genres)).check(matches(isDisplayed()))
     }
 }

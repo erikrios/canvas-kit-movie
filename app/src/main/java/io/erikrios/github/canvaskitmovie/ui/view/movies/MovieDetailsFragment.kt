@@ -18,6 +18,7 @@ import io.erikrios.github.canvaskitmovie.data.model.Genre
 import io.erikrios.github.canvaskitmovie.data.model.Movie
 import io.erikrios.github.canvaskitmovie.databinding.FragmentMovieDetailsBinding
 import io.erikrios.github.canvaskitmovie.ui.adapter.GenreAdapter
+import io.erikrios.github.canvaskitmovie.ui.view.dashboard.DashboardFragment
 import io.erikrios.github.canvaskitmovie.ui.viewmodel.DetailsViewModel
 import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations
 import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations.generateFullImageUrl
@@ -43,6 +44,7 @@ class MovieDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        hideBottomNavigation()
         handleToolbar(args.movie.title)
         detailsViewModel.apply {
             getMovieById(args.movie.id)
@@ -53,6 +55,7 @@ class MovieDetailsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        showBottomNavigation()
     }
 
     private fun handleState(movieResource: Resource<Movie>) {
@@ -151,5 +154,13 @@ class MovieDetailsFragment : Fragment() {
     private fun handleGenres(genres: List<Genre>) {
         val genreAdapter = GenreAdapter(genres)
         binding?.rvGenres?.adapter = genreAdapter
+    }
+
+    private fun hideBottomNavigation() {
+        (parentFragment?.parentFragment?.parentFragment?.parentFragment as DashboardFragment).hideBottomNavigation()
+    }
+
+    private fun showBottomNavigation() {
+        (parentFragment?.parentFragment?.parentFragment?.parentFragment as DashboardFragment).showBottomNavigation()
     }
 }

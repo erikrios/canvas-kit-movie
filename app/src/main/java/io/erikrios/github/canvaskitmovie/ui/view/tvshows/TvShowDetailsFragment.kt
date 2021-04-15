@@ -20,6 +20,7 @@ import io.erikrios.github.canvaskitmovie.data.model.TvShow
 import io.erikrios.github.canvaskitmovie.databinding.FragmentTvShowDetailsBinding
 import io.erikrios.github.canvaskitmovie.ui.adapter.CreatorAdapter
 import io.erikrios.github.canvaskitmovie.ui.adapter.GenreAdapter
+import io.erikrios.github.canvaskitmovie.ui.view.dashboard.DashboardFragment
 import io.erikrios.github.canvaskitmovie.ui.viewmodel.DetailsViewModel
 import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations
 import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations.generateFullImageUrl
@@ -44,6 +45,7 @@ class TvShowDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        hideBottomNavigation()
         handleToolbar(args.tvShow.name)
         detailsViewModel.apply {
             getTvShowById(args.tvShow.id)
@@ -54,6 +56,7 @@ class TvShowDetailsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        showBottomNavigation()
     }
 
     private fun handleState(tvShowResource: Resource<TvShow>) {
@@ -158,5 +161,13 @@ class TvShowDetailsFragment : Fragment() {
     private fun handleCreators(creators: List<Creator>) {
         val creatorAdapter = CreatorAdapter(creators)
         binding?.rvCreators?.adapter = creatorAdapter
+    }
+
+    private fun hideBottomNavigation() {
+        (parentFragment?.parentFragment?.parentFragment?.parentFragment as DashboardFragment).hideBottomNavigation()
+    }
+
+    private fun showBottomNavigation() {
+        (parentFragment?.parentFragment?.parentFragment?.parentFragment as DashboardFragment).showBottomNavigation()
     }
 }

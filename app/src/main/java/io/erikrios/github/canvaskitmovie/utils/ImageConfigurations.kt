@@ -1,5 +1,6 @@
 package io.erikrios.github.canvaskitmovie.utils
 
+@Suppress("Unused")
 object ImageConfigurations {
 
     private const val SECURE_BASE_URL = "https://image.tmdb.org/t/p/"

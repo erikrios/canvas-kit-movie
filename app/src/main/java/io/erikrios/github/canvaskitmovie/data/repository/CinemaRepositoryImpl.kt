@@ -11,13 +11,13 @@ import javax.inject.Inject
 
 class CinemaRepositoryImpl @Inject constructor(
     private val networkHelper: NetworkHelper,
-    private val localeDataSource: DataSource,
+    private val localDataSource: DataSource,
     private val remoteDataSource: DataSource
 ) : CinemaRepository {
 
     override suspend fun getMovies(): Resource<List<Movie>> {
         if (!networkHelper.isNetworkConnected()) {
-            val cachedMovies = localeDataSource.getMovies()
+            val cachedMovies = localDataSource.getMovies()
             cachedMovies.data?.let {
                 return if (it.isEmpty())
                     Resource.error(
@@ -32,14 +32,14 @@ class CinemaRepositoryImpl @Inject constructor(
             )
         } else {
             val moviesResources = remoteDataSource.getMovies()
-            moviesResources.data?.let { (localeDataSource as LocalDataSource).addCaches(it) }
+            moviesResources.data?.let { (localDataSource as LocalDataSource).addCaches(it) }
             return moviesResources
         }
     }
 
     override suspend fun getTvShows(): Resource<List<TvShow>> {
         if (!networkHelper.isNetworkConnected()) {
-            val cachedTvShows = localeDataSource.getTvShows()
+            val cachedTvShows = localDataSource.getTvShows()
             cachedTvShows.data?.let {
                 return if (it.isEmpty())
                     Resource.error(
@@ -54,14 +54,14 @@ class CinemaRepositoryImpl @Inject constructor(
             )
         } else {
             val tvShowsResources = remoteDataSource.getTvShows()
-            tvShowsResources.data?.let { (localeDataSource as LocalDataSource).addCaches(it) }
+            tvShowsResources.data?.let { (localDataSource as LocalDataSource).addCaches(it) }
             return tvShowsResources
         }
     }
 
     override suspend fun getMovieById(id: Int): Resource<Movie> {
         if (!networkHelper.isNetworkConnected()) {
-            val cachedMovie = localeDataSource.getMovieDetails(id)
+            val cachedMovie = localDataSource.getMovieDetails(id)
             cachedMovie.data?.let { return cachedMovie } ?: return Resource.error(
                 "Couldn't reach the server. Check your internet connection",
                 null
@@ -73,7 +73,7 @@ class CinemaRepositoryImpl @Inject constructor(
 
     override suspend fun getTvShowById(id: Int): Resource<TvShow> {
         if (!networkHelper.isNetworkConnected()) {
-            val cachedTvShow = localeDataSource.getTvShowDetails(id)
+            val cachedTvShow = localDataSource.getTvShowDetails(id)
             cachedTvShow.data?.let { return cachedTvShow } ?: return Resource.error(
                 "Couldn't reach the server. Check your internet connection",
                 null
@@ -84,32 +84,32 @@ class CinemaRepositoryImpl @Inject constructor(
     }
 
     override suspend fun insertFavoriteMovie(movie: Movie): Long =
-        (localeDataSource as LocalDataSource).insertFavoriteMovie(movie)
+        (localDataSource as LocalDataSource).insertFavoriteMovie(movie)
 
     override fun getFavoriteMovies(sort: SortUtils.Sort): androidx.paging.DataSource.Factory<Int, Movie> =
-        (localeDataSource as LocalDataSource).getFavoriteMovies(sort)
+        (localDataSource as LocalDataSource).getFavoriteMovies(sort)
 
     override suspend fun getFavoriteMovie(id: Int): Movie? =
-        (localeDataSource as LocalDataSource).getFavoriteMovie(id)
+        (localDataSource as LocalDataSource).getFavoriteMovie(id)
 
     override suspend fun deleteFavoriteMovie(movie: Movie): Int =
-        (localeDataSource as LocalDataSource).deleteFavoriteMovie(movie)
+        (localDataSource as LocalDataSource).deleteFavoriteMovie(movie)
 
     override suspend fun insertFavoriteTvShow(tvShow: TvShow): Long =
-        (localeDataSource as LocalDataSource).insertFavoriteTvShow(tvShow)
+        (localDataSource as LocalDataSource).insertFavoriteTvShow(tvShow)
 
     override fun getFavoriteTvShows(sort: SortUtils.Sort): androidx.paging.DataSource.Factory<Int, TvShow> =
-        (localeDataSource as LocalDataSource).getFavoriteTvShows(sort)
+        (localDataSource as LocalDataSource).getFavoriteTvShows(sort)
 
     override suspend fun getFavoriteTvShow(id: Int): TvShow? =
-        (localeDataSource as LocalDataSource).getFavoriteTvShow(id)
+        (localDataSource as LocalDataSource).getFavoriteTvShow(id)
 
     override suspend fun deleteFavoriteTvShow(tvShow: TvShow): Int =
-        (localeDataSource as LocalDataSource).deleteFavoriteTvShow(tvShow)
+        (localDataSource as LocalDataSource).deleteFavoriteTvShow(tvShow)
 
     override suspend fun getTrending(): Resource<List<Movie>> {
         if (!networkHelper.isNetworkConnected()) {
-            val cachedTrending = localeDataSource.getTrending()
+            val cachedTrending = localDataSource.getTrending()
             cachedTrending.data?.let {
                 return if (it.isEmpty()) {
                     Resource.error(
@@ -125,7 +125,7 @@ class CinemaRepositoryImpl @Inject constructor(
         } else {
             val trendingResource = remoteDataSource.getTrending()
             trendingResource.data?.let {
-                (localeDataSource as LocalDataSource).addTrendingCaches(it)
+                (localDataSource as LocalDataSource).addTrendingCaches(it)
             }
             return trendingResource
         }

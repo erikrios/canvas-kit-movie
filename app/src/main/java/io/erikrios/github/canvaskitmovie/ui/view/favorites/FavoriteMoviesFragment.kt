@@ -146,7 +146,10 @@ class FavoriteMoviesFragment : Fragment() {
     }
 
     private fun handleMenuItemClick(menuItem: MenuItem, sort: SortUtils.Sort) {
-        favoritesViewModel.getFavoriteMovies(sort)
+        favoritesViewModel.getFavoriteMovies(sort).observe(
+            viewLifecycleOwner,
+            this@FavoriteMoviesFragment::handleState
+        )
         menuItem.isChecked = true
     }
 }

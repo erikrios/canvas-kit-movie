@@ -146,7 +146,10 @@ class FavoriteTvShowsFragment : Fragment() {
     }
 
     private fun handleMenuItemClick(menuItem: MenuItem, sort: SortUtils.Sort) {
-        favoritesViewModel.getFavoriteTvShows(sort)
+        favoritesViewModel.getFavoriteTvShows(sort).observe(
+            viewLifecycleOwner,
+            this@FavoriteTvShowsFragment::handleState
+        )
         menuItem.isChecked = true
     }
 }

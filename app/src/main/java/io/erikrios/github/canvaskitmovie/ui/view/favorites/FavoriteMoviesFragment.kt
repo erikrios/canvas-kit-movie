@@ -11,15 +11,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.paging.PagedList
 import dagger.hilt.android.AndroidEntryPoint
 import io.erikrios.github.canvaskitmovie.R
 import io.erikrios.github.canvaskitmovie.data.model.Movie
 import io.erikrios.github.canvaskitmovie.databinding.FragmentFavoriteMoviesBinding
 import io.erikrios.github.canvaskitmovie.ui.adapter.FavoriteCinemaAdapter
 import io.erikrios.github.canvaskitmovie.ui.viewmodel.FavoritesViewModel
-import io.erikrios.github.canvaskitmovie.utils.Resource
 import io.erikrios.github.canvaskitmovie.utils.SortUtils
-import io.erikrios.github.canvaskitmovie.utils.Status
 
 @AndroidEntryPoint
 class FavoriteMoviesFragment : Fragment() {
@@ -41,13 +40,12 @@ class FavoriteMoviesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         handleToolbar()
         favoritesViewModel.apply {
-            getFavoriteMovies(SortUtils.Sort.TITLE)
-            handleAdapter()
-            handleRecyclerView()
-            favoriteMoviesState.observe(
+            getFavoriteMovies(SortUtils.Sort.TITLE).observe(
                 viewLifecycleOwner,
                 this@FavoriteMoviesFragment::handleState
             )
+            handleAdapter()
+            handleRecyclerView()
         }
     }
 
@@ -61,20 +59,17 @@ class FavoriteMoviesFragment : Fragment() {
         _binding = null
     }
 
-    private fun handleState(moviesState: Resource<List<Movie>>) {
-        when (moviesState.status) {
-            Status.SUCCESS -> moviesState.data?.let { handleSuccessState(it) }
-            else -> handleLoadingState()
-        }
+    private fun handleState(moviesState: PagedList<Movie>?) {
+        moviesState?.let { handleSuccessState(it) } ?: run { handleLoadingState() }
     }
 
     private fun handleLoadingState() {
         binding?.progressBar?.visibility = View.VISIBLE
     }
 
-    private fun handleSuccessState(movies: List<Movie>) {
+    private fun handleSuccessState(moviesPagedList: PagedList<Movie>) {
         binding?.progressBar?.visibility = View.GONE
-        if (movies.isEmpty()) {
+        if (moviesPagedList.isEmpty()) {
             binding?.apply {
                 lavEmpty.visibility = View.VISIBLE
                 rvFavoriteMovies.visibility = View.GONE
@@ -84,7 +79,7 @@ class FavoriteMoviesFragment : Fragment() {
                 lavEmpty.visibility = View.GONE
                 rvFavoriteMovies.visibility = View.VISIBLE
             }
-            adapter.setCinemas(movies)
+            adapter.submitList(moviesPagedList)
         }
     }
 

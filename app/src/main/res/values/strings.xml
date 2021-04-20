@@ -20,4 +20,6 @@
     <string name="favorite_tv_show">Favorite TV Show</string>
     <string name="rating">Rating: %.1f</string>
     <string name="share">Share</string>
+    <string name="trending">Trending</string>
+    <string name="share_using">Share Using</string>
 </resources>

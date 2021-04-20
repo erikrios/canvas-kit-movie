@@ -10,4 +10,5 @@ interface TheMovieDatabaseApiHelper {
     suspend fun getTvShows(): Response<DiscoverResponse<TvShow>>
     suspend fun getMovieDetails(id: Int): Response<Movie>
     suspend fun getTvShowDetails(id: Int): Response<TvShow>
+    suspend fun getTrending(): Response<DiscoverResponse<Movie>>
 }

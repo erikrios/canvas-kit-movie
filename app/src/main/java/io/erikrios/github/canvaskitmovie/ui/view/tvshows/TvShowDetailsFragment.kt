@@ -1,10 +1,10 @@
 package io.erikrios.github.canvaskitmovie.ui.view.tvshows
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ShareCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -20,6 +20,7 @@ import io.erikrios.github.canvaskitmovie.data.model.TvShow
 import io.erikrios.github.canvaskitmovie.databinding.FragmentTvShowDetailsBinding
 import io.erikrios.github.canvaskitmovie.ui.adapter.CreatorAdapter
 import io.erikrios.github.canvaskitmovie.ui.adapter.GenreAdapter
+import io.erikrios.github.canvaskitmovie.ui.view.dashboard.DashboardFragment
 import io.erikrios.github.canvaskitmovie.ui.viewmodel.DetailsViewModel
 import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations
 import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations.generateFullImageUrl
@@ -46,7 +47,8 @@ class TvShowDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val tvShow = args.tvShow
-        handleToolbar(tvShow.name)
+        hideBottomNavigation()
+        handleToolbar(args.tvShow.name)
         detailsViewModel.apply {
             getTvShowById(tvShow.id)
             isFavoriteTvShowExists(tvShow.id)
@@ -61,6 +63,7 @@ class TvShowDetailsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        showBottomNavigation()
     }
 
     private fun handleState(tvShowResource: Resource<TvShow>) {
@@ -161,10 +164,13 @@ class TvShowDetailsFragment : Fragment() {
                 ContextCompat.getDrawable(context, R.drawable.ic_baseline_arrow_back_24)
             setNavigationOnClickListener { findNavController().popBackStack() }
             menu.findItem(R.id.item_share).setOnMenuItemClickListener {
-                val intent = Intent(Intent.ACTION_SEND)
-                intent.putExtra(Intent.EXTRA_TEXT, tvShow?.overview ?: args.tvShow.overview)
-                intent.type = "text/plain"
-                startActivity(intent)
+                val mimeType = "text/plain"
+                ShareCompat.IntentBuilder
+                    .from(requireActivity())
+                    .setType(mimeType)
+                    .setChooserTitle(getString(R.string.share_using))
+                    .setText(tvShow?.overview)
+                    .startChooser()
                 return@setOnMenuItemClickListener true
             }
         }
@@ -178,5 +184,13 @@ class TvShowDetailsFragment : Fragment() {
     private fun handleCreators(creators: List<Creator>) {
         val creatorAdapter = CreatorAdapter(creators)
         binding?.rvCreators?.adapter = creatorAdapter
+    }
+
+    private fun hideBottomNavigation() {
+        (parentFragment?.parentFragment?.parentFragment?.parentFragment as DashboardFragment).hideBottomNavigation()
+    }
+
+    private fun showBottomNavigation() {
+        (parentFragment?.parentFragment?.parentFragment?.parentFragment as DashboardFragment).showBottomNavigation()
     }
 }

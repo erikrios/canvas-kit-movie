@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.apply {
             getMovies()
             getTvShows()
+            getTrending()
         }
     }
 }

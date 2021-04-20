@@ -80,6 +80,7 @@ class CinemaRepositoryImplTest {
                     actualDummyTvShow
                 )
             )
+            `when`(localDataSource.getTrending()).thenReturn(Resource.success(actualMovies))
             `when`(remoteDataSource.getMovies()).thenReturn(Resource.success(actualMovies))
             `when`(remoteDataSource.getTvShows()).thenReturn(Resource.success(actualTvShows))
             `when`(remoteDataSource.getMovieDetails(randomMovieId)).thenReturn(
@@ -102,6 +103,7 @@ class CinemaRepositoryImplTest {
                     "Internal server error.", null
                 )
             )
+            `when`(remoteDataSource.getTrending()).thenReturn(Resource.success(actualMovies))
         }
 
         repository = FakeCinemaRepositoryImpl(networkHelper, localDataSource, remoteDataSource)
@@ -186,7 +188,6 @@ class CinemaRepositoryImplTest {
     /**
      * -------------------- End of get movies test ------------------------------
      */
-
 
     /**
      * -------------------- Get tv shows test ------------------------------
@@ -349,5 +350,85 @@ class CinemaRepositoryImplTest {
 
     /**
      * -------------------- End of get tv show by id test ------------------------------
+     */
+
+    /**
+     * -------------------- Get trending test ------------------------------
+     */
+    @Test
+    fun `get trending, returns not null`() = runBlockingTest {
+        val moviesResources = repository.getTrending()
+        // Verity that remoteDataSource.getTrending() is called
+        verify(remoteDataSource).getTrending()
+        // Verify that the return value is not null
+        assertThat(moviesResources).isNotNull()
+    }
+
+    @Test
+    fun `get trending, return the list of movies`() = runBlockingTest {
+        val moviesResources = repository.getTrending()
+        // Verity that remoteDataSource.getTrending() is called
+        verify(remoteDataSource).getTrending()
+        // Verify that the return value are the list of movies
+        assertThat(moviesResources.data).isNotEmpty()
+    }
+
+    @Test
+    fun `get trending, return the same size with the actual dummy data`() = runBlockingTest {
+        val moviesResources = repository.getTrending()
+        // Verify that remoteDataSource.getTrending() is called
+        verify(remoteDataSource).getTrending()
+        // Verify that the return value have the same size with the actual dummy data
+        assertThat(moviesResources.data?.size).isEqualTo(actualMoviesSize)
+    }
+
+    @Test
+    fun `get trending, returns the same elements with the actual dummy data`() = runBlockingTest {
+        val moviesResources = repository.getTrending()
+        // Verify that remoteDataSource.getTrending() is called
+        verify(remoteDataSource).getTrending()
+        // Verify that the return value have the same element with the actual dummy data
+        assertThat(moviesResources.data).isEqualTo(actualMovies)
+    }
+
+    @Test
+    fun `get trending when network connected, return resource instance with success status`() =
+        runBlockingTest {
+            val moviesResources = repository.getTrending()
+            // Verify that remoteDataSource.getTrending() is called
+            verify(remoteDataSource).getTrending()
+            // Verify that the resource instance have success status
+            assertThat(moviesResources.status).isEqualTo(Status.SUCCESS)
+        }
+
+    @Test
+    fun `get trending when network disconnected, return the movies data from local data source`() =
+        runBlockingTest {
+            // Disable the network connection
+            `when`(networkHelper.isNetworkConnected()).thenReturn(false)
+            val movieResource = repository.getTrending()
+            // Verify that localDataSource.getMovies() is called
+            verify(localDataSource).getTrending()
+            // Verity that the return value from local data source is not empty
+            assertThat(movieResource.data).isNotEmpty()
+            // Verity that the status is success
+            assertThat(movieResource.status).isEqualTo(Status.SUCCESS)
+        }
+
+    @Test
+    fun `get trending when network disconnected and the local data source is empty, return error status`() =
+        runBlockingTest {
+            // Disable the network connection
+            `when`(networkHelper.isNetworkConnected()).thenReturn(false)
+            // Suppose that local data store is empty
+            `when`(localDataSource.getTrending()).thenReturn(Resource.success(listOf()))
+            val movieResource = repository.getTrending()
+            // Verify that localDataSource.getMovies() is called
+            verify(localDataSource).getTrending()
+            // Verity that the status is error
+            assertThat(movieResource.status).isEqualTo(Status.ERROR)
+        }
+    /**
+     * -------------------- End of get trending test ------------------------------
      */
 }

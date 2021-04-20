@@ -20,4 +20,7 @@ interface TheMovieDatabaseApiService {
 
     @GET("tv/{id}")
     suspend fun getTvShowDetails(@Path("id") id: Int): Response<TvShow>
+
+    @GET("trending/movie/day")
+    suspend fun getTrending(): Response<DiscoverResponse<Movie>>
 }

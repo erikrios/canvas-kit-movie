@@ -105,4 +105,28 @@ class CinemaRepositoryImpl @Inject constructor(
 
     override suspend fun deleteFavoriteTvShow(tvShow: TvShow): Int =
         (localeDataSource as LocalDataSource).deleteFavoriteTvShow(tvShow)
+
+    override suspend fun getTrending(): Resource<List<Movie>> {
+        if (!networkHelper.isNetworkConnected()) {
+            val cachedTrending = localeDataSource.getTrending()
+            cachedTrending.data?.let {
+                return if (it.isEmpty()) {
+                    Resource.error(
+                        "Couldn't reach the server. Check your internet connection",
+                        null
+                    )
+                } else
+                    cachedTrending
+            } ?: return Resource.error(
+                "Couldn't reach the server. Check your internet connection",
+                null
+            )
+        } else {
+            val trendingResource = remoteDataSource.getTrending()
+            trendingResource.data?.let {
+                (localeDataSource as LocalDataSource).addTrendingCaches(it)
+            }
+            return trendingResource
+        }
+    }
 }

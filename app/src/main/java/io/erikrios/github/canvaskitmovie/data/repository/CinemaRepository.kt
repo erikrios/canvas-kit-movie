@@ -17,4 +17,5 @@ interface CinemaRepository {
     suspend fun getFavoriteTvShows(): List<TvShow>
     suspend fun getFavoriteTvShow(id: Int): TvShow?
     suspend fun deleteFavoriteTvShow(tvShow: TvShow): Int
+    suspend fun getTrending(): Resource<List<Movie>>
 }

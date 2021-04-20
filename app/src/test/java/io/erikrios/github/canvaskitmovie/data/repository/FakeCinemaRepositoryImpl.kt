@@ -80,4 +80,28 @@ class FakeCinemaRepositoryImpl(
             return remoteDataSource.getTvShowDetails(id)
         }
     }
+
+    override suspend fun getTrending(): Resource<List<Movie>> {
+        if (!networkHelper.isNetworkConnected()) {
+            val cachedTrending = localDataSource.getTrending()
+            cachedTrending.data?.let {
+                return if (it.isEmpty()) {
+                    Resource.error(
+                        "Couldn't reach the server. Check your internet connection",
+                        null
+                    )
+                } else
+                    cachedTrending
+            } ?: return Resource.error(
+                "Couldn't reach the server. Check your internet connection",
+                null
+            )
+        } else {
+            val trendingResource = remoteDataSource.getTrending()
+            trendingResource.data?.let {
+                (localDataSource as LocalDataSource).addTrendingCaches(it)
+            }
+            return trendingResource
+        }
+    }
 }

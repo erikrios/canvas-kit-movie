@@ -15,4 +15,9 @@
         android:name="io.erikrios.github.canvaskitmovie.ui.view.tvshows.TvShowsFragment"
         android:label="@string/tv_shows"
         tools:layout="@layout/fragment_tv_shows" />
+    <fragment
+        android:id="@+id/item_trending"
+        android:name="io.erikrios.github.canvaskitmovie.ui.view.trending.TrendingFragment"
+        android:label="@string/trending"
+        tools:layout="@layout/fragment_trending" />
 </navigation>

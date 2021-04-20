@@ -146,7 +146,7 @@ class TvShowDetailsFragment : Fragment() {
             }
             tvName.text = tvShow.name
             tvRatingInfo.text = String.format("%.1f", tvShow.voteAverage)
-            rbVoteAverage.rating = (tvShow.voteAverage / 3.333).toFloat()
+            rbVoteAverage.rating = (tvShow.voteAverage / 5.0).toFloat()
             tvVoteInfo.text = tvShow.voteCount.toString()
             tvStatusInfo.text = tvShow.status
             tvPopularityInfo.text = String.format("%.3f", tvShow.popularity)

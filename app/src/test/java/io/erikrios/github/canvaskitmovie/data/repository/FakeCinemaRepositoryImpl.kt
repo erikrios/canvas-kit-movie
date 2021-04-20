@@ -6,6 +6,7 @@ import io.erikrios.github.canvaskitmovie.data.source.DataSource
 import io.erikrios.github.canvaskitmovie.data.source.local.LocalDataSource
 import io.erikrios.github.canvaskitmovie.utils.NetworkHelper
 import io.erikrios.github.canvaskitmovie.utils.Resource
+import io.erikrios.github.canvaskitmovie.utils.SortUtils
 
 class FakeCinemaRepositoryImpl(
     private val networkHelper: NetworkHelper,
@@ -80,6 +81,30 @@ class FakeCinemaRepositoryImpl(
             return remoteDataSource.getTvShowDetails(id)
         }
     }
+
+    override suspend fun insertFavoriteMovie(movie: Movie): Long =
+        (localDataSource as LocalDataSource).insertFavoriteMovie(movie)
+
+    override fun getFavoriteMovies(sort: SortUtils.Sort): androidx.paging.DataSource.Factory<Int, Movie> =
+        (localDataSource as LocalDataSource).getFavoriteMovies(sort)
+
+    override suspend fun getFavoriteMovie(id: Int): Movie? =
+        (localDataSource as LocalDataSource).getFavoriteMovie(id)
+
+    override suspend fun deleteFavoriteMovie(movie: Movie): Int =
+        (localDataSource as LocalDataSource).deleteFavoriteMovie(movie)
+
+    override suspend fun insertFavoriteTvShow(tvShow: TvShow): Long =
+        (localDataSource as LocalDataSource).insertFavoriteTvShow(tvShow)
+
+    override fun getFavoriteTvShows(sort: SortUtils.Sort): androidx.paging.DataSource.Factory<Int, TvShow> =
+        (localDataSource as LocalDataSource).getFavoriteTvShows(sort)
+
+    override suspend fun getFavoriteTvShow(id: Int): TvShow? =
+        (localDataSource as LocalDataSource).getFavoriteTvShow(id)
+
+    override suspend fun deleteFavoriteTvShow(tvShow: TvShow): Int =
+        (localDataSource as LocalDataSource).deleteFavoriteTvShow(tvShow)
 
     override suspend fun getTrending(): Resource<List<Movie>> {
         if (!networkHelper.isNetworkConnected()) {

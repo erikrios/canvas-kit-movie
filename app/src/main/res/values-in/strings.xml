@@ -23,11 +23,10 @@
     <string name="share">Bagikan</string>
     <string name="trending">Trending</string>
     <string name="share_using">Bagikan Dengan</string>
-    <string name="sort_by">Urutkan Sesuai</string>
-    <string name="title_sort">Judul</string>
-    <string name="release_date_sort">Tanggal Rilis</string>
-    <string name="popularity_sort">Popularitas</string>
-    <string name="vote_average_sort">Rata-rata Voting</string>
-    <string name="vote_count_sort">Total Voting</string>
+    <string name="title_sort">Urutkan sesuai Judul</string>
+    <string name="release_date_sort">Urutkan sesuai Tanggal Rilis</string>
+    <string name="popularity_sort">Urutkan sesuai Popularitas</string>
+    <string name="vote_average_sort">Urutkan sesuai Rata-rata Voting</string>
+    <string name="vote_count_sort">Urutkan sesuai Total Voting</string>
     <string name="random">Acak</string>
 </resources>

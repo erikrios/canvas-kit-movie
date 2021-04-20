@@ -1,5 +1,6 @@
 package io.erikrios.github.canvaskitmovie.data.repository
 
+import androidx.paging.DataSource
 import io.erikrios.github.canvaskitmovie.data.model.Movie
 import io.erikrios.github.canvaskitmovie.data.model.TvShow
 import io.erikrios.github.canvaskitmovie.utils.Resource
@@ -11,11 +12,11 @@ interface CinemaRepository {
     suspend fun getMovieById(id: Int): Resource<Movie>
     suspend fun getTvShowById(id: Int): Resource<TvShow>
     suspend fun insertFavoriteMovie(movie: Movie): Long
-    suspend fun getFavoriteMovies(sort: SortUtils.Sort): List<Movie>
+    suspend fun getFavoriteMovies(sort: SortUtils.Sort): DataSource.Factory<Int, Movie>
     suspend fun getFavoriteMovie(id: Int): Movie?
     suspend fun deleteFavoriteMovie(movie: Movie): Int
     suspend fun insertFavoriteTvShow(tvShow: TvShow): Long
-    suspend fun getFavoriteTvShows(sort: SortUtils.Sort): List<TvShow>
+    suspend fun getFavoriteTvShows(sort: SortUtils.Sort): DataSource.Factory<Int, TvShow>
     suspend fun getFavoriteTvShow(id: Int): TvShow?
     suspend fun deleteFavoriteTvShow(tvShow: TvShow): Int
     suspend fun getTrending(): Resource<List<Movie>>

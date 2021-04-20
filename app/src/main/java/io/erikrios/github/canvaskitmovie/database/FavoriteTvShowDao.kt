@@ -1,5 +1,6 @@
 package io.erikrios.github.canvaskitmovie.database
 
+import androidx.paging.DataSource
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteQuery
 import io.erikrios.github.canvaskitmovie.data.model.TvShow
@@ -13,7 +14,7 @@ interface FavoriteTvShowDao {
     suspend fun insert(tvShow: TvShow): Long
 
     @RawQuery(observedEntities = [TvShow::class])
-    suspend fun getTvShows(query: SupportSQLiteQuery): List<TvShow>
+    suspend fun getTvShows(query: SupportSQLiteQuery): DataSource.Factory<Int, TvShow>
 
     @Query("SELECT * FROM $TABLE_NAME WHERE $COLUMN_ID = :id")
     suspend fun getTvShow(id: Int): TvShow?

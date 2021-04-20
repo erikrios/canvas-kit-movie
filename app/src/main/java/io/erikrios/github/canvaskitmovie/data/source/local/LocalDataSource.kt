@@ -38,7 +38,7 @@ class LocalDataSource @Inject constructor(
 
     suspend fun insertFavoriteMovie(movie: Movie) = favoriteMovieDao.insert(movie)
 
-    suspend fun getFavoriteMovies(sort: SortUtils.Sort): List<Movie> {
+    suspend fun getFavoriteMovies(sort: SortUtils.Sort): androidx.paging.DataSource.Factory<Int, Movie> {
         val query = SortUtils.getSortedQuery(sort, SortUtils.CinemaType.MOVIE)
         return favoriteMovieDao.getMovies(query)
     }
@@ -49,7 +49,7 @@ class LocalDataSource @Inject constructor(
 
     suspend fun insertFavoriteTvShow(tvShow: TvShow) = favoriteTvShowDao.insert(tvShow)
 
-    suspend fun getFavoriteTvShows(sort: SortUtils.Sort): List<TvShow> {
+    suspend fun getFavoriteTvShows(sort: SortUtils.Sort): androidx.paging.DataSource.Factory<Int, TvShow> {
         val query = SortUtils.getSortedQuery(sort, SortUtils.CinemaType.TV_SHOW)
         return favoriteTvShowDao.getTvShows(query)
     }

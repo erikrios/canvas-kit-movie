@@ -2,9 +2,11 @@ package io.erikrios.github.canvaskitmovie.ui.view.favorites
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
@@ -91,6 +93,46 @@ class FavoriteTvShowsFragment : Fragment() {
             navigationIcon =
                 ContextCompat.getDrawable(context, R.drawable.ic_baseline_arrow_back_24)
             setNavigationOnClickListener { findNavController().popBackStack() }
+            menu.children.iterator().forEach {
+                when (it.itemId) {
+                    R.id.action_title -> {
+                        it.setOnMenuItemClickListener { menuItem ->
+                            handleMenuItemClick(menuItem, SortUtils.Sort.TITLE)
+                            return@setOnMenuItemClickListener true
+                        }
+                    }
+                    R.id.action_release_date -> {
+                        it.setOnMenuItemClickListener { menuItem ->
+                            handleMenuItemClick(menuItem, SortUtils.Sort.RELEASE_DATE)
+                            return@setOnMenuItemClickListener true
+                        }
+                    }
+                    R.id.action_popularity -> {
+                        it.setOnMenuItemClickListener { menuItem ->
+                            handleMenuItemClick(menuItem, SortUtils.Sort.POPULARITY)
+                            return@setOnMenuItemClickListener true
+                        }
+                    }
+                    R.id.action_vote_average -> {
+                        it.setOnMenuItemClickListener { menuItem ->
+                            handleMenuItemClick(menuItem, SortUtils.Sort.VOTE_AVERAGE)
+                            return@setOnMenuItemClickListener true
+                        }
+                    }
+                    R.id.action_vote_count -> {
+                        it.setOnMenuItemClickListener { menuItem ->
+                            handleMenuItemClick(menuItem, SortUtils.Sort.VOTE_COUNT)
+                            return@setOnMenuItemClickListener true
+                        }
+                    }
+                    R.id.action_random -> {
+                        it.setOnMenuItemClickListener { menuItem ->
+                            handleMenuItemClick(menuItem, SortUtils.Sort.RANDOM)
+                            return@setOnMenuItemClickListener true
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -106,5 +148,10 @@ class FavoriteTvShowsFragment : Fragment() {
 
     private fun handleRecyclerView() {
         binding?.rvFavoriteTvShows?.adapter = adapter
+    }
+
+    private fun handleMenuItemClick(menuItem: MenuItem, sort: SortUtils.Sort) {
+        favoritesViewModel.getFavoriteTvShows(sort)
+        menuItem.isChecked = true
     }
 }

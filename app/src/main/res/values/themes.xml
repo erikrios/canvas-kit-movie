@@ -23,6 +23,7 @@
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:textColorSecondary">@color/white</item>
         <item name="android:textColorHint">@color/grey</item>
+        <item name="android:actionMenuTextColor">@color/black</item>
     </style>
 
     <style name="SplashScreenTheme" parent="Theme.MaterialComponents.Light.NoActionBar">

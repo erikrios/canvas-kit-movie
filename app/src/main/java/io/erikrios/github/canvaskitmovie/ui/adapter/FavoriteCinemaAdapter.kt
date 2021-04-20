@@ -2,7 +2,7 @@ package io.erikrios.github.canvaskitmovie.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
+import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -16,17 +16,7 @@ import io.erikrios.github.canvaskitmovie.utils.ImageConfigurations.generateFullI
 import jp.wasabeef.glide.transformations.BlurTransformation
 
 class FavoriteCinemaAdapter<T>(private val onClickListener: ((T) -> Unit)) :
-    RecyclerView.Adapter<FavoriteCinemaAdapter<T>.ViewHolder>() {
-
-    private val cinemas = mutableListOf<T>()
-
-    fun setCinemas(cinemas: List<T>) {
-        val diffCallback = CinemaDiffCallback(this.cinemas, cinemas)
-        val diffResult = DiffUtil.calculateDiff(diffCallback)
-        this.cinemas.clear()
-        this.cinemas.addAll(cinemas)
-        diffResult.dispatchUpdatesTo(this)
-    }
+    PagedListAdapter<T, FavoriteCinemaAdapter<T>.ViewHolder>(CinemaDiffCallback<T>()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -35,14 +25,12 @@ class FavoriteCinemaAdapter<T>(private val onClickListener: ((T) -> Unit)) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(cinemas[position], onClickListener)
-
-    override fun getItemCount(): Int = cinemas.size
+        holder.bind(getItem(position), onClickListener)
 
     inner class ViewHolder(private val binding: ItemFavoriteBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(cinema: T, clickListener: ((T) -> Unit)) {
+        fun bind(cinema: T?, clickListener: ((T) -> Unit)) {
             val posterPath: String?
             val backdropPath: String?
             val title: String

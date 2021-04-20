@@ -4,26 +4,20 @@ import androidx.recyclerview.widget.DiffUtil
 import io.erikrios.github.canvaskitmovie.data.model.Movie
 import io.erikrios.github.canvaskitmovie.data.model.TvShow
 
-class CinemaDiffCallback<T>(private val oldCinemas: List<T>, private val newCinemas: List<T>) :
-    DiffUtil.Callback() {
-
-    override fun getOldListSize(): Int = oldCinemas.size
-
-    override fun getNewListSize(): Int = newCinemas.size
-
-    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
-        when (oldCinemas[oldItemPosition]) {
+class CinemaDiffCallback<T> : DiffUtil.ItemCallback<T>() {
+    override fun areItemsTheSame(oldItem: T, newItem: T): Boolean =
+        when (oldItem) {
             is Movie ->
-                (oldCinemas[oldItemPosition] as Movie).id == (newCinemas[newItemPosition] as Movie).id
-            is TvShow -> (oldCinemas[oldItemPosition] as TvShow).id == (newCinemas[newItemPosition] as TvShow).id
+                (oldItem as Movie).id == (newItem as Movie).id
+            is TvShow -> (oldItem as TvShow).id == (newItem as TvShow).id
             else -> throw IllegalArgumentException("Only Movie or TvShow instance are accepted.")
         }
 
-    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
-        when (oldCinemas[oldItemPosition]) {
+    override fun areContentsTheSame(oldItem: T, newItem: T): Boolean =
+        when (oldItem) {
             is Movie ->
-                (oldCinemas[oldItemPosition] as Movie) == (newCinemas[newItemPosition] as Movie)
-            is TvShow -> (oldCinemas[oldItemPosition] as TvShow) == (newCinemas[newItemPosition] as TvShow)
+                (oldItem as Movie) == (newItem as Movie)
+            is TvShow -> (oldItem as TvShow) == (newItem as TvShow)
             else -> throw IllegalArgumentException("Only Movie or TvShow instance are accepted.")
         }
 }

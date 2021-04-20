@@ -15,7 +15,7 @@ interface FavoriteMovieDao {
     suspend fun insert(movie: Movie): Long
 
     @RawQuery(observedEntities = [Movie::class])
-    suspend fun getMovies(query: SupportSQLiteQuery): DataSource.Factory<Int, Movie>
+    fun getMovies(query: SupportSQLiteQuery): DataSource.Factory<Int, Movie>
 
     @Query("SELECT * FROM $TABLE_NAME WHERE $COLUMN_ID = :id")
     suspend fun getMovie(id: Int): Movie?

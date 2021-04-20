@@ -86,7 +86,7 @@ class CinemaRepositoryImpl @Inject constructor(
     override suspend fun insertFavoriteMovie(movie: Movie): Long =
         (localeDataSource as LocalDataSource).insertFavoriteMovie(movie)
 
-    override suspend fun getFavoriteMovies(sort: SortUtils.Sort): androidx.paging.DataSource.Factory<Int, Movie> =
+    override fun getFavoriteMovies(sort: SortUtils.Sort): androidx.paging.DataSource.Factory<Int, Movie> =
         (localeDataSource as LocalDataSource).getFavoriteMovies(sort)
 
     override suspend fun getFavoriteMovie(id: Int): Movie? =
@@ -98,7 +98,7 @@ class CinemaRepositoryImpl @Inject constructor(
     override suspend fun insertFavoriteTvShow(tvShow: TvShow): Long =
         (localeDataSource as LocalDataSource).insertFavoriteTvShow(tvShow)
 
-    override suspend fun getFavoriteTvShows(sort: SortUtils.Sort): androidx.paging.DataSource.Factory<Int, TvShow> =
+    override fun getFavoriteTvShows(sort: SortUtils.Sort): androidx.paging.DataSource.Factory<Int, TvShow> =
         (localeDataSource as LocalDataSource).getFavoriteTvShows(sort)
 
     override suspend fun getFavoriteTvShow(id: Int): TvShow? =

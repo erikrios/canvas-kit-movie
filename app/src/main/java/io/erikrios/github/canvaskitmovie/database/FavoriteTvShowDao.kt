@@ -14,7 +14,7 @@ interface FavoriteTvShowDao {
     suspend fun insert(tvShow: TvShow): Long
 
     @RawQuery(observedEntities = [TvShow::class])
-    suspend fun getTvShows(query: SupportSQLiteQuery): DataSource.Factory<Int, TvShow>
+    fun getTvShows(query: SupportSQLiteQuery): DataSource.Factory<Int, TvShow>
 
     @Query("SELECT * FROM $TABLE_NAME WHERE $COLUMN_ID = :id")
     suspend fun getTvShow(id: Int): TvShow?

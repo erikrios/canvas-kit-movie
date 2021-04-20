@@ -6,6 +6,7 @@ import io.erikrios.github.canvaskitmovie.data.source.DataSource
 import io.erikrios.github.canvaskitmovie.database.FavoriteMovieDao
 import io.erikrios.github.canvaskitmovie.database.FavoriteTvShowDao
 import io.erikrios.github.canvaskitmovie.utils.Resource
+import io.erikrios.github.canvaskitmovie.utils.SortUtils
 import javax.inject.Inject
 
 class LocalDataSource @Inject constructor(
@@ -37,7 +38,10 @@ class LocalDataSource @Inject constructor(
 
     suspend fun insertFavoriteMovie(movie: Movie) = favoriteMovieDao.insert(movie)
 
-    suspend fun getFavoriteMovies() = favoriteMovieDao.getMovies()
+    suspend fun getFavoriteMovies(sort: SortUtils.Sort): List<Movie> {
+        val query = SortUtils.getSortedQuery(sort, SortUtils.CinemaType.MOVIE)
+        return favoriteMovieDao.getMovies(query)
+    }
 
     suspend fun getFavoriteMovie(id: Int) = favoriteMovieDao.getMovie(id)
 
@@ -45,7 +49,10 @@ class LocalDataSource @Inject constructor(
 
     suspend fun insertFavoriteTvShow(tvShow: TvShow) = favoriteTvShowDao.insert(tvShow)
 
-    suspend fun getFavoriteTvShows() = favoriteTvShowDao.getTvShows()
+    suspend fun getFavoriteTvShows(sort: SortUtils.Sort): List<TvShow> {
+        val query = SortUtils.getSortedQuery(sort, SortUtils.CinemaType.TV_SHOW)
+        return favoriteTvShowDao.getTvShows(query)
+    }
 
     suspend fun getFavoriteTvShow(id: Int) = favoriteTvShowDao.getTvShow(id)
 

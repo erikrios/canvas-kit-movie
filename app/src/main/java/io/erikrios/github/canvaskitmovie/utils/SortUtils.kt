@@ -1,7 +1,7 @@
 package io.erikrios.github.canvaskitmovie.utils
 
 import androidx.sqlite.db.SimpleSQLiteQuery
-import io.erikrios.github.canvaskitmovie.database.DatabaseContract.MovieColumns.Companion.TABLE_NAME
+import io.erikrios.github.canvaskitmovie.database.DatabaseContract
 
 object SortUtils {
 
@@ -18,12 +18,12 @@ object SortUtils {
 
         when (type) {
             CinemaType.MOVIE -> {
-                tableName = TABLE_NAME
+                tableName = DatabaseContract.MovieColumns.TABLE_NAME
                 titleColumnName = "title"
                 releaseDateColumnName = "releaseDate"
             }
             CinemaType.TV_SHOW -> {
-                tableName = TABLE_NAME
+                tableName = DatabaseContract.TvShowColumns.TABLE_NAME
                 titleColumnName = "name"
                 releaseDateColumnName = "firstAirDate"
             }

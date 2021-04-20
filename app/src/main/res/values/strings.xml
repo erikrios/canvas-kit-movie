@@ -22,4 +22,11 @@
     <string name="share">Share</string>
     <string name="trending">Trending</string>
     <string name="share_using">Share Using</string>
+    <string name="sort_by">Sort By</string>
+    <string name="title_sort">Title</string>
+    <string name="release_date_sort">Release Date</string>
+    <string name="popularity_sort">Popularity</string>
+    <string name="vote_average_sort">Vote Average</string>
+    <string name="vote_count_sort">Vote Count</string>
+    <string name="random">Random</string>
 </resources>

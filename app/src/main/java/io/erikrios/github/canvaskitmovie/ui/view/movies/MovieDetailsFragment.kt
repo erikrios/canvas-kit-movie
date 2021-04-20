@@ -145,7 +145,7 @@ class MovieDetailsFragment : Fragment() {
             }
             tvTitle.text = movie.title
             tvRatingInfo.text = String.format("%.1f", movie.voteAverage)
-            rbVoteAverage.rating = (movie.voteAverage / 5.0).toFloat()
+            rbVoteAverage.rating = (movie.voteAverage / 2.0).toFloat()
             tvVoteInfo.text = movie.voteCount.toString()
             tvStatusInfo.text = movie.status
             tvPopularityInfo.text = String.format("%.3f", movie.popularity)

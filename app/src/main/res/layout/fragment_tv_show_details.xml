@@ -115,7 +115,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:numStars="5"
-                android:stepSize="1"
+                android:stepSize="0.1"
                 app:layout_constraintBottom_toTopOf="@id/tv_grade_now"
                 app:layout_constraintEnd_toEndOf="@id/tv_grade_now"
                 app:layout_constraintStart_toStartOf="@id/tv_grade_now" />

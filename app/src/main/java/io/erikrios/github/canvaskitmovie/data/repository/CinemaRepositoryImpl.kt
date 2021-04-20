@@ -6,6 +6,7 @@ import io.erikrios.github.canvaskitmovie.data.source.DataSource
 import io.erikrios.github.canvaskitmovie.data.source.local.LocalDataSource
 import io.erikrios.github.canvaskitmovie.utils.NetworkHelper
 import io.erikrios.github.canvaskitmovie.utils.Resource
+import io.erikrios.github.canvaskitmovie.utils.SortUtils
 import javax.inject.Inject
 
 class CinemaRepositoryImpl @Inject constructor(
@@ -85,8 +86,8 @@ class CinemaRepositoryImpl @Inject constructor(
     override suspend fun insertFavoriteMovie(movie: Movie): Long =
         (localeDataSource as LocalDataSource).insertFavoriteMovie(movie)
 
-    override suspend fun getFavoriteMovies(): List<Movie> =
-        (localeDataSource as LocalDataSource).getFavoriteMovies()
+    override suspend fun getFavoriteMovies(sort: SortUtils.Sort): List<Movie> =
+        (localeDataSource as LocalDataSource).getFavoriteMovies(sort)
 
     override suspend fun getFavoriteMovie(id: Int): Movie? =
         (localeDataSource as LocalDataSource).getFavoriteMovie(id)
@@ -97,8 +98,8 @@ class CinemaRepositoryImpl @Inject constructor(
     override suspend fun insertFavoriteTvShow(tvShow: TvShow): Long =
         (localeDataSource as LocalDataSource).insertFavoriteTvShow(tvShow)
 
-    override suspend fun getFavoriteTvShows(): List<TvShow> =
-        (localeDataSource as LocalDataSource).getFavoriteTvShows()
+    override suspend fun getFavoriteTvShows(sort: SortUtils.Sort): List<TvShow> =
+        (localeDataSource as LocalDataSource).getFavoriteTvShows(sort)
 
     override suspend fun getFavoriteTvShow(id: Int): TvShow? =
         (localeDataSource as LocalDataSource).getFavoriteTvShow(id)

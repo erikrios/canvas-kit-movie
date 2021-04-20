@@ -16,6 +16,7 @@ import io.erikrios.github.canvaskitmovie.databinding.FragmentFavoriteMoviesBindi
 import io.erikrios.github.canvaskitmovie.ui.adapter.FavoriteCinemaAdapter
 import io.erikrios.github.canvaskitmovie.ui.viewmodel.FavoritesViewModel
 import io.erikrios.github.canvaskitmovie.utils.Resource
+import io.erikrios.github.canvaskitmovie.utils.SortUtils
 import io.erikrios.github.canvaskitmovie.utils.Status
 
 @AndroidEntryPoint
@@ -38,7 +39,7 @@ class FavoriteMoviesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         handleToolbar()
         favoritesViewModel.apply {
-            getFavoriteMovies()
+            getFavoriteMovies(SortUtils.Sort.TITLE)
             handleAdapter()
             handleRecyclerView()
             favoriteMoviesState.observe(
@@ -50,7 +51,7 @@ class FavoriteMoviesFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        favoritesViewModel.getFavoriteMovies()
+        favoritesViewModel.getFavoriteMovies(SortUtils.Sort.TITLE)
     }
 
     override fun onDestroyView() {

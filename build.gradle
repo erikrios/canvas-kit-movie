@@ -75,4 +75,7 @@ ext {
     lottieVersion = '3.4.0'
     glideTransformationsVersions = '4.3.0'
     pagingVersion = '2.1.2'
+    mockitoCoreVersion = '3.8.0'
+    mockitoInlineVersion = '3.8.0'
+    mockitoKotlinVersion = '3.1.0'
 }

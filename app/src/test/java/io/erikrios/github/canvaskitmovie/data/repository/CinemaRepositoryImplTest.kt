@@ -1,25 +1,23 @@
 package io.erikrios.github.canvaskitmovie.data.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.paging.DataSource
 import com.google.common.truth.Truth.assertThat
 import io.erikrios.github.canvaskitmovie.MainCoroutineRule
 import io.erikrios.github.canvaskitmovie.data.model.Movie
 import io.erikrios.github.canvaskitmovie.data.model.TvShow
 import io.erikrios.github.canvaskitmovie.data.source.local.LocalDataSource
 import io.erikrios.github.canvaskitmovie.data.source.remote.RemoteDataSource
-import io.erikrios.github.canvaskitmovie.utils.DummyData
-import io.erikrios.github.canvaskitmovie.utils.NetworkHelper
-import io.erikrios.github.canvaskitmovie.utils.Resource
-import io.erikrios.github.canvaskitmovie.utils.Status
+import io.erikrios.github.canvaskitmovie.utils.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mock
-import org.mockito.Mockito.`when`
-import org.mockito.Mockito.verify
+import org.mockito.Mockito.*
 import org.mockito.MockitoAnnotations
+import org.mockito.kotlin.any
 
 @ExperimentalCoroutinesApi
 class CinemaRepositoryImplTest {
@@ -104,6 +102,24 @@ class CinemaRepositoryImplTest {
                 )
             )
             `when`(remoteDataSource.getTrending()).thenReturn(Resource.success(actualMovies))
+
+            @SuppressWarnings("unchecked")
+            val movieDataSourceFactory =
+                mock(DataSource.Factory::class.java) as DataSource.Factory<Int, Movie>
+            `when`(localDataSource.insertFavoriteMovie(any())).thenReturn(1L)
+            `when`(localDataSource.getFavoriteMovies(any())).thenReturn(movieDataSourceFactory)
+            `when`(localDataSource.getFavoriteMovie(randomMovieId)).thenReturn(actualDummyMovie)
+            `when`(localDataSource.getFavoriteMovie(notExistMovieId)).thenReturn(null)
+            `when`(localDataSource.deleteFavoriteMovie(any())).thenReturn(1)
+
+            @SuppressWarnings("unchecked")
+            val tvShowDataSourceFactory =
+                mock(DataSource.Factory::class.java) as DataSource.Factory<Int, TvShow>
+            `when`(localDataSource.insertFavoriteTvShow(any())).thenReturn(1L)
+            `when`(localDataSource.getFavoriteTvShows(any())).thenReturn(tvShowDataSourceFactory)
+            `when`(localDataSource.getFavoriteTvShow(randomTvShowId)).thenReturn(actualDummyTvShow)
+            `when`(localDataSource.getFavoriteTvShow(notExistTvShowId)).thenReturn(null)
+            `when`(localDataSource.deleteFavoriteTvShow(any())).thenReturn(1)
         }
 
         repository = FakeCinemaRepositoryImpl(networkHelper, localDataSource, remoteDataSource)
@@ -430,5 +446,115 @@ class CinemaRepositoryImplTest {
         }
     /**
      * -------------------- End of get trending test ------------------------------
+     */
+
+    /**
+     * -------------------- Favorite Movies test ------------------------------
+     */
+    @Test
+    fun `insert favorite movie, return long value (affected rows)`() {
+        runBlockingTest {
+            val affectedRows = repository.insertFavoriteMovie(actualDummyMovie as Movie)
+            verify(localDataSource).insertFavoriteMovie(any())
+            assertThat(affectedRows).isEqualTo(1L)
+        }
+    }
+
+    @Test
+    fun `get favorite movies, return the list of movie`() {
+        runBlockingTest {
+            repository.getFavoriteMovies(SortUtils.Sort.RANDOM)
+            val movies = PagedListUtil.mockPagedList(actualMovies)
+            verify(localDataSource).getFavoriteMovies(SortUtils.Sort.RANDOM)
+            assertThat(movies).isNotNull()
+            assertThat(movies.size).isEqualTo(actualMovies.size)
+        }
+    }
+
+    @Test
+    fun `get favorite movie with exist id, return the actual movie`() {
+        runBlockingTest {
+            val movie = repository.getFavoriteMovie(randomMovieId)
+            verify(localDataSource).getFavoriteMovie(randomMovieId)
+            assertThat(movie).isNotNull()
+            assertThat(movie).isEqualTo(actualDummyMovie)
+        }
+    }
+
+    @Test
+    fun `get favorite movie with not exist id, return null`() {
+        runBlockingTest {
+            val movie = repository.getFavoriteMovie(notExistMovieId)
+            verify(localDataSource).getFavoriteMovie(notExistMovieId)
+            assertThat(movie).isNull()
+        }
+    }
+
+    @Test
+    fun `delete favorite movie, return int value (affected rows)`() {
+        runBlockingTest {
+            val affectedRows = repository.deleteFavoriteMovie(actualDummyMovie as Movie)
+            verify(localDataSource).deleteFavoriteMovie(any())
+            assertThat(affectedRows).isEqualTo(1)
+        }
+    }
+
+    /**
+     * -------------------- End of Favorite Movies test ------------------------------
+     */
+
+    /**
+     * -------------------- Favorite Tv Shows test ------------------------------
+     */
+    @Test
+    fun `insert favorite tv show, return long value (affected rows)`() {
+        runBlockingTest {
+            val affectedRows = repository.insertFavoriteTvShow(actualDummyTvShow as TvShow)
+            verify(localDataSource).insertFavoriteTvShow(any())
+            assertThat(affectedRows).isEqualTo(1L)
+        }
+    }
+
+    @Test
+    fun `get favorite tv shows, return the list of tv show`() {
+        runBlockingTest {
+            repository.getFavoriteTvShows(SortUtils.Sort.RANDOM)
+            val tvShows = PagedListUtil.mockPagedList(actualTvShows)
+            verify(localDataSource).getFavoriteTvShows(SortUtils.Sort.RANDOM)
+            assertThat(tvShows).isNotNull()
+            assertThat(tvShows.size).isEqualTo(actualMovies.size)
+        }
+    }
+
+    @Test
+    fun `get favorite tv show with exist id, return the actual tv show`() {
+        runBlockingTest {
+            val tvShow = repository.getFavoriteTvShow(randomTvShowId)
+            verify(localDataSource).getFavoriteTvShow(randomTvShowId)
+            assertThat(tvShow).isNotNull()
+            assertThat(tvShow).isEqualTo(actualDummyTvShow)
+        }
+    }
+
+    @Test
+    fun `get favorite tv show with not exist id, return null`() {
+        runBlockingTest {
+            val tvShow = repository.getFavoriteTvShow(notExistTvShowId)
+            verify(localDataSource).getFavoriteTvShow(notExistTvShowId)
+            assertThat(tvShow).isNull()
+        }
+    }
+
+    @Test
+    fun `delete favorite tv show, return int value (affected rows)`() {
+        runBlockingTest {
+            val affectedRows = repository.deleteFavoriteTvShow(actualDummyTvShow as TvShow)
+            verify(localDataSource).deleteFavoriteTvShow(any())
+            assertThat(affectedRows).isEqualTo(1)
+        }
+    }
+
+    /**
+     * -------------------- End of Favorite Tv Shows test ------------------------------
      */
 }

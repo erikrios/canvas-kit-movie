@@ -4,12 +4,10 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.swipeUp
+import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import io.erikrios.github.canvaskitmovie.R
@@ -144,8 +142,10 @@ class MainActivityTest {
         onView(withId(R.id.tv_first_air_date_info)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_overview)).perform(swipeUp())
         onView(withId(R.id.tv_overview)).check(matches(isDisplayed()))
-        if (!dummyTvShow.creators.isNullOrEmpty()) {
+        try {
             onView(withId(R.id.rv_creators)).check(matches(isDisplayed()))
+        } catch (e: Exception) {
+            print("The creators data is null or empty")
         }
     }
 
@@ -177,5 +177,98 @@ class MainActivityTest {
         onView(withId(R.id.tv_release_date_info)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_overview)).check(matches(isDisplayed()))
         onView(withId(R.id.rv_genres)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun loadFavoriteMovies() {
+        onView(withId(R.id.rv_movies)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_movies))
+            .perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyMovieIndex))
+        onView(withId(R.id.rv_movies))
+            .perform(
+                RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
+                    dummyMovieIndex,
+                    click()
+                )
+            )
+        onView(withId(R.id.fab_favorite)).perform(click())
+        onView(isRoot()).perform(pressBack())
+        onView(withId(R.id.item_favorites)).perform(click())
+        onView(withId(R.id.rv_favorite_movies)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_favorite_movies)).perform(
+            RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
+                0,
+                click()
+            )
+        )
+
+        onView(withId(R.id.fab_favorite)).perform(click())
+
+        onView(withId(R.id.img_backdrop)).check(matches(isDisplayed()))
+        onView(withId(R.id.img_poster)).check(matches(isDisplayed()))
+        onView(withId(R.id.toolbar)).check(matches(isDisplayed()))
+        onView(withId(R.id.fab_favorite)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_title)).check(matches(isDisplayed()))
+        onView(withId(R.id.img_backdrop)).perform(swipeUp())
+        onView(withId(R.id.tv_rating_info)).check(matches(isDisplayed()))
+        onView(withId(R.id.rb_vote_average)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_vote_info)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_status_info)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_popularity_info)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_release_date_info)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_overview)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_genres)).check(matches(isDisplayed()))
+
+        onView(isRoot()).perform(pressBack())
+    }
+
+    @Test
+    fun loadFavoriteTvShows() {
+        onView(withId(R.id.item_tv_shows)).perform(click())
+        onView(withId(R.id.rv_tv_shows)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_tv_shows))
+            .perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyTvShowIndex))
+        onView(withId(R.id.rv_tv_shows))
+            .perform(
+                RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
+                    dummyTvShowIndex,
+                    click()
+                )
+            )
+        onView(withId(R.id.fab_favorite)).perform(click())
+        onView(isRoot()).perform(pressBack())
+        onView(withId(R.id.item_favorites)).perform(click())
+        onView(withId(R.id.rv_favorite_tv_shows)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_favorite_tv_shows)).perform(
+            RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
+                0,
+                click()
+            )
+        )
+
+        onView(withId(R.id.fab_favorite)).perform(click())
+
+        onView(withId(R.id.img_backdrop)).check(matches(isDisplayed()))
+        onView(withId(R.id.img_poster)).check(matches(isDisplayed()))
+        onView(withId(R.id.toolbar)).check(matches(isDisplayed()))
+        onView(withId(R.id.fab_favorite)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_genres)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_name)).check(matches(isDisplayed()))
+        onView(withId(R.id.img_backdrop)).perform(swipeUp())
+        onView(withId(R.id.tv_rating_info)).check(matches(isDisplayed()))
+        onView(withId(R.id.rb_vote_average)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_vote_info)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_status_info)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_popularity_info)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_first_air_date_info)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_overview)).perform(swipeUp())
+        onView(withId(R.id.tv_overview)).check(matches(isDisplayed()))
+        try {
+            onView(withId(R.id.rv_creators)).check(matches(isDisplayed()))
+        } catch (e: Exception) {
+            print("The creators data is null or empty")
+        }
+
+        onView(isRoot()).perform(pressBack())
     }
 }

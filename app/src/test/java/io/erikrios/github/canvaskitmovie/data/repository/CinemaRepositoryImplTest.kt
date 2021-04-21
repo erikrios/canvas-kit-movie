@@ -522,7 +522,7 @@ class CinemaRepositoryImplTest {
             val tvShows = PagedListUtil.mockPagedList(actualTvShows)
             verify(localDataSource).getFavoriteTvShows(SortUtils.Sort.RANDOM)
             assertThat(tvShows).isNotNull()
-            assertThat(tvShows.size).isEqualTo(actualMovies.size)
+            assertThat(tvShows.size).isEqualTo(actualTvShows.size)
         }
     }
 

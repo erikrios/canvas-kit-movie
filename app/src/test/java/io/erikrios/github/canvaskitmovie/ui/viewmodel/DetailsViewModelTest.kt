@@ -18,6 +18,7 @@ import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
+import org.mockito.kotlin.any
 import org.mockito.kotlin.verify
 import java.util.concurrent.TimeUnit
 
@@ -81,6 +82,15 @@ class DetailsViewModelTest {
                     "Internal server error.", null
                 )
             )
+            Mockito.`when`(repository.insertFavoriteMovie(any())).thenReturn(1L)
+            Mockito.`when`(repository.getFavoriteMovie(randomMovieId)).thenReturn(actualDummyMovie)
+            Mockito.`when`(repository.getFavoriteMovie(notExistMovieId)).thenReturn(null)
+            Mockito.`when`(repository.deleteFavoriteMovie(any())).thenReturn(1)
+            Mockito.`when`(repository.insertFavoriteTvShow(any())).thenReturn(1L)
+            Mockito.`when`(repository.getFavoriteTvShow(randomTvShowId))
+                .thenReturn(actualDummyTvShow)
+            Mockito.`when`(repository.getFavoriteTvShow(notExistTvShowId)).thenReturn(null)
+            Mockito.`when`(repository.deleteFavoriteTvShow(any())).thenReturn(1)
         }
 
         detailsViewModel = DetailsViewModel(repository)
@@ -162,5 +172,98 @@ class DetailsViewModelTest {
 
     /**
      * -------------------- End of get tv show by id test ------------------------------
+     */
+
+    /**
+     * -------------------- Favorite movies test ------------------------------
+     */
+
+    @Test
+    fun `insert favorite movie, set is favorite movie exists to true`() = runBlockingTest {
+        var isFavoriteMovieExist = detailsViewModel.isFavoriteMovieExistsState.getOrAwaitValueTest(
+            100,
+            TimeUnit.MILLISECONDS
+        )
+        assertThat(isFavoriteMovieExist).isFalse()
+        detailsViewModel.insertFavoriteMovie(actualDummyMovie as Movie)
+        verify(repository).insertFavoriteMovie(actualDummyMovie as Movie)
+        isFavoriteMovieExist = detailsViewModel.isFavoriteMovieExistsState.getOrAwaitValueTest()
+        assertThat(isFavoriteMovieExist).isTrue()
+    }
+
+    @Test
+    fun `check favorite movie exists, return true when exists, else return false`() =
+        runBlockingTest {
+            detailsViewModel.isFavoriteMovieExists(randomMovieId)
+            verify(repository).getFavoriteMovie(randomMovieId)
+            var isFavoriteMovieExist =
+                detailsViewModel.isFavoriteMovieExistsState.getOrAwaitValueTest()
+            assertThat(isFavoriteMovieExist).isTrue()
+            detailsViewModel.isFavoriteMovieExists(notExistMovieId)
+            verify(repository).getFavoriteMovie(notExistMovieId)
+            isFavoriteMovieExist = detailsViewModel.isFavoriteMovieExistsState.getOrAwaitValueTest()
+            assertThat(isFavoriteMovieExist).isFalse()
+        }
+
+    @Test
+    fun `delete favorite movie, set is favorite movie exists to false`() = runBlockingTest {
+        detailsViewModel.insertFavoriteMovie(actualDummyMovie as Movie)
+        var isFavoriteMovieExist = detailsViewModel.isFavoriteMovieExistsState.getOrAwaitValueTest()
+        assertThat(isFavoriteMovieExist).isTrue()
+        detailsViewModel.deleteFavoriteMovie(actualDummyMovie as Movie)
+        verify(repository).deleteFavoriteMovie(actualDummyMovie as Movie)
+        isFavoriteMovieExist = detailsViewModel.isFavoriteMovieExistsState.getOrAwaitValueTest()
+        assertThat(isFavoriteMovieExist).isFalse()
+    }
+    /**
+     * -------------------- End of favorite movies test ------------------------------
+     */
+
+    /**
+     * -------------------- Favorite tv show test ------------------------------
+     */
+
+    @Test
+    fun `insert favorite tv show, set is favorite tv show exists to true`() = runBlockingTest {
+        var isFavoriteTvShowExist =
+            detailsViewModel.isFavoriteTvShowExistsState.getOrAwaitValueTest(
+                100,
+                TimeUnit.MILLISECONDS
+            )
+        assertThat(isFavoriteTvShowExist).isFalse()
+        detailsViewModel.insertFavoriteTvShow(actualDummyTvShow as TvShow)
+        verify(repository).insertFavoriteTvShow(actualDummyTvShow as TvShow)
+        isFavoriteTvShowExist = detailsViewModel.isFavoriteTvShowExistsState.getOrAwaitValueTest()
+        assertThat(isFavoriteTvShowExist).isTrue()
+    }
+
+    @Test
+    fun `check favorite tv show exists, return true when exists, else return false`() =
+        runBlockingTest {
+            detailsViewModel.isFavoriteTvShowExists(randomTvShowId)
+            verify(repository).getFavoriteTvShow(randomTvShowId)
+            var isFavoriteTvShowExist =
+                detailsViewModel.isFavoriteTvShowExistsState.getOrAwaitValueTest()
+            assertThat(isFavoriteTvShowExist).isTrue()
+            detailsViewModel.isFavoriteTvShowExists(notExistTvShowId)
+            verify(repository).getFavoriteTvShow(notExistTvShowId)
+            isFavoriteTvShowExist =
+                detailsViewModel.isFavoriteTvShowExistsState.getOrAwaitValueTest()
+            assertThat(isFavoriteTvShowExist).isFalse()
+        }
+
+    @Test
+    fun `delete favorite tv show, set is favorite tv show exists to false`() = runBlockingTest {
+        detailsViewModel.insertFavoriteTvShow(actualDummyTvShow as TvShow)
+        var isFavoriteTvShowExist =
+            detailsViewModel.isFavoriteTvShowExistsState.getOrAwaitValueTest()
+        assertThat(isFavoriteTvShowExist).isTrue()
+        detailsViewModel.deleteFavoriteTvShow(actualDummyTvShow as TvShow)
+        verify(repository).deleteFavoriteTvShow(actualDummyTvShow as TvShow)
+        isFavoriteTvShowExist = detailsViewModel.isFavoriteTvShowExistsState.getOrAwaitValueTest()
+        assertThat(isFavoriteTvShowExist).isFalse()
+    }
+    /**
+     * -------------------- End of favorite tv show test ------------------------------
      */
 }

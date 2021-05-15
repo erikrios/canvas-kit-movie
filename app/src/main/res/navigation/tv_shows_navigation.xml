@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/discoverTvShowsFragment"
-        android:name="io.erikrios.github.canvaskitmovie.ui.view.tvshows.DiscoverTvShowsFragment"
+        android:name="io.erikrios.github.canvaskitmovie.tvshows.DiscoverTvShowsFragment"
         android:label="fragment_discover_tv_shows"
         tools:layout="@layout/fragment_discover_tv_shows">
         <action
@@ -19,16 +19,16 @@
     </fragment>
     <fragment
         android:id="@+id/tvShowDetailsFragment"
-        android:name="io.erikrios.github.canvaskitmovie.ui.view.tvshows.TvShowDetailsFragment"
+        android:name="io.erikrios.github.canvaskitmovie.details.TvShowDetailsFragment"
         android:label="fragment_tv_show_details"
         tools:layout="@layout/fragment_tv_show_details">
         <argument
             android:name="tvShow"
-            app:argType="io.erikrios.github.canvaskitmovie.data.model.TvShow" />
+            app:argType="io.erikrios.github.canvaskitmovie.core.data.model.TvShow" />
     </fragment>
     <fragment
         android:id="@+id/favoriteTvShowsFragment"
-        android:name="io.erikrios.github.canvaskitmovie.ui.view.favorites.FavoriteTvShowsFragment"
+        android:name="io.erikrios.github.canvaskitmovie.favorites.FavoriteTvShowsFragment"
         android:label="fragment_favorite_tv_shows"
         tools:layout="@layout/fragment_favorite_tv_shows" >
         <action

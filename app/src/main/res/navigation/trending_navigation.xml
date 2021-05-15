@@ -6,7 +6,7 @@
     app:startDestination="@id/discoverTrendingFragment">
     <fragment
         android:id="@+id/discoverTrendingFragment"
-        android:name="io.erikrios.github.canvaskitmovie.ui.view.trending.DiscoverTrendingFragment"
+        android:name="io.erikrios.github.canvaskitmovie.trending.DiscoverTrendingFragment"
         android:label="fragment_discover_trending"
         tools:layout="@layout/fragment_discover_trending">
         <action
@@ -15,11 +15,11 @@
     </fragment>
     <fragment
         android:id="@+id/movieDetailsFragment2"
-        android:name="io.erikrios.github.canvaskitmovie.ui.view.movies.MovieDetailsFragment"
+        android:name="io.erikrios.github.canvaskitmovie.details.MovieDetailsFragment"
         android:label="fragment_movie_details"
         tools:layout="@layout/fragment_movie_details">
         <argument
             android:name="movie"
-            app:argType="io.erikrios.github.canvaskitmovie.data.model.Movie" />
+            app:argType="io.erikrios.github.canvaskitmovie.core.data.model.Movie" />
     </fragment>
 </navigation>

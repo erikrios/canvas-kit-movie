@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/discoverMoviesFragment"
-        android:name="io.erikrios.github.canvaskitmovie.ui.view.movies.DiscoverMoviesFragment"
+        android:name="io.erikrios.github.canvaskitmovie.movies.DiscoverMoviesFragment"
         android:label="fragment_discover_movies"
         tools:layout="@layout/fragment_discover_movies">
         <action
@@ -19,16 +19,16 @@
     </fragment>
     <fragment
         android:id="@+id/movieDetailsFragment"
-        android:name="io.erikrios.github.canvaskitmovie.ui.view.movies.MovieDetailsFragment"
+        android:name="io.erikrios.github.canvaskitmovie.details.MovieDetailsFragment"
         android:label="fragment_movie_details"
         tools:layout="@layout/fragment_movie_details">
         <argument
             android:name="movie"
-            app:argType="io.erikrios.github.canvaskitmovie.data.model.Movie" />
+            app:argType="io.erikrios.github.canvaskitmovie.core.data.model.Movie" />
     </fragment>
     <fragment
         android:id="@+id/favoriteMoviesFragment"
-        android:name="io.erikrios.github.canvaskitmovie.ui.view.favorites.FavoriteMoviesFragment"
+        android:name="io.erikrios.github.canvaskitmovie.favorites.FavoriteMoviesFragment"
         android:label="fragment_favorite_movies"
         tools:layout="@layout/fragment_favorite_movies" >
         <action

@@ -130,7 +130,7 @@ class FavoriteMoviesFragment : Fragment() {
     private fun handleAdapter() {
         adapter = FavoriteCinemaAdapter {
             val action =
-                FavoriteMoviesFragmentDirections.actionFavoriteMoviesFragmentToMovieDetailsFragment2(
+                FavoriteMoviesFragmentDirections.actionFavoriteMoviesFragmentToMovieDetailsFragment(
                     it
                 )
             findNavController().navigate(action)

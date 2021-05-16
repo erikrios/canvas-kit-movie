@@ -1,4 +1,4 @@
-package io.erikrios.github.canvaskitmovie.favorites
+package io.github.erikrios.canvaskitmovie.favorite
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData

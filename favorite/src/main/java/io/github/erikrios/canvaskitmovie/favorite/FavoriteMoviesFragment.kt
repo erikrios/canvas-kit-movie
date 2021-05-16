@@ -1,4 +1,4 @@
-package io.erikrios.github.canvaskitmovie.favorites
+package io.github.erikrios.canvaskitmovie.favorite
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,11 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import io.erikrios.github.canvaskitmovie.R
-import io.erikrios.github.canvaskitmovie.databinding.FragmentFavoriteMoviesBinding
 import io.github.erikrios.canvaskitmovie.core.domain.model.Movie
 import io.github.erikrios.canvaskitmovie.core.ui.FavoriteCinemaAdapter
 import io.github.erikrios.canvaskitmovie.core.utils.SortUtils
+import io.github.erikrios.canvaskitmovie.favorite.databinding.FragmentFavoriteMoviesBinding
+import io.github.erikrios.canvaskitmovie.favorite.di.favoriteModule
 import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.context.loadKoinModules
 
 class FavoriteMoviesFragment : Fragment() {
 
@@ -28,6 +30,7 @@ class FavoriteMoviesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        loadKoinModules(favoriteModule)
         _binding = FragmentFavoriteMoviesBinding.inflate(inflater, container, false)
         return binding?.root
     }

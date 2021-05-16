@@ -1,4 +1,4 @@
-package io.erikrios.github.canvaskitmovie.favorites
+package io.github.erikrios.canvaskitmovie.favorite
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,27 +8,29 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import io.erikrios.github.canvaskitmovie.R
-import io.erikrios.github.canvaskitmovie.databinding.FragmentFavoriteTrendingsBinding
-import io.github.erikrios.canvaskitmovie.core.domain.model.Trending
+import io.github.erikrios.canvaskitmovie.core.domain.model.TvShow
 import io.github.erikrios.canvaskitmovie.core.ui.FavoriteCinemaAdapter
 import io.github.erikrios.canvaskitmovie.core.utils.SortUtils
+import io.github.erikrios.canvaskitmovie.favorite.databinding.FragmentFavoriteTvShowsBinding
+import io.github.erikrios.canvaskitmovie.favorite.di.favoriteModule
 import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.context.loadKoinModules
 
-class FavoriteTrendingsFragment : Fragment() {
+class FavoriteTvShowsFragment : Fragment() {
 
-    private var _binding: FragmentFavoriteTrendingsBinding? = null
+    private var _binding: FragmentFavoriteTvShowsBinding? = null
     private val binding get() = _binding
-    private lateinit var adapter: FavoriteCinemaAdapter<Trending>
-    private val viewModel: FavoriteTrendingsViewModel by viewModel()
+    private lateinit var adapter: FavoriteCinemaAdapter<TvShow>
+    private val viewModel: FavoriteTvShowsViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentFavoriteTrendingsBinding.inflate(inflater, container, false)
+        loadKoinModules(favoriteModule)
+        _binding = FragmentFavoriteTvShowsBinding.inflate(inflater, container, false)
         return binding?.root
     }
 
@@ -36,9 +38,9 @@ class FavoriteTrendingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         handleToolbar()
         viewModel.apply {
-            getFavoriteTrendings(SortUtils.Sort.TITLE).observe(
+            getFavoriteTvShows(SortUtils.Sort.TITLE).observe(
                 viewLifecycleOwner,
-                this@FavoriteTrendingsFragment::handleState
+                this@FavoriteTvShowsFragment::handleState
             )
             handleAdapter()
             handleRecyclerView()
@@ -47,7 +49,7 @@ class FavoriteTrendingsFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.getFavoriteTrendings(SortUtils.Sort.TITLE)
+        viewModel.getFavoriteTvShows(SortUtils.Sort.TITLE)
     }
 
     override fun onDestroyView() {
@@ -55,27 +57,27 @@ class FavoriteTrendingsFragment : Fragment() {
         _binding = null
     }
 
-    private fun handleState(trendingsState: List<Trending>?) {
-        trendingsState?.let { handleSuccessState(it) } ?: run { handleLoadingState() }
+    private fun handleState(tvShowState: List<TvShow>?) {
+        tvShowState?.let { handleSuccessState(it) } ?: run { handleLoadingState() }
     }
 
     private fun handleLoadingState() {
         binding?.progressBar?.visibility = View.VISIBLE
     }
 
-    private fun handleSuccessState(trendings: List<Trending>) {
+    private fun handleSuccessState(tvShows: List<TvShow>) {
         binding?.progressBar?.visibility = View.GONE
-        if (trendings.isEmpty()) {
+        if (tvShows.isEmpty()) {
             binding?.apply {
                 lavEmpty.visibility = View.VISIBLE
-                rvFavoriteTrendings.visibility = View.GONE
+                rvFavoriteTvShows.visibility = View.GONE
             }
         } else {
             binding?.apply {
                 lavEmpty.visibility = View.GONE
-                rvFavoriteTrendings.visibility = View.VISIBLE
+                rvFavoriteTvShows.visibility = View.VISIBLE
             }
-            adapter.setCinemas(trendings)
+            adapter.setCinemas(tvShows)
         }
     }
 
@@ -130,7 +132,7 @@ class FavoriteTrendingsFragment : Fragment() {
     private fun handleAdapter() {
         adapter = FavoriteCinemaAdapter {
             val action =
-                FavoriteTrendingsFragmentDirections.actionFavoriteTrendingsFragmentToTrendingDetailsFragment(
+                FavoriteTvShowsFragmentDirections.actionFavoriteTvShowsFragmentToTvShowDetailsFragment(
                     it
                 )
             findNavController().navigate(action)
@@ -138,13 +140,13 @@ class FavoriteTrendingsFragment : Fragment() {
     }
 
     private fun handleRecyclerView() {
-        binding?.rvFavoriteTrendings?.adapter = adapter
+        binding?.rvFavoriteTvShows?.adapter = adapter
     }
 
     private fun handleMenuItemClick(menuItem: MenuItem, sort: SortUtils.Sort) {
-        viewModel.getFavoriteTrendings(sort).observe(
+        viewModel.getFavoriteTvShows(sort).observe(
             viewLifecycleOwner,
-            this@FavoriteTrendingsFragment::handleState
+            this@FavoriteTvShowsFragment::handleState
         )
         menuItem.isChecked = true
     }

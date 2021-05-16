@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/favoriteTvShowsFragment"
-        android:name="io.erikrios.github.canvaskitmovie.favorites.FavoriteTvShowsFragment"
+        android:name="io.github.erikrios.canvaskitmovie.favorite.FavoriteTvShowsFragment"
         android:label="fragment_favorite_tv_shows"
         tools:layout="@layout/fragment_favorite_tv_shows">
         <action

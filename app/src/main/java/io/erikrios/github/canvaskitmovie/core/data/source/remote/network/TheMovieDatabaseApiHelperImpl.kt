@@ -1,8 +1,6 @@
 package io.erikrios.github.canvaskitmovie.core.data.source.remote.network
 
-import javax.inject.Inject
-
-class TheMovieDatabaseApiHelperImpl @Inject constructor(private val apiService: TheMovieDatabaseApiService) :
+class TheMovieDatabaseApiHelperImpl(private val apiService: TheMovieDatabaseApiService) :
     TheMovieDatabaseApiHelper {
 
     override suspend fun getMovies() = apiService.getMovies()

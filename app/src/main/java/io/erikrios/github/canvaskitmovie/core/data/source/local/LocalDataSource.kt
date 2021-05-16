@@ -9,9 +9,8 @@ import io.erikrios.github.canvaskitmovie.core.data.source.local.room.TvShowDao
 import io.erikrios.github.canvaskitmovie.core.utils.SortUtils
 import io.erikrios.github.canvaskitmovie.core.utils.SortUtils.getSortedQuery
 import kotlinx.coroutines.flow.Flow
-import javax.inject.Inject
 
-class LocalDataSource @Inject constructor(
+class LocalDataSource(
     private val movieDao: MovieDao,
     private val tvShowDao: TvShowDao,
     private val trendingDao: TrendingDao

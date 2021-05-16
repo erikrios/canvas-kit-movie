@@ -12,9 +12,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import javax.inject.Inject
 
-class RemoteDataSource @Inject constructor(private val apiHelper: TheMovieDatabaseApiHelper) {
+class RemoteDataSource(private val apiHelper: TheMovieDatabaseApiHelper) {
 
     suspend fun getMovies(): Flow<TheMovieDatabaseApiResponse<List<MovieResponse>>> {
         return flow {

@@ -7,7 +7,7 @@ import io.erikrios.github.canvaskitmovie.MainCoroutineRule
 import io.erikrios.github.canvaskitmovie.core.domain.model.Movie
 import io.erikrios.github.canvaskitmovie.core.domain.model.TvShow
 import io.erikrios.github.canvaskitmovie.core.domain.repository.ITrendingRepository
-import io.erikrios.github.canvaskitmovie.favorites.FavoritesViewModel
+import io.erikrios.github.canvaskitmovie.favorites.FavoriteMoviesViewModel
 import io.erikrios.github.canvaskitmovie.core.utils.DummyData
 import io.erikrios.github.canvaskitmovie.core.utils.PagedListUtil
 import io.erikrios.github.canvaskitmovie.core.utils.SortUtils
@@ -35,7 +35,7 @@ class FavoritesViewModelTest {
     @Mock
     private lateinit var repository: ITrendingRepository
 
-    private lateinit var favoritesViewModel: FavoritesViewModel
+    private lateinit var favoritesViewModel: FavoriteMoviesViewModel
     private lateinit var actualMovies: List<Movie>
     private lateinit var actualTvShows: List<TvShow>
     private var actualMoviesSize: Int = 0
@@ -61,7 +61,7 @@ class FavoritesViewModelTest {
             `when`(repository.getFavoriteTvShows(any())).thenReturn(tvShowDataSourceFactory)
         }
 
-        favoritesViewModel = FavoritesViewModel(repository)
+        favoritesViewModel = FavoriteMoviesViewModel(repository)
     }
 
     @Test

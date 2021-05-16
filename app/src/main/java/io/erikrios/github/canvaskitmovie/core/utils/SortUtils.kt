@@ -30,7 +30,7 @@ object SortUtils {
             CinemaType.TRENDING -> {
                 tableName = DatabaseContract.TrendingColumns.TABLE_NAME
                 titleColumnName = "title"
-                releaseDateColumnName = "releaseData"
+                releaseDateColumnName = "releaseDate"
             }
         }
 

@@ -5,6 +5,7 @@ import io.erikrios.github.canvaskitmovie.core.di.databaseModule
 import io.erikrios.github.canvaskitmovie.core.di.networkModule
 import io.erikrios.github.canvaskitmovie.core.di.repositoryModule
 import io.erikrios.github.canvaskitmovie.di.useCaseModule
+import io.erikrios.github.canvaskitmovie.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -22,7 +23,8 @@ class CanvasKitMovieApplication : Application() {
                     databaseModule,
                     networkModule,
                     repositoryModule,
-                    useCaseModule
+                    useCaseModule,
+                    viewModelModule
                 )
             )
         }

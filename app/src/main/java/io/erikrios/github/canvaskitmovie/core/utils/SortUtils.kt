@@ -34,7 +34,7 @@ object SortUtils {
             }
         }
 
-        val sortQuery = StringBuilder().append("SELECT * FROM $tableName ")
+        val sortQuery = StringBuilder().append("SELECT * FROM $tableName WHERE isFavorite = 1 ")
             .also {
                 when (sort) {
                     Sort.TITLE -> it.append("ORDER BY $titleColumnName")

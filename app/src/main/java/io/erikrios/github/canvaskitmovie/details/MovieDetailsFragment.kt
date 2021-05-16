@@ -1,6 +1,7 @@
 package io.erikrios.github.canvaskitmovie.details
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -60,9 +61,18 @@ class MovieDetailsFragment : Fragment() {
 
     private fun handleState(movieResource: Resource<Movie>) {
         when (movieResource) {
-            is Resource.Loading -> handleLoadingState()
-            is Resource.Error -> movieResource.message?.let { handleErrorState(it) }
-            is Resource.Success -> movieResource.data?.let { handleSuccessState(it) }
+            is Resource.Loading -> {
+                handleLoadingState()
+                Log.d(MovieDetailsFragment::class.java.simpleName, "Loading")
+            }
+            is Resource.Error -> {
+                movieResource.message?.let { handleErrorState(it) }
+                Log.d(MovieDetailsFragment::class.java.simpleName, "Error")
+            }
+            is Resource.Success -> {
+                movieResource.data?.let { handleSuccessState(it) }
+                Log.d(MovieDetailsFragment::class.java.simpleName, "Success")
+            }
         }
     }
 
@@ -71,19 +81,11 @@ class MovieDetailsFragment : Fragment() {
             binding?.fabFavorite?.apply {
                 setImageResource(R.drawable.ic_baseline_favorite_24)
                 setOnClickListener { viewModel.setFavoriteMovie(newMovie, false) }
-                viewModel.getMovie(movie?.id ?: -1).observe(
-                    viewLifecycleOwner,
-                    this@MovieDetailsFragment::handleState
-                )
             }
         } else {
             binding?.fabFavorite?.apply {
                 setImageResource(R.drawable.ic_baseline_favorite_border_24)
-                setOnClickListener { viewModel.setFavoriteMovie(newMovie, false) }
-                viewModel.getMovie(movie?.id ?: -1).observe(
-                    viewLifecycleOwner,
-                    this@MovieDetailsFragment::handleState
-                )
+                setOnClickListener { viewModel.setFavoriteMovie(newMovie, true) }
             }
         }
     }
@@ -122,6 +124,7 @@ class MovieDetailsFragment : Fragment() {
     }
 
     private fun handleSuccessState(movie: Movie) {
+        this.movie?.isFavorite = movie.isFavorite
         handleView(movie)
     }
 

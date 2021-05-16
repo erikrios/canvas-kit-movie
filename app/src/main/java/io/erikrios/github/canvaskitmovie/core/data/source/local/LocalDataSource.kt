@@ -27,11 +27,11 @@ class LocalDataSource(
     ): Flow<List<MovieEntity>> =
         movieDao.getFavoriteMovies(getSortedQuery(sort, SortUtils.CinemaType.MOVIE))
 
-    fun updateMovie(movie: MovieEntity) = movieDao.updateMovie(movie)
+    suspend fun updateMovie(movie: MovieEntity) = movieDao.updateMovie(movie)
 
     fun setFavoriteMovie(movie: MovieEntity, newState: Boolean) {
         movie.isFavorite = newState
-        movieDao.updateMovie(movie)
+        movieDao.setFavoriteMovie(movie)
     }
 
     fun getTvShows(): Flow<List<TvShowEntity>> = tvShowDao.getTvShows()
@@ -45,11 +45,11 @@ class LocalDataSource(
     ): Flow<List<TvShowEntity>> =
         tvShowDao.getFavoriteTvShows(getSortedQuery(sort, SortUtils.CinemaType.TV_SHOW))
 
-    fun updateTvShow(tvShow: TvShowEntity) = tvShowDao.updateTvShow(tvShow)
+    suspend fun updateTvShow(tvShow: TvShowEntity) = tvShowDao.updateTvShow(tvShow)
 
     fun setFavoriteTvShow(tvShow: TvShowEntity, newState: Boolean) {
         tvShow.isFavorite = newState
-        tvShowDao.updateTvShow(tvShow)
+        tvShowDao.setFavoriteTvShow(tvShow)
     }
 
     fun getTrendings(): Flow<List<TrendingEntity>> = trendingDao.getTrendings()
@@ -64,10 +64,10 @@ class LocalDataSource(
     ): Flow<List<TrendingEntity>> =
         trendingDao.getFavoriteTrendings(getSortedQuery(sort, SortUtils.CinemaType.TRENDING))
 
-    fun updateTrending(trending: TrendingEntity) = trendingDao.updateTrending(trending)
+    suspend fun updateTrending(trending: TrendingEntity) = trendingDao.updateTrending(trending)
 
     fun setFavoriteTrending(trending: TrendingEntity, newState: Boolean) {
         trending.isFavorite = newState
-        trendingDao.updateTrending(trending)
+        trendingDao.setFavoriteTrending(trending)
     }
 }

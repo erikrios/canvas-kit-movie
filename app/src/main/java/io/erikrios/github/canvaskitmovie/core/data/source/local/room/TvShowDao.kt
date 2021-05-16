@@ -23,5 +23,8 @@ interface TvShowDao {
     fun getFavoriteTvShows(query: SupportSQLiteQuery): Flow<List<TvShowEntity>>
 
     @Update
-    fun updateTvShow(tvShow: TvShowEntity)
+    suspend fun updateTvShow(tvShow: TvShowEntity)
+
+    @Update
+    fun setFavoriteTvShow(tvShow: TvShowEntity)
 }

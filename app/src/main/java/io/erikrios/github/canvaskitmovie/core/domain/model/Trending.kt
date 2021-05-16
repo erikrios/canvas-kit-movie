@@ -21,5 +21,5 @@ data class Trending(
     val status: String? = null,
     val voteAverage: Double,
     val voteCount: Int,
-    val isFavorite: Boolean
+    var isFavorite: Boolean
 ) : Parcelable

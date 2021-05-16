@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import io.erikrios.github.canvaskitmovie.core.data.Resource
 import io.erikrios.github.canvaskitmovie.core.domain.model.Trending
@@ -83,11 +82,11 @@ class DiscoverTrendingFragment : Fragment() {
 
     private fun setRecyclerView(trendings: List<Trending>) {
         adapter = CinemaAdapter(trendings) { movie ->
-            val action =
-                DiscoverTrendingFragmentDirections.actionDiscoverTrendingFragmentToMovieDetailsFragment2(
-                    movie
-                )
-            findNavController().navigate(action)
+//            val action =
+//                DiscoverTrendingFragmentDirections.actionDiscoverTrendingFragmentToMovieDetailsFragment2(
+//                    movie
+//                )
+//            findNavController().navigate(action)
         }
         binding?.rvTrending?.adapter = adapter
     }

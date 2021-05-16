@@ -19,5 +19,5 @@ data class TvShow(
     val voteAverage: Double,
     val voteCount: Int,
     val creators: List<Creator>? = null,
-    val isFavorite: Boolean
+    var isFavorite: Boolean
 ) : Parcelable

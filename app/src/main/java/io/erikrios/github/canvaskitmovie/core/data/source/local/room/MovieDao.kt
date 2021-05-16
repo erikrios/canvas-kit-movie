@@ -24,5 +24,8 @@ interface MovieDao {
     fun getFavoriteMovies(query: SupportSQLiteQuery): Flow<List<MovieEntity>>
 
     @Update
-    fun updateMovie(movie: MovieEntity)
+    suspend fun updateMovie(movie: MovieEntity)
+
+    @Update
+    fun setFavoriteMovie(movie: MovieEntity)
 }

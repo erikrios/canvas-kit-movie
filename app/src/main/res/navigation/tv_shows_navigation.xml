@@ -4,12 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tv_shows_navigation"
     app:startDestination="@id/discoverTvShowsFragment">
-
     <fragment
         android:id="@+id/discoverTvShowsFragment"
         android:name="io.erikrios.github.canvaskitmovie.tvshows.DiscoverTvShowsFragment"
         android:label="fragment_discover_tv_shows"
-        tools:layout="@layout/fragment_discover_tv_shows">
+        tools:layout="@layout/fragment_discover_tv_shows" >
         <action
             android:id="@+id/action_discoverTvShowsFragment_to_tvShowDetailsFragment"
             app:destination="@id/tvShowDetailsFragment" />
@@ -21,18 +20,14 @@
         android:id="@+id/tvShowDetailsFragment"
         android:name="io.erikrios.github.canvaskitmovie.details.TvShowDetailsFragment"
         android:label="fragment_tv_show_details"
-        tools:layout="@layout/fragment_tv_show_details">
+        tools:layout="@layout/fragment_tv_show_details" >
         <argument
             android:name="tvShow"
-            app:argType="io.erikrios.github.canvaskitmovie.core.data.model.TvShow" />
+            app:argType="io.erikrios.github.canvaskitmovie.core.domain.model.TvShow" />
     </fragment>
     <fragment
         android:id="@+id/favoriteTvShowsFragment"
         android:name="io.erikrios.github.canvaskitmovie.favorites.FavoriteTvShowsFragment"
         android:label="fragment_favorite_tv_shows"
-        tools:layout="@layout/fragment_favorite_tv_shows" >
-        <action
-            android:id="@+id/action_favoriteTvShowsFragment_to_tvShowDetailsFragment"
-            app:destination="@id/tvShowDetailsFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_favorite_tv_shows" />
 </navigation>

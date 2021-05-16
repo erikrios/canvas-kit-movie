@@ -24,5 +24,8 @@ interface TrendingDao {
     fun getFavoriteTrendings(query: SupportSQLiteQuery): Flow<List<TrendingEntity>>
 
     @Update
-    fun updateTrending(trending: TrendingEntity)
+    suspend fun updateTrending(trending: TrendingEntity)
+
+    @Update
+    fun setFavoriteTrending(trending: TrendingEntity)
 }

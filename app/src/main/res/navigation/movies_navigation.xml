@@ -4,35 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/movie_navigation"
     app:startDestination="@id/discoverMoviesFragment">
-
     <fragment
         android:id="@+id/discoverMoviesFragment"
         android:name="io.erikrios.github.canvaskitmovie.movies.DiscoverMoviesFragment"
         android:label="fragment_discover_movies"
-        tools:layout="@layout/fragment_discover_movies">
+        tools:layout="@layout/fragment_discover_movies" >
         <action
             android:id="@+id/action_discoverMoviesFragment_to_movieDetailsFragment"
-            app:destination="@id/movieDetailsFragment" />
+            app:destination="@id/movieDetailsFragment2" />
         <action
             android:id="@+id/action_discoverMoviesFragment_to_favoriteMoviesFragment"
             app:destination="@id/favoriteMoviesFragment" />
     </fragment>
     <fragment
-        android:id="@+id/movieDetailsFragment"
-        android:name="io.erikrios.github.canvaskitmovie.details.MovieDetailsFragment"
-        android:label="fragment_movie_details"
-        tools:layout="@layout/fragment_movie_details">
-        <argument
-            android:name="movie"
-            app:argType="io.erikrios.github.canvaskitmovie.core.data.model.Movie" />
-    </fragment>
-    <fragment
         android:id="@+id/favoriteMoviesFragment"
         android:name="io.erikrios.github.canvaskitmovie.favorites.FavoriteMoviesFragment"
         android:label="fragment_favorite_movies"
-        tools:layout="@layout/fragment_favorite_movies" >
-        <action
-            android:id="@+id/action_favoriteMoviesFragment_to_movieDetailsFragment"
-            app:destination="@id/movieDetailsFragment" />
+        tools:layout="@layout/fragment_favorite_movies" />
+    <fragment
+        android:id="@+id/movieDetailsFragment2"
+        android:name="io.erikrios.github.canvaskitmovie.details.MovieDetailsFragment"
+        android:label="fragment_movie_details"
+        tools:layout="@layout/fragment_movie_details" >
+        <argument
+            android:name="movie"
+            app:argType="io.erikrios.github.canvaskitmovie.core.domain.model.Movie" />
     </fragment>
 </navigation>

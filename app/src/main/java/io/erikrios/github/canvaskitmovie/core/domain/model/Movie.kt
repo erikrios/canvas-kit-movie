@@ -21,5 +21,5 @@ data class Movie(
     val status: String? = null,
     val voteAverage: Double,
     val voteCount: Int,
-    val isFavorite: Boolean
+    var isFavorite: Boolean
 ) : Parcelable

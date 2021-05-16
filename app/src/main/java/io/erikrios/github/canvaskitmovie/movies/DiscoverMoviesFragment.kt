@@ -5,25 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import dagger.hilt.android.AndroidEntryPoint
 import io.erikrios.github.canvaskitmovie.R
-import io.erikrios.github.canvaskitmovie.core.domain.model.Movie
-import io.erikrios.github.canvaskitmovie.databinding.FragmentDiscoverMoviesBinding
-import io.erikrios.github.canvaskitmovie.core.ui.CinemaAdapter
-import io.erikrios.github.canvaskitmovie.main.MainViewModel
 import io.erikrios.github.canvaskitmovie.core.data.Resource
-import io.erikrios.github.canvaskitmovie.core.utils.Status
+import io.erikrios.github.canvaskitmovie.core.domain.model.Movie
+import io.erikrios.github.canvaskitmovie.core.ui.CinemaAdapter
+import io.erikrios.github.canvaskitmovie.databinding.FragmentDiscoverMoviesBinding
+import org.koin.android.viewmodel.ext.android.viewModel
 
-@AndroidEntryPoint
 class DiscoverMoviesFragment : Fragment() {
 
     private var _binding: FragmentDiscoverMoviesBinding? = null
     private val binding get() = _binding
     private lateinit var adapter: CinemaAdapter<Movie>
-    private val mainViewModel: MainViewModel by activityViewModels()
+    private val viewModel: DiscoverMoviesViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +32,7 @@ class DiscoverMoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         handleToolbar()
-        mainViewModel.moviesState.observe(
+        viewModel.moviesState.observe(
             viewLifecycleOwner,
             this@DiscoverMoviesFragment::handleState
         )
@@ -48,13 +44,13 @@ class DiscoverMoviesFragment : Fragment() {
     }
 
     private fun handleState(moviesResource: Resource<List<Movie>>) {
-        when (moviesResource.status) {
-            Status.LOADING -> handleLoadingState(true)
-            Status.ERROR -> {
+        when (moviesResource) {
+            is Resource.Loading -> handleLoadingState(true)
+            is Resource.Error -> {
                 handleLoadingState(false)
                 moviesResource.message?.let { handleErrorState(it) }
             }
-            Status.SUCCESS -> {
+            is Resource.Success -> {
                 handleLoadingState(false)
                 moviesResource.data?.let { handleSuccessState(it) }
             }

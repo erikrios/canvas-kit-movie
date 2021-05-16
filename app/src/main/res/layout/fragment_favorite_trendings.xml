@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/menu_favorites"
-        app:title="@string/favorite_movies"
+        app:title="@string/favorite_trending"
         app:titleTextColor="@color/white" />
 
     <androidx.recyclerview.widget.RecyclerView

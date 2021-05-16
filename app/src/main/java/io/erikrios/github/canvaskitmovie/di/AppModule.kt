@@ -2,6 +2,7 @@ package io.erikrios.github.canvaskitmovie.di
 
 import io.erikrios.github.canvaskitmovie.core.domain.usecase.*
 import io.erikrios.github.canvaskitmovie.details.MovieDetailsViewModel
+import io.erikrios.github.canvaskitmovie.details.TrendingDetailsViewModel
 import io.erikrios.github.canvaskitmovie.details.TvShowDetailsViewModel
 import io.erikrios.github.canvaskitmovie.movies.DiscoverMoviesViewModel
 import io.erikrios.github.canvaskitmovie.trending.DiscoverTrendingViewModel
@@ -21,4 +22,5 @@ val viewModelModule = module {
     viewModel { DiscoverTrendingViewModel(get()) }
     viewModel { MovieDetailsViewModel(get()) }
     viewModel { TvShowDetailsViewModel(get()) }
+    viewModel { TrendingDetailsViewModel(get()) }
 }

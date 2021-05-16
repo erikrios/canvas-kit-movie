@@ -8,5 +8,18 @@
         android:id="@+id/discoverTrendingFragment"
         android:name="io.erikrios.github.canvaskitmovie.trending.DiscoverTrendingFragment"
         android:label="fragment_discover_trending"
-        tools:layout="@layout/fragment_discover_trending" />
+        tools:layout="@layout/fragment_discover_trending" >
+        <action
+            android:id="@+id/action_discoverTrendingFragment_to_trendingDetailsFragment"
+            app:destination="@id/trendingDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/trendingDetailsFragment"
+        android:name="io.erikrios.github.canvaskitmovie.details.TrendingDetailsFragment"
+        android:label="fragment_trending_details"
+        tools:layout="@layout/fragment_trending_details" >
+        <argument
+            android:name="trending"
+            app:argType="io.erikrios.github.canvaskitmovie.core.domain.model.Trending" />
+    </fragment>
 </navigation>

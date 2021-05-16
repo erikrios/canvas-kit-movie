@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
+import io.erikrios.github.canvaskitmovie.R
 import io.erikrios.github.canvaskitmovie.core.data.Resource
 import io.erikrios.github.canvaskitmovie.core.domain.model.Trending
 import io.erikrios.github.canvaskitmovie.core.ui.CinemaAdapter
@@ -30,6 +31,7 @@ class DiscoverTrendingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        handleToolbar()
         viewModel.trendingsState.observe(
             viewLifecycleOwner,
             this@DiscoverTrendingFragment::handleState
@@ -90,5 +92,14 @@ class DiscoverTrendingFragment : Fragment() {
             findNavController().navigate(action)
         }
         binding?.rvTrending?.adapter = adapter
+    }
+
+    private fun handleToolbar() {
+        val action =
+            DiscoverTrendingFragmentDirections.actionDiscoverTrendingFragmentToFavoriteTrendingsFragment()
+        binding?.toolbar?.menu?.findItem(R.id.item_favorites)?.setOnMenuItemClickListener {
+            findNavController().navigate(action)
+            return@setOnMenuItemClickListener true
+        }
     }
 }

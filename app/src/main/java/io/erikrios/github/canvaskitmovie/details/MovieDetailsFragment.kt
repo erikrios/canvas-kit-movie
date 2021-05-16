@@ -1,7 +1,6 @@
 package io.erikrios.github.canvaskitmovie.details
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -61,18 +60,9 @@ class MovieDetailsFragment : Fragment() {
 
     private fun handleState(movieResource: Resource<Movie>) {
         when (movieResource) {
-            is Resource.Loading -> {
-                handleLoadingState()
-                Log.d(MovieDetailsFragment::class.java.simpleName, "Loading")
-            }
-            is Resource.Error -> {
-                movieResource.message?.let { handleErrorState(it) }
-                Log.d(MovieDetailsFragment::class.java.simpleName, "Error")
-            }
-            is Resource.Success -> {
-                movieResource.data?.let { handleSuccessState(it) }
-                Log.d(MovieDetailsFragment::class.java.simpleName, "Success")
-            }
+            is Resource.Loading -> handleLoadingState()
+            is Resource.Error -> movieResource.message?.let { handleErrorState(it) }
+            is Resource.Success -> movieResource.data?.let { handleSuccessState(it) }
         }
     }
 

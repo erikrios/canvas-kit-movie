@@ -39,7 +39,7 @@ class LocalDataSource @Inject constructor(
 
     suspend fun insertTvShows(tvShows: List<TvShowEntity>) = tvShowDao.insertTvShows(tvShows)
 
-    suspend fun getTvShow(id: Int): Flow<TvShowEntity?> = tvShowDao.getTvShow(id)
+    fun getTvShow(id: Int): Flow<TvShowEntity?> = tvShowDao.getTvShow(id)
 
     fun getFavoriteTvShows(
         sort: SortUtils.Sort,
@@ -58,7 +58,7 @@ class LocalDataSource @Inject constructor(
     suspend fun insertTrendings(trendings: List<TrendingEntity>) =
         trendingDao.insertTrendings(trendings)
 
-    suspend fun getTrending(id: Int): Flow<TrendingEntity?> = trendingDao.getTrending(id)
+    fun getTrending(id: Int): Flow<TrendingEntity?> = trendingDao.getTrending(id)
 
     fun getFavoriteTrendings(
         sort: SortUtils.Sort

@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface ITvShowRepository {
     fun getTvShows(): Flow<Resource<List<TvShow>>>
-    fun getTvSho(id: Int): Flow<Resource<TvShow>>
+    fun getTvShow(id: Int): Flow<Resource<TvShow>>
     fun getFavoriteTvShows(sort: SortUtils.Sort): Flow<List<TvShow>>
-    fun setFavoriteTvSho(tvShow: TvShow, state: Boolean)
+    fun setFavoriteTvShow(tvShow: TvShow, state: Boolean)
 }

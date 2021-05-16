@@ -5,25 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import dagger.hilt.android.AndroidEntryPoint
 import io.erikrios.github.canvaskitmovie.R
-import io.erikrios.github.canvaskitmovie.core.domain.model.TvShow
-import io.erikrios.github.canvaskitmovie.databinding.FragmentDiscoverTvShowsBinding
-import io.erikrios.github.canvaskitmovie.core.ui.CinemaAdapter
-import io.erikrios.github.canvaskitmovie.main.MainViewModel
 import io.erikrios.github.canvaskitmovie.core.data.Resource
-import io.erikrios.github.canvaskitmovie.core.utils.Status
+import io.erikrios.github.canvaskitmovie.core.domain.model.TvShow
+import io.erikrios.github.canvaskitmovie.core.ui.CinemaAdapter
+import io.erikrios.github.canvaskitmovie.databinding.FragmentDiscoverTvShowsBinding
+import org.koin.android.viewmodel.ext.android.viewModel
 
-@AndroidEntryPoint
 class DiscoverTvShowsFragment : Fragment() {
 
     private var _binding: FragmentDiscoverTvShowsBinding? = null
     private val binding get() = _binding
     private lateinit var adapter: CinemaAdapter<TvShow>
-    private val mainViewModel: MainViewModel by activityViewModels()
+    private val viewModel: DiscoverTvShowsViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +32,7 @@ class DiscoverTvShowsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         handleToolbar()
-        mainViewModel.tvShowsState.observe(
+        viewModel.tvShowsState.observe(
             viewLifecycleOwner,
             this@DiscoverTvShowsFragment::handleState
         )
@@ -48,13 +44,13 @@ class DiscoverTvShowsFragment : Fragment() {
     }
 
     private fun handleState(tvShowsResource: Resource<List<TvShow>>) {
-        when (tvShowsResource.status) {
-            Status.LOADING -> handleLoadingState(true)
-            Status.ERROR -> {
+        when (tvShowsResource) {
+            is Resource.Loading -> handleLoadingState(true)
+            is Resource.Error -> {
                 handleLoadingState(false)
                 tvShowsResource.message?.let { handleErrorState(it) }
             }
-            Status.SUCCESS -> {
+            is Resource.Success -> {
                 handleLoadingState(false)
                 tvShowsResource.data?.let { handleSuccessState(it) }
             }

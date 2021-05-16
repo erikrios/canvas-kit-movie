@@ -21,7 +21,7 @@ class FavoriteCinemaAdapter<T>(private val onClickListener: ((T) -> Unit)) :
 
     private val cinemas = mutableListOf<T>()
 
-    private fun setCinemas(cinemas: List<T>) {
+    fun setCinemas(cinemas: List<T>) {
         val diffCallback = CinemaDiffCallback(this.cinemas, cinemas)
         val diffResult = DiffUtil.calculateDiff(diffCallback)
         this.cinemas.clear()

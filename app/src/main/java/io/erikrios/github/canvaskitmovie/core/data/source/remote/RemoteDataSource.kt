@@ -90,7 +90,7 @@ class RemoteDataSource @Inject constructor(private val apiHelper: TheMovieDataba
         }.flowOn(Dispatchers.IO)
     }
 
-    suspend fun getTrending(): Flow<TheMovieDatabaseApiResponse<List<TrendingResponse>>> {
+    suspend fun getTrendings(): Flow<TheMovieDatabaseApiResponse<List<TrendingResponse>>> {
         return flow {
             try {
                 increment()

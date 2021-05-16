@@ -12,16 +12,15 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import io.erikrios.github.canvaskitmovie.R
-import io.erikrios.github.canvaskitmovie.core.data.Resource
-import io.erikrios.github.canvaskitmovie.core.domain.model.Creator
-import io.erikrios.github.canvaskitmovie.core.domain.model.Genre
-import io.erikrios.github.canvaskitmovie.core.domain.model.TvShow
-import io.erikrios.github.canvaskitmovie.core.ui.CreatorAdapter
-import io.erikrios.github.canvaskitmovie.core.ui.GenreAdapter
-import io.erikrios.github.canvaskitmovie.core.utils.ImageConfigurations
-import io.erikrios.github.canvaskitmovie.core.utils.ImageConfigurations.generateFullImageUrl
 import io.erikrios.github.canvaskitmovie.dashboard.DashboardFragment
 import io.erikrios.github.canvaskitmovie.databinding.FragmentTvShowDetailsBinding
+import io.github.erikrios.canvaskitmovie.core.domain.model.Creator
+import io.github.erikrios.canvaskitmovie.core.domain.model.Genre
+import io.github.erikrios.canvaskitmovie.core.domain.model.TvShow
+import io.github.erikrios.canvaskitmovie.core.ui.CreatorAdapter
+import io.github.erikrios.canvaskitmovie.core.ui.GenreAdapter
+import io.github.erikrios.canvaskitmovie.core.utils.ImageConfigurations
+import io.github.erikrios.canvaskitmovie.core.utils.ImageConfigurations.generateFullImageUrl
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class TvShowDetailsFragment : Fragment() {
@@ -59,11 +58,19 @@ class TvShowDetailsFragment : Fragment() {
         showBottomNavigation()
     }
 
-    private fun handleState(tvShowResource: Resource<TvShow>) {
+    private fun handleState(tvShowResource: io.github.erikrios.canvaskitmovie.core.data.Resource<TvShow>) {
         when (tvShowResource) {
-            is Resource.Loading -> handleLoadingState()
-            is Resource.Error -> tvShowResource.message?.let { handleErrorState(it) }
-            is Resource.Success -> tvShowResource.data?.let { handleSuccessState(it) }
+            is io.github.erikrios.canvaskitmovie.core.data.Resource.Loading -> handleLoadingState()
+            is io.github.erikrios.canvaskitmovie.core.data.Resource.Error -> tvShowResource.message?.let {
+                handleErrorState(
+                    it
+                )
+            }
+            is io.github.erikrios.canvaskitmovie.core.data.Resource.Success -> tvShowResource.data?.let {
+                handleSuccessState(
+                    it
+                )
+            }
         }
     }
 

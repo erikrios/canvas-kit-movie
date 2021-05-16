@@ -23,7 +23,7 @@
         tools:layout="@layout/fragment_trending_details">
         <argument
             android:name="trending"
-            app:argType="io.erikrios.github.canvaskitmovie.core.domain.model.Trending" />
+            app:argType="io.github.erikrios.canvaskitmovie.core.domain.model.Trending" />
     </fragment>
     <fragment
         android:id="@+id/favoriteTrendingsFragment"

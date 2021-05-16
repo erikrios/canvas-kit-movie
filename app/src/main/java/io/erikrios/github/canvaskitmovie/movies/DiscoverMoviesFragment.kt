@@ -8,10 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import io.erikrios.github.canvaskitmovie.R
-import io.erikrios.github.canvaskitmovie.core.data.Resource
-import io.erikrios.github.canvaskitmovie.core.domain.model.Movie
-import io.erikrios.github.canvaskitmovie.core.ui.CinemaAdapter
 import io.erikrios.github.canvaskitmovie.databinding.FragmentDiscoverMoviesBinding
+import io.github.erikrios.canvaskitmovie.core.domain.model.Movie
+import io.github.erikrios.canvaskitmovie.core.ui.CinemaAdapter
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class DiscoverMoviesFragment : Fragment() {
@@ -43,14 +42,16 @@ class DiscoverMoviesFragment : Fragment() {
         _binding = null
     }
 
-    private fun handleState(moviesResource: Resource<List<Movie>>) {
+    private fun handleState(moviesResource: io.github.erikrios.canvaskitmovie.core.data.Resource<List<Movie>>) {
         when (moviesResource) {
-            is Resource.Loading -> handleLoadingState(true)
-            is Resource.Error -> {
+            is io.github.erikrios.canvaskitmovie.core.data.Resource.Loading -> handleLoadingState(
+                true
+            )
+            is io.github.erikrios.canvaskitmovie.core.data.Resource.Error -> {
                 handleLoadingState(false)
                 moviesResource.message?.let { handleErrorState(it) }
             }
-            is Resource.Success -> {
+            is io.github.erikrios.canvaskitmovie.core.data.Resource.Success -> {
                 handleLoadingState(false)
                 moviesResource.data?.let { handleSuccessState(it) }
             }

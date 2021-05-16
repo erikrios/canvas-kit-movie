@@ -12,14 +12,14 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import io.erikrios.github.canvaskitmovie.R
-import io.erikrios.github.canvaskitmovie.core.data.Resource
-import io.erikrios.github.canvaskitmovie.core.domain.model.Genre
-import io.erikrios.github.canvaskitmovie.core.domain.model.Trending
-import io.erikrios.github.canvaskitmovie.core.ui.GenreAdapter
-import io.erikrios.github.canvaskitmovie.core.utils.ImageConfigurations
-import io.erikrios.github.canvaskitmovie.core.utils.ImageConfigurations.generateFullImageUrl
 import io.erikrios.github.canvaskitmovie.dashboard.DashboardFragment
 import io.erikrios.github.canvaskitmovie.databinding.FragmentTrendingDetailsBinding
+import io.github.erikrios.canvaskitmovie.core.data.Resource
+import io.github.erikrios.canvaskitmovie.core.domain.model.Genre
+import io.github.erikrios.canvaskitmovie.core.domain.model.Trending
+import io.github.erikrios.canvaskitmovie.core.ui.GenreAdapter
+import io.github.erikrios.canvaskitmovie.core.utils.ImageConfigurations
+import io.github.erikrios.canvaskitmovie.core.utils.ImageConfigurations.generateFullImageUrl
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class TrendingDetailsFragment : Fragment() {

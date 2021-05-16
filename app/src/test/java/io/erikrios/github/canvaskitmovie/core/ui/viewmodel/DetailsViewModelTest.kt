@@ -6,9 +6,8 @@ import io.erikrios.github.canvaskitmovie.MainCoroutineRule
 import io.erikrios.github.canvaskitmovie.core.domain.model.Movie
 import io.erikrios.github.canvaskitmovie.core.domain.model.TvShow
 import io.erikrios.github.canvaskitmovie.details.MovieDetailsViewModel
-import io.erikrios.github.canvaskitmovie.getOrAwaitValueTest
 import io.erikrios.github.canvaskitmovie.core.utils.DummyData
-import io.erikrios.github.canvaskitmovie.core.data.Resource
+import io.github.erikrios.canvaskitmovie.core.data.Resource
 import io.erikrios.github.canvaskitmovie.core.utils.Status
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
@@ -60,25 +59,25 @@ class DetailsViewModelTest {
         actualDummyTvShow = DummyData.getTvShowById(randomTvShowId)
 
         runBlockingTest {
-            Mockito.`when`(repository.getMovies()).thenReturn(Resource.success(actualMovies))
-            Mockito.`when`(repository.getTvShows()).thenReturn(Resource.success(actualTvShows))
+            Mockito.`when`(repository.getMovies()).thenReturn(io.github.erikrios.canvaskitmovie.core.data.Resource.success(actualMovies))
+            Mockito.`when`(repository.getTvShows()).thenReturn(io.github.erikrios.canvaskitmovie.core.data.Resource.success(actualTvShows))
             Mockito.`when`(repository.getMovieById(randomMovieId)).thenReturn(
-                Resource.success(
+                io.github.erikrios.canvaskitmovie.core.data.Resource.success(
                     actualDummyMovie
                 )
             )
             Mockito.`when`(repository.getTvShowById(randomTvShowId)).thenReturn(
-                Resource.success(
+                io.github.erikrios.canvaskitmovie.core.data.Resource.success(
                     actualDummyTvShow
                 )
             )
             Mockito.`when`(repository.getMovieById(notExistMovieId)).thenReturn(
-                Resource.error(
+                io.github.erikrios.canvaskitmovie.core.data.Resource.error(
                     "Internal server error.", null
                 )
             )
             Mockito.`when`(repository.getTvShowById(notExistTvShowId)).thenReturn(
-                Resource.error(
+                io.github.erikrios.canvaskitmovie.core.data.Resource.error(
                     "Internal server error.", null
                 )
             )

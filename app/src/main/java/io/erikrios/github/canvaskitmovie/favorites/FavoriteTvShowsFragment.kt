@@ -11,10 +11,10 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import io.erikrios.github.canvaskitmovie.R
-import io.erikrios.github.canvaskitmovie.core.domain.model.TvShow
-import io.erikrios.github.canvaskitmovie.core.ui.FavoriteCinemaAdapter
-import io.erikrios.github.canvaskitmovie.core.utils.SortUtils
 import io.erikrios.github.canvaskitmovie.databinding.FragmentFavoriteTvShowsBinding
+import io.github.erikrios.canvaskitmovie.core.domain.model.TvShow
+import io.github.erikrios.canvaskitmovie.core.ui.FavoriteCinemaAdapter
+import io.github.erikrios.canvaskitmovie.core.utils.SortUtils
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class FavoriteTvShowsFragment : Fragment() {

@@ -5,13 +5,12 @@ import com.google.common.truth.Truth.assertThat
 import io.erikrios.github.canvaskitmovie.MainCoroutineRule
 import io.erikrios.github.canvaskitmovie.core.domain.model.Movie
 import io.erikrios.github.canvaskitmovie.core.domain.model.TvShow
-import io.erikrios.github.canvaskitmovie.getOrAwaitValueTest
 import io.erikrios.github.canvaskitmovie.main.MainViewModel
 import io.erikrios.github.canvaskitmovie.core.utils.DummyData.generateMovies
 import io.erikrios.github.canvaskitmovie.core.utils.DummyData.generateTvShows
 import io.erikrios.github.canvaskitmovie.core.utils.DummyData.getMovieById
 import io.erikrios.github.canvaskitmovie.core.utils.DummyData.getTvShowById
-import io.erikrios.github.canvaskitmovie.core.data.Resource
+import io.github.erikrios.canvaskitmovie.core.data.Resource
 import io.erikrios.github.canvaskitmovie.core.utils.Status
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
@@ -62,29 +61,29 @@ class MainViewModelTest {
         actualDummyTvShow = getTvShowById(randomTvShowId)
 
         runBlockingTest {
-            `when`(repository.getMovies()).thenReturn(Resource.success(actualMovies))
-            `when`(repository.getTvShows()).thenReturn(Resource.success(actualTvShows))
+            `when`(repository.getMovies()).thenReturn(io.github.erikrios.canvaskitmovie.core.data.Resource.success(actualMovies))
+            `when`(repository.getTvShows()).thenReturn(io.github.erikrios.canvaskitmovie.core.data.Resource.success(actualTvShows))
             `when`(repository.getMovieById(randomMovieId)).thenReturn(
-                Resource.success(
+                io.github.erikrios.canvaskitmovie.core.data.Resource.success(
                     actualDummyMovie
                 )
             )
             `when`(repository.getTvShowById(randomTvShowId)).thenReturn(
-                Resource.success(
+                io.github.erikrios.canvaskitmovie.core.data.Resource.success(
                     actualDummyTvShow
                 )
             )
             `when`(repository.getMovieById(notExistMovieId)).thenReturn(
-                Resource.error(
+                io.github.erikrios.canvaskitmovie.core.data.Resource.error(
                     "Internal server error.", null
                 )
             )
             `when`(repository.getTvShowById(notExistTvShowId)).thenReturn(
-                Resource.error(
+                io.github.erikrios.canvaskitmovie.core.data.Resource.error(
                     "Internal server error.", null
                 )
             )
-            `when`(repository.getTrending()).thenReturn(Resource.success(actualMovies))
+            `when`(repository.getTrending()).thenReturn(io.github.erikrios.canvaskitmovie.core.data.Resource.success(actualMovies))
         }
 
         mainViewModel = MainViewModel(repository)

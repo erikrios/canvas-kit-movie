@@ -3,4 +3,5 @@
     <string name="movies">Movies</string>
     <string name="favorites">Favorites</string>
     <string name="rating">Rating: %.1f</string>
+    <string name="tv_vote_average_container">(%.1f)</string>
 </resources>

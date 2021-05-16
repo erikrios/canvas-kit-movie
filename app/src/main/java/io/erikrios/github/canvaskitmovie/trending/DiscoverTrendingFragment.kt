@@ -8,10 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import io.erikrios.github.canvaskitmovie.R
-import io.erikrios.github.canvaskitmovie.core.data.Resource
-import io.erikrios.github.canvaskitmovie.core.domain.model.Trending
-import io.erikrios.github.canvaskitmovie.core.ui.CinemaAdapter
 import io.erikrios.github.canvaskitmovie.databinding.FragmentDiscoverTrendingBinding
+import io.github.erikrios.canvaskitmovie.core.data.Resource
+import io.github.erikrios.canvaskitmovie.core.domain.model.Trending
+import io.github.erikrios.canvaskitmovie.core.ui.CinemaAdapter
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class DiscoverTrendingFragment : Fragment() {

@@ -5,7 +5,7 @@ import io.erikrios.github.canvaskitmovie.core.domain.model.TvShow
 import io.erikrios.github.canvaskitmovie.core.data.source.local.LocalDataSource
 import io.erikrios.github.canvaskitmovie.core.domain.repository.ITrendingRepository
 import io.erikrios.github.canvaskitmovie.core.utils.NetworkHelper
-import io.erikrios.github.canvaskitmovie.core.data.Resource
+import io.github.erikrios.canvaskitmovie.core.data.Resource
 import io.erikrios.github.canvaskitmovie.core.utils.SortUtils
 
 class FakeCinemaRepositoryImpl(
@@ -14,18 +14,18 @@ class FakeCinemaRepositoryImpl(
     private val remoteDataSource: DataSource
 ) : ITrendingRepository {
 
-    override suspend fun getMovies(): Resource<List<Movie>> {
+    override suspend fun getMovies(): io.github.erikrios.canvaskitmovie.core.data.Resource<List<Movie>> {
         if (!networkHelper.isNetworkConnected()) {
             val cachedMovies = localDataSource.getMovies()
             cachedMovies.data?.let {
                 return if (it.isEmpty())
-                    Resource.error(
+                    io.github.erikrios.canvaskitmovie.core.data.Resource.error(
                         "Couldn't reach the server. Check your internet connection",
                         null
                     )
                 else
                     cachedMovies
-            } ?: return Resource.error(
+            } ?: return io.github.erikrios.canvaskitmovie.core.data.Resource.error(
                 "Couldn't reach the server. Check your internet connection",
                 null
             )
@@ -36,18 +36,18 @@ class FakeCinemaRepositoryImpl(
         }
     }
 
-    override suspend fun getTvShows(): Resource<List<TvShow>> {
+    override suspend fun getTvShows(): io.github.erikrios.canvaskitmovie.core.data.Resource<List<TvShow>> {
         if (!networkHelper.isNetworkConnected()) {
             val cachedTvShows = localDataSource.getTvShows()
             cachedTvShows.data?.let {
                 return if (it.isEmpty())
-                    Resource.error(
+                    io.github.erikrios.canvaskitmovie.core.data.Resource.error(
                         "Couldn't reach the server. Check your internet connection",
                         null
                     )
                 else
                     cachedTvShows
-            } ?: return Resource.error(
+            } ?: return io.github.erikrios.canvaskitmovie.core.data.Resource.error(
                 "Couldn't reach the server. Check your internet connection",
                 null
             )
@@ -58,10 +58,10 @@ class FakeCinemaRepositoryImpl(
         }
     }
 
-    override suspend fun getMovieById(id: Int): Resource<Movie> {
+    override suspend fun getMovieById(id: Int): io.github.erikrios.canvaskitmovie.core.data.Resource<Movie> {
         if (!networkHelper.isNetworkConnected()) {
             val cachedMovie = localDataSource.getMovieDetails(id)
-            cachedMovie.data?.let { return cachedMovie } ?: return Resource.error(
+            cachedMovie.data?.let { return cachedMovie } ?: return io.github.erikrios.canvaskitmovie.core.data.Resource.error(
                 "Couldn't reach the server. Check your internet connection",
                 null
             )
@@ -70,10 +70,10 @@ class FakeCinemaRepositoryImpl(
         }
     }
 
-    override suspend fun getTvShowById(id: Int): Resource<TvShow> {
+    override suspend fun getTvShowById(id: Int): io.github.erikrios.canvaskitmovie.core.data.Resource<TvShow> {
         if (!networkHelper.isNetworkConnected()) {
             val cachedTvShow = localDataSource.getTvShowDetails(id)
-            cachedTvShow.data?.let { return cachedTvShow } ?: return Resource.error(
+            cachedTvShow.data?.let { return cachedTvShow } ?: return io.github.erikrios.canvaskitmovie.core.data.Resource.error(
                 "Couldn't reach the server. Check your internet connection",
                 null
             )
@@ -106,18 +106,18 @@ class FakeCinemaRepositoryImpl(
     override suspend fun deleteFavoriteTvShow(tvShow: TvShow): Int =
         (localDataSource as LocalDataSource).deleteFavoriteTvShow(tvShow)
 
-    override suspend fun getTrending(): Resource<List<Movie>> {
+    override suspend fun getTrending(): io.github.erikrios.canvaskitmovie.core.data.Resource<List<Movie>> {
         if (!networkHelper.isNetworkConnected()) {
             val cachedTrending = localDataSource.getTrending()
             cachedTrending.data?.let {
                 return if (it.isEmpty()) {
-                    Resource.error(
+                    io.github.erikrios.canvaskitmovie.core.data.Resource.error(
                         "Couldn't reach the server. Check your internet connection",
                         null
                     )
                 } else
                     cachedTrending
-            } ?: return Resource.error(
+            } ?: return io.github.erikrios.canvaskitmovie.core.data.Resource.error(
                 "Couldn't reach the server. Check your internet connection",
                 null
             )

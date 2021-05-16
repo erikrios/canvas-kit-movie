@@ -12,14 +12,14 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import io.erikrios.github.canvaskitmovie.R
-import io.erikrios.github.canvaskitmovie.core.data.Resource
-import io.erikrios.github.canvaskitmovie.core.domain.model.Genre
-import io.erikrios.github.canvaskitmovie.core.domain.model.Movie
-import io.erikrios.github.canvaskitmovie.core.ui.GenreAdapter
-import io.erikrios.github.canvaskitmovie.core.utils.ImageConfigurations
-import io.erikrios.github.canvaskitmovie.core.utils.ImageConfigurations.generateFullImageUrl
 import io.erikrios.github.canvaskitmovie.dashboard.DashboardFragment
 import io.erikrios.github.canvaskitmovie.databinding.FragmentMovieDetailsBinding
+import io.github.erikrios.canvaskitmovie.core.data.Resource
+import io.github.erikrios.canvaskitmovie.core.domain.model.Genre
+import io.github.erikrios.canvaskitmovie.core.domain.model.Movie
+import io.github.erikrios.canvaskitmovie.core.ui.GenreAdapter
+import io.github.erikrios.canvaskitmovie.core.utils.ImageConfigurations
+import io.github.erikrios.canvaskitmovie.core.utils.ImageConfigurations.generateFullImageUrl
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MovieDetailsFragment : Fragment() {
@@ -61,8 +61,16 @@ class MovieDetailsFragment : Fragment() {
     private fun handleState(movieResource: Resource<Movie>) {
         when (movieResource) {
             is Resource.Loading -> handleLoadingState()
-            is Resource.Error -> movieResource.message?.let { handleErrorState(it) }
-            is Resource.Success -> movieResource.data?.let { handleSuccessState(it) }
+            is Resource.Error -> movieResource.message?.let {
+                handleErrorState(
+                    it
+                )
+            }
+            is Resource.Success -> movieResource.data?.let {
+                handleSuccessState(
+                    it
+                )
+            }
         }
     }
 

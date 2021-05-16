@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.paging.DataSource
 import com.google.common.truth.Truth.assertThat
 import io.erikrios.github.canvaskitmovie.MainCoroutineRule
-import io.erikrios.github.canvaskitmovie.core.data.Resource
+import io.github.erikrios.canvaskitmovie.core.data.Resource
 import io.erikrios.github.canvaskitmovie.core.domain.model.Movie
 import io.erikrios.github.canvaskitmovie.core.domain.model.TvShow
 import io.erikrios.github.canvaskitmovie.core.data.source.local.LocalDataSource
@@ -67,42 +67,42 @@ class CinemaRepositoryImplTest {
         `when`(networkHelper.isNetworkConnected()).thenReturn(true)
 
         runBlockingTest {
-            `when`(localDataSource.getMovies()).thenReturn(Resource.success(actualMovies))
-            `when`(localDataSource.getTvShows()).thenReturn(Resource.success(actualTvShows))
+            `when`(localDataSource.getMovies()).thenReturn(io.github.erikrios.canvaskitmovie.core.data.Resource.success(actualMovies))
+            `when`(localDataSource.getTvShows()).thenReturn(io.github.erikrios.canvaskitmovie.core.data.Resource.success(actualTvShows))
             `when`(localDataSource.getMovieDetails(randomMovieId)).thenReturn(
-                Resource.success(
+                io.github.erikrios.canvaskitmovie.core.data.Resource.success(
                     actualDummyMovie
                 )
             )
             `when`(localDataSource.getTvShowDetails(randomTvShowId)).thenReturn(
-                Resource.success(
+                io.github.erikrios.canvaskitmovie.core.data.Resource.success(
                     actualDummyTvShow
                 )
             )
-            `when`(localDataSource.getTrending()).thenReturn(Resource.success(actualMovies))
-            `when`(remoteDataSource.getMovies()).thenReturn(Resource.success(actualMovies))
-            `when`(remoteDataSource.getTvShows()).thenReturn(Resource.success(actualTvShows))
+            `when`(localDataSource.getTrending()).thenReturn(io.github.erikrios.canvaskitmovie.core.data.Resource.success(actualMovies))
+            `when`(remoteDataSource.getMovies()).thenReturn(io.github.erikrios.canvaskitmovie.core.data.Resource.success(actualMovies))
+            `when`(remoteDataSource.getTvShows()).thenReturn(io.github.erikrios.canvaskitmovie.core.data.Resource.success(actualTvShows))
             `when`(remoteDataSource.getMovieDetails(randomMovieId)).thenReturn(
-                Resource.success(
+                io.github.erikrios.canvaskitmovie.core.data.Resource.success(
                     actualDummyMovie
                 )
             )
             `when`(remoteDataSource.getTvShowDetails(randomTvShowId)).thenReturn(
-                Resource.success(
+                io.github.erikrios.canvaskitmovie.core.data.Resource.success(
                     actualDummyTvShow
                 )
             )
             `when`(remoteDataSource.getMovieDetails(notExistMovieId)).thenReturn(
-                Resource.error(
+                io.github.erikrios.canvaskitmovie.core.data.Resource.error(
                     "Internal server error.", null
                 )
             )
             `when`(remoteDataSource.getTvShowDetails(notExistTvShowId)).thenReturn(
-                Resource.error(
+                io.github.erikrios.canvaskitmovie.core.data.Resource.error(
                     "Internal server error.", null
                 )
             )
-            `when`(remoteDataSource.getTrending()).thenReturn(Resource.success(actualMovies))
+            `when`(remoteDataSource.getTrending()).thenReturn(io.github.erikrios.canvaskitmovie.core.data.Resource.success(actualMovies))
 
             @SuppressWarnings("unchecked")
             val movieDataSourceFactory =
@@ -195,7 +195,7 @@ class CinemaRepositoryImplTest {
             // Disable the network connection
             `when`(networkHelper.isNetworkConnected()).thenReturn(false)
             // Suppose that local data store is empty
-            `when`(localDataSource.getMovies()).thenReturn(Resource.success(listOf()))
+            `when`(localDataSource.getMovies()).thenReturn(io.github.erikrios.canvaskitmovie.core.data.Resource.success(listOf()))
             val movieResource = repository.getMovies()
             // Verify that localDataSource.getMovies() is called
             verify(localDataSource).getMovies()
@@ -275,7 +275,7 @@ class CinemaRepositoryImplTest {
             // Disable the network connection
             `when`(networkHelper.isNetworkConnected()).thenReturn(false)
             // Suppose that local data store is empty
-            `when`(localDataSource.getTvShows()).thenReturn(Resource.success(listOf()))
+            `when`(localDataSource.getTvShows()).thenReturn(io.github.erikrios.canvaskitmovie.core.data.Resource.success(listOf()))
             val tvShowsResource = repository.getTvShows()
             // Verify that localDataSource.getTvShows() is called
             verify(localDataSource).getTvShows()
@@ -438,7 +438,7 @@ class CinemaRepositoryImplTest {
             // Disable the network connection
             `when`(networkHelper.isNetworkConnected()).thenReturn(false)
             // Suppose that local data store is empty
-            `when`(localDataSource.getTrending()).thenReturn(Resource.success(listOf()))
+            `when`(localDataSource.getTrending()).thenReturn(io.github.erikrios.canvaskitmovie.core.data.Resource.success(listOf()))
             val movieResource = repository.getTrending()
             // Verify that localDataSource.getMovies() is called
             verify(localDataSource).getTrending()

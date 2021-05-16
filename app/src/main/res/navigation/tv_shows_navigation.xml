@@ -23,7 +23,7 @@
         tools:layout="@layout/fragment_tv_show_details">
         <argument
             android:name="tvShow"
-            app:argType="io.erikrios.github.canvaskitmovie.core.domain.model.TvShow" />
+            app:argType="io.github.erikrios.canvaskitmovie.core.domain.model.TvShow" />
     </fragment>
     <fragment
         android:id="@+id/favoriteTvShowsFragment"

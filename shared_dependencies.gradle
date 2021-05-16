@@ -34,6 +34,7 @@ dependencies {
     // Navigation Components
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationFragmentKtxVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationUiKtxVersion"
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$navigationFragmentKtxVersion"
 
     // Espresso Idling Resource
     implementation "androidx.test.espresso:espresso-idling-resource:$espressoIdlingResourceVersion"

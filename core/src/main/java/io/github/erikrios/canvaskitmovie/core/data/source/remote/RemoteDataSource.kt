@@ -65,7 +65,7 @@ class RemoteDataSource(private val apiHelper: TheMovieDatabaseApiHelper) {
                 }
             } catch (e: Exception) {
                 decrement()
-                emit(TheMovieDatabaseApiResponse.Error("Couldn't reach the server. Check your i)nternet connection"))
+                emit(TheMovieDatabaseApiResponse.Error("Couldn't reach the server. Check your internet connection"))
             }
         }.flowOn(Dispatchers.IO)
     }
@@ -84,7 +84,7 @@ class RemoteDataSource(private val apiHelper: TheMovieDatabaseApiHelper) {
                 }
             } catch (e: Exception) {
                 decrement()
-                emit(TheMovieDatabaseApiResponse.Error("Couldn't reach the server. Check your internet) connection"))
+                emit(TheMovieDatabaseApiResponse.Error("Couldn't reach the server. Check your internet connection"))
             }
         }.flowOn(Dispatchers.IO)
     }
@@ -103,7 +103,7 @@ class RemoteDataSource(private val apiHelper: TheMovieDatabaseApiHelper) {
                 }
             } catch (e: Exception) {
                 decrement()
-                emit(TheMovieDatabaseApiResponse.Error("Couldn't reach the server. Check your intern)et connection"))
+                emit(TheMovieDatabaseApiResponse.Error("Couldn't reach the server. Check your internet connection"))
             }
         }.flowOn(Dispatchers.IO)
     }

@@ -8,18 +8,30 @@
         android:id="@+id/discoverTrendingFragment"
         android:name="io.erikrios.github.canvaskitmovie.trending.DiscoverTrendingFragment"
         android:label="fragment_discover_trending"
-        tools:layout="@layout/fragment_discover_trending" >
+        tools:layout="@layout/fragment_discover_trending">
         <action
             android:id="@+id/action_discoverTrendingFragment_to_trendingDetailsFragment"
             app:destination="@id/trendingDetailsFragment" />
+        <action
+            android:id="@+id/action_discoverTrendingFragment_to_favoriteTrendingsFragment"
+            app:destination="@id/favoriteTrendingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/trendingDetailsFragment"
         android:name="io.erikrios.github.canvaskitmovie.details.TrendingDetailsFragment"
         android:label="fragment_trending_details"
-        tools:layout="@layout/fragment_trending_details" >
+        tools:layout="@layout/fragment_trending_details">
         <argument
             android:name="trending"
             app:argType="io.erikrios.github.canvaskitmovie.core.domain.model.Trending" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteTrendingsFragment"
+        android:name="io.erikrios.github.canvaskitmovie.favorites.FavoriteTrendingsFragment"
+        android:label="fragment_favorite_trendings"
+        tools:layout="@layout/fragment_favorite_trendings">
+        <action
+            android:id="@+id/action_favoriteTrendingsFragment_to_trendingDetailsFragment"
+            app:destination="@id/trendingDetailsFragment" />
     </fragment>
 </navigation>

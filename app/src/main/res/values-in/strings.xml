@@ -30,6 +30,6 @@
     <string name="vote_average_sort">Urutkan sesuai Rata-rata Voting</string>
     <string name="vote_count_sort">Urutkan sesuai Total Voting</string>
     <string name="random">Acak</string>
-    <string name="title_favorite">Favorite</string>
-    <string name="title_setting">Setting</string>
+    <string name="title_favorite">Favorit</string>
+    <string name="title_setting">Pengaturan</string>
 </resources>

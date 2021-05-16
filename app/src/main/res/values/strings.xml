@@ -29,6 +29,6 @@
     <string name="vote_average_sort">Sort by Vote Average</string>
     <string name="vote_count_sort">Sort by Vote Count</string>
     <string name="random">Random</string>
-    <string name="title_favorite">Favorit</string>
-    <string name="title_setting">Pengaturan</string>
+    <string name="title_favorite">Favorite</string>
+    <string name="title_setting">Setting</string>
 </resources>

@@ -97,9 +97,18 @@ class DiscoverTrendingFragment : Fragment() {
     private fun handleToolbar() {
         val action =
             DiscoverTrendingFragmentDirections.actionDiscoverTrendingFragmentToFavoriteTrendingsFragment()
-        binding?.toolbar?.menu?.findItem(R.id.item_favorites)?.setOnMenuItemClickListener {
-            findNavController().navigate(action)
-            return@setOnMenuItemClickListener true
+        val actionSettings =
+            DiscoverTrendingFragmentDirections.actionDiscoverTrendingFragmentToSettingsFragment()
+        val menu = binding?.toolbar?.menu
+        menu?.apply {
+            findItem(R.id.item_favorites)?.setOnMenuItemClickListener {
+                findNavController().navigate(action)
+                return@setOnMenuItemClickListener true
+            }
+            findItem(R.id.item_settings)?.setOnMenuItemClickListener {
+                findNavController().navigate(actionSettings)
+                return@setOnMenuItemClickListener true
+            }
         }
     }
 }

@@ -98,9 +98,18 @@ class DiscoverTvShowsFragment : Fragment() {
     private fun handleToolbar() {
         val action =
             DiscoverTvShowsFragmentDirections.actionDiscoverTvShowsFragmentToFavoriteTvShowsFragment()
-        binding?.toolbar?.menu?.findItem(R.id.item_favorites)?.setOnMenuItemClickListener {
-            findNavController().navigate(action)
-            return@setOnMenuItemClickListener true
+        val actionSettings =
+            DiscoverTvShowsFragmentDirections.actionDiscoverTvShowsFragmentToSettingsFragment()
+        val menu = binding?.toolbar?.menu
+        menu?.apply {
+            findItem(R.id.item_favorites)?.setOnMenuItemClickListener {
+                findNavController().navigate(action)
+                return@setOnMenuItemClickListener true
+            }
+            findItem(R.id.item_settings)?.setOnMenuItemClickListener {
+                findNavController().navigate(actionSettings)
+                return@setOnMenuItemClickListener true
+            }
         }
     }
 }

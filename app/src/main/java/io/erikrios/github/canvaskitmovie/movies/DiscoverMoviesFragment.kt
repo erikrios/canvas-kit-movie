@@ -98,9 +98,18 @@ class DiscoverMoviesFragment : Fragment() {
     private fun handleToolbar() {
         val action =
             DiscoverMoviesFragmentDirections.actionDiscoverMoviesFragmentToFavoriteMoviesFragment()
-        binding?.toolbar?.menu?.findItem(R.id.item_favorites)?.setOnMenuItemClickListener {
-            findNavController().navigate(action)
-            return@setOnMenuItemClickListener true
+        val actionSettings =
+            DiscoverMoviesFragmentDirections.actionDiscoverMoviesFragmentToSettingsFragment()
+        val menu = binding?.toolbar?.menu
+        menu?.apply {
+            findItem(R.id.item_favorites)?.setOnMenuItemClickListener {
+                findNavController().navigate(action)
+                return@setOnMenuItemClickListener true
+            }
+            findItem(R.id.item_settings)?.setOnMenuItemClickListener {
+                findNavController().navigate(actionSettings)
+                return@setOnMenuItemClickListener true
+            }
         }
     }
 }

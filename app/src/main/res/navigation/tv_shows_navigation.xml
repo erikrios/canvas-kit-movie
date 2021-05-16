@@ -29,6 +29,7 @@
         android:id="@+id/favoriteTvShowsFragment"
         android:name="io.github.erikrios.canvaskitmovie.favorite.FavoriteTvShowsFragment"
         android:label="fragment_favorite_tv_shows"
+        app:moduleName="favorite"
         tools:layout="@layout/fragment_favorite_tv_shows">
         <action
             android:id="@+id/action_favoriteTvShowsFragment_to_tvShowDetailsFragment"

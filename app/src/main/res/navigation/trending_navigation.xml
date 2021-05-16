@@ -26,6 +26,7 @@
             app:argType="io.github.erikrios.canvaskitmovie.core.domain.model.Trending" />
     </fragment>
     <fragment
+        app:moduleName="favorite"
         android:id="@+id/favoriteTrendingsFragment"
         android:name="io.github.erikrios.canvaskitmovie.favorite.FavoriteTrendingsFragment"
         android:label="fragment_favorite_trendings"

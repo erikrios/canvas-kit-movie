@@ -17,6 +17,7 @@
             app:destination="@id/favoriteMoviesFragment" />
     </fragment>
     <fragment
+        app:moduleName="favorite"
         android:id="@+id/favoriteMoviesFragment"
         android:name="io.github.erikrios.canvaskitmovie.favorite.FavoriteMoviesFragment"
         android:label="fragment_favorite_movies"

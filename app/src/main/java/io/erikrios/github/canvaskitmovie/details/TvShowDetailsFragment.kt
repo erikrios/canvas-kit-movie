@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.core.app.ShareCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -23,13 +22,14 @@ import io.erikrios.github.canvaskitmovie.core.utils.ImageConfigurations
 import io.erikrios.github.canvaskitmovie.core.utils.ImageConfigurations.generateFullImageUrl
 import io.erikrios.github.canvaskitmovie.dashboard.DashboardFragment
 import io.erikrios.github.canvaskitmovie.databinding.FragmentTvShowDetailsBinding
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class TvShowDetailsFragment : Fragment() {
 
     private var _binding: FragmentTvShowDetailsBinding? = null
     private val binding get() = _binding
     private val args: TvShowDetailsFragmentArgs by navArgs()
-    private val viewModel: TvShowDetailsViewModel by viewModels()
+    private val viewModel: TvShowDetailsViewModel by viewModel()
     private var tvShow: TvShow? = null
 
     override fun onCreateView(

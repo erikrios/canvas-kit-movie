@@ -5,18 +5,14 @@ import io.erikrios.github.canvaskitmovie.core.domain.repository.ITvShowRepositor
 import io.erikrios.github.canvaskitmovie.core.utils.SortUtils
 
 class TvShowInteractor(private val tvShowRepository: ITvShowRepository) : TvShowUseCase {
-    override suspend fun getTvShows() = tvShowRepository.getTvShows()
 
-    override suspend fun getTvShowById(id: Int) = tvShowRepository.getTvShowById(id)
+    override fun getTvShows() = tvShowRepository.getTvShows()
 
-    override suspend fun insertFavoriteTvShow(tvShow: TvShow) =
-        tvShowRepository.insertFavoriteTvShow(tvShow)
+    override fun getTvShow(id: Int) = tvShowRepository.getTvShow(id)
 
     override fun getFavoriteTvShows(sort: SortUtils.Sort) =
         tvShowRepository.getFavoriteTvShows(sort)
 
-    override suspend fun getFavoriteTvShow(id: Int) = tvShowRepository.getFavoriteTvShow(id)
-
-    override suspend fun deleteFavoriteTvShow(tvShow: TvShow) =
-        tvShowRepository.deleteFavoriteTvShow(tvShow)
+    override fun setFavoriteTvShow(tvShow: TvShow, state: Boolean) =
+        tvShowRepository.setFavoriteTvShow(tvShow, state)
 }

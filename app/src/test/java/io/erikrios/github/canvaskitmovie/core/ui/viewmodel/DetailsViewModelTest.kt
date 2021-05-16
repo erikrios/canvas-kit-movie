@@ -5,7 +5,7 @@ import com.google.common.truth.Truth.assertThat
 import io.erikrios.github.canvaskitmovie.MainCoroutineRule
 import io.erikrios.github.canvaskitmovie.core.domain.model.Movie
 import io.erikrios.github.canvaskitmovie.core.domain.model.TvShow
-import io.erikrios.github.canvaskitmovie.details.DetailsViewModel
+import io.erikrios.github.canvaskitmovie.details.MovieDetailsViewModel
 import io.erikrios.github.canvaskitmovie.getOrAwaitValueTest
 import io.erikrios.github.canvaskitmovie.core.utils.DummyData
 import io.erikrios.github.canvaskitmovie.core.data.Resource
@@ -34,7 +34,7 @@ class DetailsViewModelTest {
     @Mock
     private lateinit var repository: CinemaRepositoryImpl
 
-    private lateinit var detailsViewModel: DetailsViewModel
+    private lateinit var detailsViewModel: MovieDetailsViewModel
     private lateinit var actualMovies: List<Movie>
     private lateinit var actualTvShows: List<TvShow>
     private var actualMoviesSize: Int = 0
@@ -93,7 +93,7 @@ class DetailsViewModelTest {
             Mockito.`when`(repository.deleteFavoriteTvShow(any())).thenReturn(1)
         }
 
-        detailsViewModel = DetailsViewModel(repository)
+        detailsViewModel = MovieDetailsViewModel(repository)
     }
 
     /**

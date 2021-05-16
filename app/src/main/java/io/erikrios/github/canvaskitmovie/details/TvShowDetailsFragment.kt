@@ -12,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
-import dagger.hilt.android.AndroidEntryPoint
 import io.erikrios.github.canvaskitmovie.R
 import io.erikrios.github.canvaskitmovie.core.domain.model.Creator
 import io.erikrios.github.canvaskitmovie.core.domain.model.Genre
@@ -26,13 +25,12 @@ import io.erikrios.github.canvaskitmovie.core.utils.ImageConfigurations.generate
 import io.erikrios.github.canvaskitmovie.core.data.Resource
 import io.erikrios.github.canvaskitmovie.core.utils.Status
 
-@AndroidEntryPoint
 class TvShowDetailsFragment : Fragment() {
 
     private var _binding: FragmentTvShowDetailsBinding? = null
     private val binding get() = _binding
     private val args: TvShowDetailsFragmentArgs by navArgs()
-    private val detailsViewModel: DetailsViewModel by viewModels()
+    private val detailsViewModel: MovieDetailsViewModel by viewModels()
     private var tvShow: TvShow? = null
 
     override fun onCreateView(

@@ -6,8 +6,8 @@ import io.erikrios.github.canvaskitmovie.core.domain.model.Trending
 import io.erikrios.github.canvaskitmovie.core.domain.usecase.TrendingUseCase
 
 class TrendingDetailsViewModel(private val trendingUseCase: TrendingUseCase) : ViewModel() {
-    fun getMovie(id: Int) = trendingUseCase.getTrending(id).asLiveData()
+    fun getTrending(id: Int) = trendingUseCase.getTrending(id).asLiveData()
 
-    fun setFavoriteMovie(trending: Trending, newStatus: Boolean) =
+    fun setFavoriteTrending(trending: Trending, newStatus: Boolean) =
         trendingUseCase.setFavoriteTrending(trending, newStatus)
 }

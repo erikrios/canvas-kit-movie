@@ -5,6 +5,7 @@ import io.erikrios.github.canvaskitmovie.details.MovieDetailsViewModel
 import io.erikrios.github.canvaskitmovie.details.TrendingDetailsViewModel
 import io.erikrios.github.canvaskitmovie.details.TvShowDetailsViewModel
 import io.erikrios.github.canvaskitmovie.favorites.FavoriteMoviesViewModel
+import io.erikrios.github.canvaskitmovie.favorites.FavoriteTrendingsViewModel
 import io.erikrios.github.canvaskitmovie.favorites.FavoriteTvShowsViewModel
 import io.erikrios.github.canvaskitmovie.movies.DiscoverMoviesViewModel
 import io.erikrios.github.canvaskitmovie.trending.DiscoverTrendingViewModel
@@ -27,4 +28,5 @@ val viewModelModule = module {
     viewModel { TrendingDetailsViewModel(get()) }
     viewModel { FavoriteMoviesViewModel(get()) }
     viewModel { FavoriteTvShowsViewModel(get()) }
+    viewModel { FavoriteTrendingsViewModel(get()) }
 }

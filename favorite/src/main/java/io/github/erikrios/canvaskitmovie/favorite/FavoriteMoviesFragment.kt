@@ -10,7 +10,6 @@ import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import io.erikrios.github.canvaskitmovie.R
 import io.github.erikrios.canvaskitmovie.core.domain.model.Movie
 import io.github.erikrios.canvaskitmovie.core.ui.FavoriteCinemaAdapter
 import io.github.erikrios.canvaskitmovie.core.utils.SortUtils

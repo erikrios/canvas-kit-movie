@@ -2,21 +2,32 @@ package io.erikrios.github.canvaskitmovie.core.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import io.erikrios.github.canvaskitmovie.R
 import io.erikrios.github.canvaskitmovie.core.domain.model.Movie
+import io.erikrios.github.canvaskitmovie.core.domain.model.Trending
 import io.erikrios.github.canvaskitmovie.core.domain.model.TvShow
-import io.erikrios.github.canvaskitmovie.databinding.ItemFavoriteBinding
 import io.erikrios.github.canvaskitmovie.core.utils.CinemaDiffCallback
 import io.erikrios.github.canvaskitmovie.core.utils.ImageConfigurations
 import io.erikrios.github.canvaskitmovie.core.utils.ImageConfigurations.generateFullImageUrl
+import io.erikrios.github.canvaskitmovie.databinding.ItemFavoriteBinding
 import jp.wasabeef.glide.transformations.BlurTransformation
 
 class FavoriteCinemaAdapter<T>(private val onClickListener: ((T) -> Unit)) :
-    PagedListAdapter<T, FavoriteCinemaAdapter<T>.ViewHolder>(CinemaDiffCallback<T>()) {
+    RecyclerView.Adapter<FavoriteCinemaAdapter<T>.ViewHolder>() {
+
+    private val cinemas = mutableListOf<T>()
+
+    private fun setCinemas(cinemas: List<T>) {
+        val diffCallback = CinemaDiffCallback(this.cinemas, cinemas)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+        this.cinemas.clear()
+        this.cinemas.addAll(cinemas)
+        diffResult.dispatchUpdatesTo(this)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -25,7 +36,9 @@ class FavoriteCinemaAdapter<T>(private val onClickListener: ((T) -> Unit)) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(getItem(position), onClickListener)
+        holder.bind(cinemas[position], onClickListener)
+
+    override fun getItemCount(): Int = cinemas.size
 
     inner class ViewHolder(private val binding: ItemFavoriteBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -49,7 +62,13 @@ class FavoriteCinemaAdapter<T>(private val onClickListener: ((T) -> Unit)) :
                     title = cinema.name
                     ratingInfo = cinema.voteAverage
                 }
-                else -> throw IllegalArgumentException("Only Movie or TvShow instance are accepted.")
+                is Trending -> {
+                    posterPath = cinema.posterPath
+                    backdropPath = cinema.backdropPath
+                    title = cinema.title
+                    ratingInfo = cinema.voteAverage
+                }
+                else -> throw IllegalArgumentException("Only Movie, TvShow, or Trending instance are accepted.")
             }
 
             binding.apply {

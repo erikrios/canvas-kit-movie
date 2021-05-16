@@ -6,10 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import io.erikrios.github.canvaskitmovie.R
 import io.erikrios.github.canvaskitmovie.core.domain.model.Movie
+import io.erikrios.github.canvaskitmovie.core.domain.model.Trending
 import io.erikrios.github.canvaskitmovie.core.domain.model.TvShow
-import io.erikrios.github.canvaskitmovie.databinding.ItemCinemaBinding
 import io.erikrios.github.canvaskitmovie.core.utils.ImageConfigurations
 import io.erikrios.github.canvaskitmovie.core.utils.ImageConfigurations.generateFullImageUrl
+import io.erikrios.github.canvaskitmovie.databinding.ItemCinemaBinding
 
 class CinemaAdapter<T>(
     private val cinemas: List<T>,
@@ -44,6 +45,11 @@ class CinemaAdapter<T>(
                 is TvShow -> {
                     posterPath = cinema.posterPath
                     title = cinema.name
+                    voteAverage = cinema.voteAverage.toFloat()
+                }
+                is Trending -> {
+                    posterPath = cinema.posterPath
+                    title = cinema.title
                     voteAverage = cinema.voteAverage.toFloat()
                 }
                 else -> throw IllegalArgumentException("Only Movie or TvShow instance are accepted.")

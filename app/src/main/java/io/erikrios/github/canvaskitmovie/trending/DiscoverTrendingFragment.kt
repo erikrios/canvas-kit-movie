@@ -5,24 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import dagger.hilt.android.AndroidEntryPoint
-import io.erikrios.github.canvaskitmovie.core.domain.model.Movie
-import io.erikrios.github.canvaskitmovie.databinding.FragmentDiscoverTrendingBinding
-import io.erikrios.github.canvaskitmovie.core.ui.CinemaAdapter
-import io.erikrios.github.canvaskitmovie.main.MainViewModel
 import io.erikrios.github.canvaskitmovie.core.data.Resource
-import io.erikrios.github.canvaskitmovie.core.utils.Status
+import io.erikrios.github.canvaskitmovie.core.domain.model.Trending
+import io.erikrios.github.canvaskitmovie.core.ui.CinemaAdapter
+import io.erikrios.github.canvaskitmovie.databinding.FragmentDiscoverTrendingBinding
+import org.koin.android.viewmodel.ext.android.viewModel
 
-@AndroidEntryPoint
 class DiscoverTrendingFragment : Fragment() {
 
     private var _binding: FragmentDiscoverTrendingBinding? = null
     private val binding get() = _binding
-    private lateinit var adapter: CinemaAdapter<Movie>
-    private val mainViewModel: MainViewModel by activityViewModels()
+    private lateinit var adapter: CinemaAdapter<Trending>
+    private val viewModel: DiscoverTrendingViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +30,7 @@ class DiscoverTrendingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mainViewModel.trendingState.observe(
+        viewModel.trendingsState.observe(
             viewLifecycleOwner,
             this@DiscoverTrendingFragment::handleState
         )
@@ -45,16 +41,16 @@ class DiscoverTrendingFragment : Fragment() {
         _binding = null
     }
 
-    private fun handleState(moviesResource: Resource<List<Movie>>) {
-        when (moviesResource.status) {
-            Status.LOADING -> handleLoadingState(true)
-            Status.ERROR -> {
+    private fun handleState(trendingsResource: Resource<List<Trending>>) {
+        when (trendingsResource) {
+            is Resource.Loading -> handleLoadingState(true)
+            is Resource.Error -> {
                 handleLoadingState(false)
-                moviesResource.message?.let { handleErrorState(it) }
+                trendingsResource.message?.let { handleErrorState(it) }
             }
-            Status.SUCCESS -> {
+            is Resource.Success -> {
                 handleLoadingState(false)
-                moviesResource.data?.let { handleSuccessState(it) }
+                trendingsResource.data?.let { handleSuccessState(it) }
             }
         }
     }
@@ -81,12 +77,12 @@ class DiscoverTrendingFragment : Fragment() {
         ).show()
     }
 
-    private fun handleSuccessState(movies: List<Movie>) {
-        setRecyclerView(movies)
+    private fun handleSuccessState(trendings: List<Trending>) {
+        setRecyclerView(trendings)
     }
 
-    private fun setRecyclerView(movies: List<Movie>) {
-        adapter = CinemaAdapter(movies) { movie ->
+    private fun setRecyclerView(trendings: List<Trending>) {
+        adapter = CinemaAdapter(trendings) { movie ->
             val action =
                 DiscoverTrendingFragmentDirections.actionDiscoverTrendingFragmentToMovieDetailsFragment2(
                     movie

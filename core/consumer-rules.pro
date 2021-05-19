@@ -82,3 +82,8 @@ public *;
 ##---------------Begin: proguard configuration for RxJava ----------
 # Uncomment if you use RxJava
 #-dontwarn java.util.concurrent.Flow*
+
+# Navigation component
+-keep class * extends androidx.fragment.app.Fragment{}
+-keepnames class * extends android.os.Parcelable
+-keepnames class * extends java.io.Serializable

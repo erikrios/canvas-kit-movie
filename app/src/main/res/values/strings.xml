@@ -1,9 +1,9 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Canvas Kit Movie</string>
     <string name="movies">Movies</string>
     <string name="tv_shows">TV Shows</string>
     <string name="tv_vote_average_container">(%.1f)</string>
-    <string name="tv_vote_count_container">Vote(%d)</string>
+    <string name="tv_vote_count_container" tools:keep="@string/tv_vote_count_container">Vote(%d)</string>
     <string name="popularity">Popularity:</string>
     <string name="release_date">Release Date:</string>
     <string name="vote">Vote:</string>
@@ -16,19 +16,19 @@
     <string name="loading">Loading…</string>
     <string name="no_data">No Data</string>
     <string name="favorites">Favorites</string>
-    <string name="favorite_movies">Favorite Movies</string>
-    <string name="favorite_tv_show">Favorite TV Show</string>
-    <string name="favorite_trending">Favorite Trending</string>
+    <string name="favorite_movies" tools:keep="@string/favorite_movies">Favorite Movies</string>
+    <string name="favorite_tv_show" tools:keep="@string/favorite_tv_show">Favorite TV Show</string>
+    <string name="favorite_trending" tools:keep="@string/favorite_trending">Favorite Trending</string>
     <string name="rating">Rating: %.1f</string>
     <string name="share">Share</string>
     <string name="trending">Trending</string>
     <string name="share_using">Share Using</string>
-    <string name="title_sort">Sort by Title</string>
-    <string name="release_date_sort">Sort by Release Date</string>
-    <string name="popularity_sort">Sort by Popularity</string>
-    <string name="vote_average_sort">Sort by Vote Average</string>
-    <string name="vote_count_sort">Sort by Vote Count</string>
-    <string name="random">Random</string>
-    <string name="title_favorite">Favorite</string>
+    <string name="title_sort" tools:keep="@string/title_sort">Sort by Title</string>
+    <string name="release_date_sort" tools:keep="@string/release_date_sort">Sort by Release Date</string>
+    <string name="popularity_sort" tools:keep="@string/popularity_sort">Sort by Popularity</string>
+    <string name="vote_average_sort" tools:keep="@string/vote_average_sort">Sort by Vote Average</string>
+    <string name="vote_count_sort" tools:keep="@string/vote_count_sort">Sort by Vote Count</string>
+    <string name="random" tools:keep="@string/random">Random</string>
+    <string name="title_favorite" tools:keep="@string/title_favorite">Favorite</string>
     <string name="title_setting">Setting</string>
 </resources>

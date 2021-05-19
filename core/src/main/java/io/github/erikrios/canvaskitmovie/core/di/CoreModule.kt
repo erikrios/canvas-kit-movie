@@ -20,6 +20,7 @@ import io.github.erikrios.canvaskitmovie.core.domain.repository.ITvShowRepositor
 import io.github.erikrios.canvaskitmovie.core.utils.AppExecutors
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SupportFactory
+import okhttp3.CertificatePinner
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -68,18 +69,27 @@ val networkModule = module {
             .create()
     }
     single {
+        val hostname = BuildConfig.HOST
+        val certificatePinner = CertificatePinner.Builder()
+            .add(hostname, "sha256/+vqZVAzTqUP8BGkfl88yU7SQ3C8J2uNEa55B7RZjEg0=")
+            .add(hostname, "sha256/JSMzqOOrtyOT1kmau6zKhgT676hGgczD5VMdRMyJZFA=")
+            .add(hostname, "sha256/++MBgDH5WGvL9Bcn5Be30cRcL0f5O+NyoXuWtQdX1aI=")
+            .add(hostname, "sha256/KwccWaCgrnaw6tsrrSO61FgLacNgG2MMLq8GE6+oP5I=")
+            .build()
         if (BuildConfig.DEBUG) {
             OkHttpClient.Builder()
                 .callTimeout(20, TimeUnit.SECONDS)
                 .readTimeout(20, TimeUnit.SECONDS)
                 .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .addInterceptor(get<Interceptor>())
+                .certificatePinner(certificatePinner)
                 .build()
         } else {
             OkHttpClient.Builder()
                 .callTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS)
                 .addInterceptor(get<Interceptor>())
+                .certificatePinner(certificatePinner)
                 .build()
         }
     }

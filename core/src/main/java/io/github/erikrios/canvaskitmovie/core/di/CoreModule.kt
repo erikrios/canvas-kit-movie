@@ -18,6 +18,8 @@ import io.github.erikrios.canvaskitmovie.core.domain.repository.IMovieRepository
 import io.github.erikrios.canvaskitmovie.core.domain.repository.ITrendingRepository
 import io.github.erikrios.canvaskitmovie.core.domain.repository.ITvShowRepository
 import io.github.erikrios.canvaskitmovie.core.utils.AppExecutors
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -32,11 +34,15 @@ val databaseModule = module {
     factory { get<CinemaDatabase>().tvShowDao() }
     factory { get<CinemaDatabase>().trendingDao() }
     single {
+        val passphrase: ByteArray = SQLiteDatabase.getBytes("erikriosetiawan".toCharArray())
+        val factory = SupportFactory(passphrase)
         Room.databaseBuilder(
             androidContext(),
             CinemaDatabase::class.java,
             DATABASE_NAME
-        ).fallbackToDestructiveMigration().build()
+        ).fallbackToDestructiveMigration()
+            .openHelperFactory(factory)
+            .build()
     }
 }
 

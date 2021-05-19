@@ -86,4 +86,8 @@ dependencies {
     api "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleRuntimeKtxVersion"
     api "androidx.legacy:legacy-support-v4:$legacySupportV4Version"
     api "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleLivedataKtxVersion"
+
+    // Database Encryption
+    implementation "net.zetetic:android-database-sqlcipher:$androidDatabaseSqlcipher"
+    implementation "androidx.sqlite:sqlite-ktx:$sqliteKtx"
 }

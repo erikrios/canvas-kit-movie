@@ -19,6 +19,12 @@ static def getApiKey() {
     return props['API_KEY']
 }
 
+static def getHost() {
+    Properties props = new Properties()
+    props.load(new FileInputStream(new File('secrets.properties')))
+    return props['HOST']
+}
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -32,10 +38,11 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-        manifestPlaceholders = [BASE_URL: getBaseUrl(), API_KEY: getApiKey()]
+        manifestPlaceholders = [BASE_URL: getBaseUrl(), API_KEY: getApiKey(), HOST: getHost()]
 
         buildConfigField "String", "BASE_URL", "\"" + getBaseUrl() + "\""
         buildConfigField "String", "API_KEY", "\"" + getApiKey() + "\""
+        buildConfigField "String", "HOST", "\"" + getHost() + "\""
     }
 
     buildTypes {

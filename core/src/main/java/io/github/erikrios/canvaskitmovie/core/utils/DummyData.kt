@@ -2,6 +2,7 @@ package io.github.erikrios.canvaskitmovie.core.utils
 
 import io.github.erikrios.canvaskitmovie.core.domain.model.*
 
+@Suppress("Unused")
 object DummyData {
 
     fun generateMovies(): List<Movie> {

@@ -1,3 +1,5 @@
+@file:Suppress("unused", "unused")
+
 package io.github.erikrios.canvaskitmovie.core.utils
 
 import android.os.Handler

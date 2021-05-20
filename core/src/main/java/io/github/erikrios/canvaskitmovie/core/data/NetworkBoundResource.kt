@@ -1,3 +1,5 @@
+@file:Suppress("RemoveExplicitTypeArguments")
+
 package io.github.erikrios.canvaskitmovie.core.data
 
 import io.github.erikrios.canvaskitmovie.core.data.source.remote.network.TheMovieDatabaseApiResponse

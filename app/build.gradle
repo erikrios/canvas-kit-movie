@@ -41,10 +41,6 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-        debug {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
         applicationVariants.all { variant ->
             variant.buildConfigField "String", "BASE_URL", "\"" + getBaseUrl() + "\""
             variant.buildConfigField "String", "API_KEY", "\"" + getApiKey() + "\""

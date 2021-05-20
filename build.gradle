@@ -8,7 +8,9 @@ buildscript {
         mavenCentral()
     }
     dependencies {
+        //noinspection AndroidGradlePluginVersion
         classpath 'com.android.tools.build:gradle:4.2.0'
+        //noinspection DifferentKotlinGradleVersion
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5"
 
@@ -20,6 +22,7 @@ buildscript {
 allprojects {
     repositories {
         google()
+        //noinspection JcenterRepositoryObsolete
         jcenter()
     }
 }

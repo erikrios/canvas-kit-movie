@@ -15,6 +15,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
+import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 
 @ExperimentalCoroutinesApi
@@ -45,6 +46,7 @@ class DiscoverMoviesViewModelTest {
     @Test
     fun `get movies return the list of movies`() {
         val moviesResource = discoverMoviesViewModel.moviesState.getOrAwaitValueTest()
+        verify(movieUseCase).getMovies()
         assertThat(moviesResource).isInstanceOf(Resource.Success::class.java)
         val movies = moviesResource.data
         assertThat(movies).isNotEmpty()

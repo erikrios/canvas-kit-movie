@@ -15,6 +15,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
+import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 
 @ExperimentalCoroutinesApi
@@ -45,6 +46,7 @@ class DiscoverTvShowsViewModelTest {
     @Test
     fun `get tv shows return the list of tv shows`() {
         val tvShowsResource = discoverTvShowsViewModel.tvShowsState.getOrAwaitValueTest()
+        verify(tvShowUseCase).getTvShows()
         assertThat(tvShowsResource).isInstanceOf(Resource.Success::class.java)
         val tvShows = tvShowsResource.data
         assertThat(tvShows).isNotEmpty()

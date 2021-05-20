@@ -15,6 +15,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
+import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 
 @ExperimentalCoroutinesApi
@@ -51,6 +52,7 @@ class DiscoverTrendingViewModelTest {
     @Test
     fun `get trendings return the list of trendings`() {
         val trendingsResource = discoverTrendingViewModel.trendingsState.getOrAwaitValueTest()
+        verify(trendingUseCase).getTrendings()
         assertThat(trendingsResource).isInstanceOf(Resource.Success::class.java)
         val trendings = trendingsResource.data
         assertThat(trendings).isNotEmpty()

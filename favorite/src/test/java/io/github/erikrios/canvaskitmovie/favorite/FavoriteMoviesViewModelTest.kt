@@ -29,7 +29,7 @@ class FavoriteMoviesViewModelTest {
     @Mock
     private lateinit var movieUseCase: MovieUseCase
 
-    private lateinit var discoverMoviesViewModel: FavoriteMoviesViewModel
+    private lateinit var favoriteMoviesViewModel: FavoriteMoviesViewModel
     private lateinit var actualMovies: List<Movie>
 
     @Suppress("DEPRECATION")
@@ -39,13 +39,13 @@ class FavoriteMoviesViewModelTest {
 
         actualMovies = generateMovies()
         `when`(movieUseCase.getFavoriteMovies(any())).thenReturn(flow { emit(actualMovies) })
-        discoverMoviesViewModel = FavoriteMoviesViewModel(movieUseCase)
+        favoriteMoviesViewModel = FavoriteMoviesViewModel(movieUseCase)
     }
 
     @Test
     fun `get movies return the list of movies`() {
         val movies =
-            discoverMoviesViewModel.getFavoriteMovies(SortUtils.Sort.RANDOM).getOrAwaitValueTest()
+            favoriteMoviesViewModel.getFavoriteMovies(SortUtils.Sort.RANDOM).getOrAwaitValueTest()
         verify(movieUseCase).getFavoriteMovies(SortUtils.Sort.RANDOM)
         assertThat(movies).isNotEmpty()
     }

@@ -78,12 +78,12 @@ class TvShowDetailsFragment : Fragment() {
         if (isExists) {
             binding?.fabFavorite?.apply {
                 setImageResource(R.drawable.ic_baseline_favorite_24)
-                setOnClickListener { viewModel.setFavoriteMovie(newTvShow, false) }
+                setOnClickListener { viewModel.setFavoriteTvShow(newTvShow, false) }
             }
         } else {
             binding?.fabFavorite?.apply {
                 setImageResource(R.drawable.ic_baseline_favorite_border_24)
-                setOnClickListener { viewModel.setFavoriteMovie(newTvShow, true) }
+                setOnClickListener { viewModel.setFavoriteTvShow(newTvShow, true) }
             }
         }
     }

@@ -16,8 +16,8 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class DiscoverMoviesFragment : Fragment() {
 
     private var _binding: FragmentDiscoverMoviesBinding? = null
-    private val binding get() = _binding
     private lateinit var adapter: CinemaAdapter<Movie>
+    private val binding get() = _binding
     private val viewModel: DiscoverMoviesViewModel by viewModel()
 
     override fun onCreateView(

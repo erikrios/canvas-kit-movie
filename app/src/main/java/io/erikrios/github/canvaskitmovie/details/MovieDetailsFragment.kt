@@ -26,8 +26,8 @@ class MovieDetailsFragment : Fragment() {
 
     private var _binding: FragmentMovieDetailsBinding? = null
     private val binding get() = _binding
-    private val args: MovieDetailsFragmentArgs by navArgs()
     private val viewModel: MovieDetailsViewModel by viewModel()
+    private val args: MovieDetailsFragmentArgs by navArgs()
     private var movie: Movie? = null
 
     override fun onCreateView(
@@ -44,6 +44,7 @@ class MovieDetailsFragment : Fragment() {
         movie = args.movie
         hideBottomNavigation()
         handleToolbar(args.movie.title)
+
         viewModel.apply {
             getMovie(movie?.id ?: -1).observe(
                 viewLifecycleOwner,

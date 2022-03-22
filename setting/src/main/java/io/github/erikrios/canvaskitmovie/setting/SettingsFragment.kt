@@ -40,9 +40,7 @@ class SettingsFragment : Fragment() {
         binding?.toolbar?.apply {
             navigationIcon =
                 ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_arrow_back_24)
-            setNavigationOnClickListener {
-                findNavController().popBackStack()
-            }
+            setNavigationOnClickListener { findNavController().popBackStack() }
         }
     }
 

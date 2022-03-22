@@ -66,6 +66,7 @@ class FavoriteTrendingsFragment : Fragment() {
 
     private fun handleSuccessState(trendings: List<Trending>) {
         binding?.progressBar?.visibility = View.GONE
+
         if (trendings.isEmpty()) {
             binding?.apply {
                 lavEmpty.visibility = View.VISIBLE

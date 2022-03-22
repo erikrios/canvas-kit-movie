@@ -9,8 +9,8 @@ import io.erikrios.github.canvaskitmovie.databinding.FragmentTrendingBinding
 
 class TrendingFragment : Fragment() {
 
-    private var _binding: FragmentTrendingBinding? = null
     private val binding get() = _binding
+    private var _binding: FragmentTrendingBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

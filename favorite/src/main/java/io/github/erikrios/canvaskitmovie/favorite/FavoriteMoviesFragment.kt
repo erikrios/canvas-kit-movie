@@ -37,6 +37,7 @@ class FavoriteMoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         handleToolbar()
+
         viewModel.apply {
             getFavoriteMovies(SortUtils.Sort.TITLE).observe(
                 viewLifecycleOwner,
@@ -67,6 +68,7 @@ class FavoriteMoviesFragment : Fragment() {
 
     private fun handleSuccessState(movies: List<Movie>) {
         binding?.progressBar?.visibility = View.GONE
+
         if (movies.isEmpty()) {
             binding?.apply {
                 lavEmpty.visibility = View.VISIBLE
@@ -85,7 +87,9 @@ class FavoriteMoviesFragment : Fragment() {
         binding?.toolbar?.apply {
             navigationIcon =
                 ContextCompat.getDrawable(context, R.drawable.ic_baseline_arrow_back_24)
+
             setNavigationOnClickListener { findNavController().popBackStack() }
+
             menu.children.iterator().forEach {
                 when (it.itemId) {
                     R.id.action_title -> {
@@ -148,6 +152,7 @@ class FavoriteMoviesFragment : Fragment() {
             viewLifecycleOwner,
             this@FavoriteMoviesFragment::handleState
         )
+
         menuItem.isChecked = true
     }
 }

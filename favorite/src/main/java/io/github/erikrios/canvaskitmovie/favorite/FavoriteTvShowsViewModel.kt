@@ -7,7 +7,6 @@ import io.github.erikrios.canvaskitmovie.core.utils.SortUtils
 
 class FavoriteTvShowsViewModel(private val tvShowUseCase: TvShowUseCase) :
     ViewModel() {
-
     fun getFavoriteTvShows(sort: SortUtils.Sort) =
         tvShowUseCase.getFavoriteTvShows(sort).asLiveData()
 }

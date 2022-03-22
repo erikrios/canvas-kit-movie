@@ -35,7 +35,9 @@ class FavoriteTvShowsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         handleToolbar()
+
         viewModel.apply {
             getFavoriteTvShows(SortUtils.Sort.TITLE).observe(
                 viewLifecycleOwner,
@@ -66,6 +68,7 @@ class FavoriteTvShowsFragment : Fragment() {
 
     private fun handleSuccessState(tvShows: List<TvShow>) {
         binding?.progressBar?.visibility = View.GONE
+
         if (tvShows.isEmpty()) {
             binding?.apply {
                 lavEmpty.visibility = View.VISIBLE

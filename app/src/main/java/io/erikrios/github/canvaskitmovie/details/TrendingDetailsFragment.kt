@@ -26,8 +26,8 @@ class TrendingDetailsFragment : Fragment() {
 
     private var _binding: FragmentTrendingDetailsBinding? = null
     private val binding get() = _binding
-    private val args: TrendingDetailsFragmentArgs by navArgs()
     private val viewModel: TrendingDetailsViewModel by viewModel()
+    private val args: TrendingDetailsFragmentArgs by navArgs()
     private var trending: Trending? = null
 
     override fun onCreateView(

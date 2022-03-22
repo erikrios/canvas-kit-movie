@@ -6,6 +6,7 @@ import io.github.erikrios.canvaskitmovie.core.domain.model.Movie
 import io.github.erikrios.canvaskitmovie.core.domain.usecase.MovieUseCase
 
 class MovieDetailsViewModel(private val movieUseCase: MovieUseCase) : ViewModel() {
+
     fun getMovie(id: Int) = movieUseCase.getMovie(id).asLiveData()
 
     fun setFavoriteMovie(movie: Movie, newStatus: Boolean) =

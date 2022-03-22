@@ -9,8 +9,8 @@ import io.erikrios.github.canvaskitmovie.databinding.FragmentMoviesBinding
 
 class MoviesFragment : Fragment() {
 
-    private var _binding: FragmentMoviesBinding? = null
     private val binding get() = _binding
+    private var _binding: FragmentMoviesBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

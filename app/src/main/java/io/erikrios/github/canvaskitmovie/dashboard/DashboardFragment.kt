@@ -25,6 +25,7 @@ class DashboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val navController = requireActivity().findNavController(R.id.nav_host_fragment)
         binding?.bottomNavigation?.setupWithNavController(navController)
     }

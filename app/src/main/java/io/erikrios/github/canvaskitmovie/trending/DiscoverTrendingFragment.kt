@@ -16,8 +16,8 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class DiscoverTrendingFragment : Fragment() {
 
-    private var _binding: FragmentDiscoverTrendingBinding? = null
     private val binding get() = _binding
+    private var _binding: FragmentDiscoverTrendingBinding? = null
     private lateinit var adapter: CinemaAdapter<Trending>
     private val viewModel: DiscoverTrendingViewModel by viewModel()
 

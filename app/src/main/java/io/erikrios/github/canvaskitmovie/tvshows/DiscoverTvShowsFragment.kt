@@ -44,9 +44,11 @@ class DiscoverTvShowsFragment : Fragment() {
 
     private fun handleState(tvShowsResource: io.github.erikrios.canvaskitmovie.core.data.Resource<List<TvShow>>) {
         when (tvShowsResource) {
-            is io.github.erikrios.canvaskitmovie.core.data.Resource.Loading -> handleLoadingState(
-                true
-            )
+            is io.github.erikrios.canvaskitmovie.core.data.Resource.Loading -> {
+                handleLoadingState(
+                    true
+                )
+            }
             is io.github.erikrios.canvaskitmovie.core.data.Resource.Error -> {
                 handleLoadingState(false)
                 tvShowsResource.message?.let { handleErrorState(it) }

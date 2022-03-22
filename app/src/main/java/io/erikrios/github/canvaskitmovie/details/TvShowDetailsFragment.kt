@@ -27,8 +27,8 @@ class TvShowDetailsFragment : Fragment() {
 
     private var _binding: FragmentTvShowDetailsBinding? = null
     private val binding get() = _binding
-    private val args: TvShowDetailsFragmentArgs by navArgs()
     private val viewModel: TvShowDetailsViewModel by viewModel()
+    private val args: TvShowDetailsFragmentArgs by navArgs()
     private var tvShow: TvShow? = null
 
     override fun onCreateView(
